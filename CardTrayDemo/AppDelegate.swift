@@ -7,15 +7,26 @@
 //
 
 import UIKit
+import CardTray
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    lazy var cardTrayFacade = {
+        return CardTrayFacade()
+    }()
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        let cardTrayCtrl = cardTrayFacade.mainViewController
+        let navCtrl = UINavigationController(rootViewController: cardTrayCtrl)
+        
+        let window = UIWindow()
+        window.rootViewController = navCtrl
+        window.makeKeyAndVisible()
+        self.window = window
         return true
     }
 
