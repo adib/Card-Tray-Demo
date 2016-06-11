@@ -8,13 +8,18 @@
 
 import UIKit
 
-class CardCaptureViewController: UIViewController {
+class CardCaptureViewController: UIViewController,CardIOViewDelegate {
 
-    @IBOutlet weak var cardCaptureView: CardCaptureView!
+//    @IBOutlet weak var cardCaptureView: CardCaptureView!
+
+//    @IBOutlet weak var cardView: CardIOView!
+
+    @IBOutlet weak var cardView: CardIOView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        cardView.delegate = self
         // Do any additional setup after loading the view.
     }
 
@@ -27,11 +32,11 @@ class CardCaptureViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        cardCaptureView.performSelector(#selector(cardCaptureView.startSession), withObject: nil, afterDelay: 0)
+//        cardCaptureView.performSelector(#selector(cardCaptureView.startSession), withObject: nil, afterDelay: 0)
     }
     
     override func viewWillDisappear(animated: Bool) {
-        cardCaptureView.stopSession()
+//        cardCaptureView.stopSession()
         super.viewWillDisappear(animated)
     }
 
@@ -44,5 +49,12 @@ class CardCaptureViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: CardIOViewDelegate
+    func cardIOView(view: CardIOView,didScanCard cardInfo: CardIOCreditCardInfo) {
+        let cardNumber = cardInfo.cardNumber
+        NSLog("Scanned card: %@",cardNumber)
+    }
+    
 
 }

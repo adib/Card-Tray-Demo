@@ -72,7 +72,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OPB-gB-PIk">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="441"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" horizontalHuggingPriority="50" verticalHuggingPriority="50" translatesAutoresizingMaskIntoConstraints="NO" id="M7k-ij-NE4" userLabel="Camera View" customClass="CardCaptureView" customModule="CardTray" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" horizontalHuggingPriority="50" verticalHuggingPriority="50" translatesAutoresizingMaskIntoConstraints="NO" id="M7k-ij-NE4" userLabel="Camera View" customClass="CardIOView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -152,7 +152,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="578"/>
                     <connections>
-                        <outlet property="cardCaptureView" destination="M7k-ij-NE4" id="324-aa-sAY"/>
+                        <outlet property="cardView" destination="M7k-ij-NE4" id="kdk-dE-sMg"/>
                         <outlet property="view" destination="DJI-ql-Crm" id="Rv8-Yu-Fcm"/>
                     </connections>
                 </viewController>

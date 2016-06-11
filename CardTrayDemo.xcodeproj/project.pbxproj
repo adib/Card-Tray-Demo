@@ -10,13 +10,40 @@
 		01C260B6C41EFFA19593DC69 /* Pods_CardTrayDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9786026A62B651C6328F4479 /* Pods_CardTrayDemo.framework */; };
 		C0473D9B1D0C5B2B00BB496F /* CardCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0473D9A1D0C5B2B00BB496F /* CardCaptureView.swift */; };
 		C0473D9D1D0C5B7C00BB496F /* CardCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0473D9C1D0C5B7C00BB496F /* CardCaptureViewController.swift */; };
-		C0473DA21D0C6E8C00BB496F /* TesseractOCR.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0473DA01D0C6C8900BB496F /* TesseractOCR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C0473DA41D0C6FB600BB496F /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0473DA31D0C6FB600BB496F /* TesseractOCR.framework */; };
 		C0473DA71D0C744200BB496F /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = C0473DA61D0C744200BB496F /* tessdata */; };
 		C05827711D0BF87E0086BD35 /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05827701D0BF87E0086BD35 /* CardListView.swift */; };
 		C05827731D0BF8900086BD35 /* CardItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05827721D0BF8900086BD35 /* CardItemView.swift */; };
 		C05827751D0C01920086BD35 /* CardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05827741D0C01920086BD35 /* CardListViewController.swift */; };
 		C07592571D0BE33E00E44268 /* CardTrayFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07592561D0BE33E00E44268 /* CardTrayFacade.swift */; };
+		C0900FCB1D0C9CDD003B1357 /* CardIOWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = C0900FCA1D0C9CDD003B1357 /* CardIOWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C0900FCF1D0C9CDD003B1357 /* CardIOWrapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0900FC81D0C9CDD003B1357 /* CardIOWrapper.framework */; };
+		C0900FD71D0C9D3C003B1357 /* libCardIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0900FD41D0C9D3C003B1357 /* libCardIO.a */; };
+		C0900FD81D0C9D3C003B1357 /* libopencv_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0900FD51D0C9D3C003B1357 /* libopencv_core.a */; };
+		C0900FD91D0C9D3C003B1357 /* libopencv_imgproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0900FD61D0C9D3C003B1357 /* libopencv_imgproc.a */; };
+		C0900FE51D0C9D5C003B1357 /* CardIO.h in Headers */ = {isa = PBXBuildFile; fileRef = C0900FDD1D0C9D5C003B1357 /* CardIO.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C0900FE61D0C9D5C003B1357 /* CardIOCreditCardInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = C0900FDE1D0C9D5C003B1357 /* CardIOCreditCardInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C0900FE71D0C9D5C003B1357 /* CardIODetectionMode.h in Headers */ = {isa = PBXBuildFile; fileRef = C0900FDF1D0C9D5C003B1357 /* CardIODetectionMode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C0900FE81D0C9D5C003B1357 /* CardIOPaymentViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = C0900FE01D0C9D5C003B1357 /* CardIOPaymentViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C0900FE91D0C9D5C003B1357 /* CardIOPaymentViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = C0900FE11D0C9D5C003B1357 /* CardIOPaymentViewControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C0900FEA1D0C9D5C003B1357 /* CardIOUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = C0900FE21D0C9D5C003B1357 /* CardIOUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C0900FEB1D0C9D5C003B1357 /* CardIOView.h in Headers */ = {isa = PBXBuildFile; fileRef = C0900FE31D0C9D5C003B1357 /* CardIOView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C0900FEC1D0C9D5C003B1357 /* CardIOViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = C0900FE41D0C9D5C003B1357 /* CardIOViewDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C0900FED1D0C9ED4003B1357 /* CardIOWrapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0900FC81D0C9CDD003B1357 /* CardIOWrapper.framework */; };
+		C0900FEF1D0C9FC8003B1357 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0900FEE1D0C9FC8003B1357 /* CoreGraphics.framework */; };
+		C0900FF11D0C9FD6003B1357 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0900FF01D0C9FD6003B1357 /* Accelerate.framework */; };
+		C0900FF41D0C9FED003B1357 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0900FF21D0C9FED003B1357 /* AVFoundation.framework */; };
+		C0900FF51D0C9FED003B1357 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0900FF31D0C9FED003B1357 /* Foundation.framework */; };
+		C0900FF71D0C9FF3003B1357 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0900FF61D0C9FF2003B1357 /* MobileCoreServices.framework */; };
+		C0900FF91D0C9FF7003B1357 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0900FF81D0C9FF7003B1357 /* OpenGLES.framework */; };
+		C0900FFB1D0C9FFD003B1357 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0900FFA1D0C9FFD003B1357 /* Security.framework */; };
+		C0900FFD1D0CA002003B1357 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0900FFC1D0CA002003B1357 /* UIKit.framework */; };
+		C0900FFF1D0CA009003B1357 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0900FFE1D0CA009003B1357 /* QuartzCore.framework */; };
+		C09010011D0CA010003B1357 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09010001D0CA010003B1357 /* AudioToolbox.framework */; };
+		C09010051D0CA051003B1357 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C09010041D0CA051003B1357 /* libstdc++.tbd */; };
+		C09010071D0CA060003B1357 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09010061D0CA060003B1357 /* CoreVideo.framework */; };
+		C09010091D0CA068003B1357 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09010081D0CA068003B1357 /* CoreMedia.framework */; };
+		C090100A1D0CA098003B1357 /* CardIOWrapper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0900FC81D0C9CDD003B1357 /* CardIOWrapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C0C987361D0BBC1F00C4DF72 /* CardManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0C987351D0BBC1F00C4DF72 /* CardManagement.storyboard */; };
 		C0E9E4641D0BB709006218BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E9E4631D0BB709006218BE /* AppDelegate.swift */; };
 		C0E9E46B1D0BB70A006218BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0E9E46A1D0BB70A006218BE /* Assets.xcassets */; };
@@ -28,6 +55,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C0900FCD1D0C9CDD003B1357 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E9E4581D0BB709006218BE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C0900FC71D0C9CDD003B1357;
+			remoteInfo = CardIOWrapper;
+		};
 		C0E9E47F1D0BB75E006218BE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C0E9E4581D0BB709006218BE /* Project object */;
@@ -44,7 +78,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C0473DA21D0C6E8C00BB496F /* TesseractOCR.framework in Embed Frameworks */,
+				C090100A1D0CA098003B1357 /* CardIOWrapper.framework in Embed Frameworks */,
 				C0E9E4821D0BB75E006218BE /* CardTray.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -57,16 +91,47 @@
 		4D82D1016EC0DEAB08B89FFA /* Pods-CardTrayDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardTrayDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CardTrayDemo/Pods-CardTrayDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		5276DFFBD95A0C05466BAD67 /* Pods-CardTray.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardTray.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CardTray/Pods-CardTray.debug.xcconfig"; sourceTree = "<group>"; };
 		5511F907E598CBB27A5F2760 /* Pods_CardTray.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CardTray.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5541BAE52E18C9B6997CED02 /* Pods-CardIO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardIO.release.xcconfig"; path = "Pods/Target Support Files/Pods-CardIO/Pods-CardIO.release.xcconfig"; sourceTree = "<group>"; };
 		9786026A62B651C6328F4479 /* Pods_CardTrayDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CardTrayDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF8B02236F083A19A17420FD /* Pods_CardIO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CardIO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0473D9A1D0C5B2B00BB496F /* CardCaptureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCaptureView.swift; sourceTree = "<group>"; };
 		C0473D9C1D0C5B7C00BB496F /* CardCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCaptureViewController.swift; sourceTree = "<group>"; };
-		C0473DA01D0C6C8900BB496F /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TesseractOCR.framework; path = "../../../../Library/Developer/Xcode/DerivedData/CardTrayDemo-ezjxpdfuxmolgvfpsyccipahpcdt/Build/Products/Debug-iphoneos/TesseractOCRiOS/TesseractOCR.framework"; sourceTree = "<group>"; };
 		C0473DA31D0C6FB600BB496F /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TesseractOCR.framework; path = "../../../../Library/Developer/Xcode/DerivedData/CardTrayDemo-ezjxpdfuxmolgvfpsyccipahpcdt/Build/Products/Debug-iphonesimulator/TesseractOCRiOS/TesseractOCR.framework"; sourceTree = "<group>"; };
 		C0473DA61D0C744200BB496F /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		C05827701D0BF87E0086BD35 /* CardListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
 		C05827721D0BF8900086BD35 /* CardItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardItemView.swift; sourceTree = "<group>"; };
 		C05827741D0C01920086BD35 /* CardListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListViewController.swift; sourceTree = "<group>"; };
 		C07592561D0BE33E00E44268 /* CardTrayFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTrayFacade.swift; sourceTree = "<group>"; };
+		C0900FC81D0C9CDD003B1357 /* CardIOWrapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CardIOWrapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0900FCA1D0C9CDD003B1357 /* CardIOWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardIOWrapper.h; sourceTree = "<group>"; };
+		C0900FCC1D0C9CDD003B1357 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0900FD41D0C9D3C003B1357 /* libCardIO.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCardIO.a; path = Pods/CardIO/CardIO/libCardIO.a; sourceTree = "<group>"; };
+		C0900FD51D0C9D3C003B1357 /* libopencv_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_core.a; path = Pods/CardIO/CardIO/libopencv_core.a; sourceTree = "<group>"; };
+		C0900FD61D0C9D3C003B1357 /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_imgproc.a; path = Pods/CardIO/CardIO/libopencv_imgproc.a; sourceTree = "<group>"; };
+		C0900FDB1D0C9D3C003B1357 /* libopencv_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_core.a; path = Pods/CardIO/CardIO/libopencv_core.a; sourceTree = "<group>"; };
+		C0900FDC1D0C9D3D003B1357 /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_imgproc.a; path = Pods/CardIO/CardIO/libopencv_imgproc.a; sourceTree = "<group>"; };
+		C0900FDD1D0C9D5C003B1357 /* CardIO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CardIO.h; path = ../Pods/CardIO/CardIO/CardIO.h; sourceTree = "<group>"; };
+		C0900FDE1D0C9D5C003B1357 /* CardIOCreditCardInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CardIOCreditCardInfo.h; path = ../Pods/CardIO/CardIO/CardIOCreditCardInfo.h; sourceTree = "<group>"; };
+		C0900FDF1D0C9D5C003B1357 /* CardIODetectionMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CardIODetectionMode.h; path = ../Pods/CardIO/CardIO/CardIODetectionMode.h; sourceTree = "<group>"; };
+		C0900FE01D0C9D5C003B1357 /* CardIOPaymentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CardIOPaymentViewController.h; path = ../Pods/CardIO/CardIO/CardIOPaymentViewController.h; sourceTree = "<group>"; };
+		C0900FE11D0C9D5C003B1357 /* CardIOPaymentViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CardIOPaymentViewControllerDelegate.h; path = ../Pods/CardIO/CardIO/CardIOPaymentViewControllerDelegate.h; sourceTree = "<group>"; };
+		C0900FE21D0C9D5C003B1357 /* CardIOUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CardIOUtilities.h; path = ../Pods/CardIO/CardIO/CardIOUtilities.h; sourceTree = "<group>"; };
+		C0900FE31D0C9D5C003B1357 /* CardIOView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CardIOView.h; path = ../Pods/CardIO/CardIO/CardIOView.h; sourceTree = "<group>"; };
+		C0900FE41D0C9D5C003B1357 /* CardIOViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CardIOViewDelegate.h; path = ../Pods/CardIO/CardIO/CardIOViewDelegate.h; sourceTree = "<group>"; };
+		C0900FEE1D0C9FC8003B1357 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C0900FF01D0C9FD6003B1357 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		C0900FF21D0C9FED003B1357 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C0900FF31D0C9FED003B1357 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C0900FF61D0C9FF2003B1357 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		C0900FF81D0C9FF7003B1357 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		C0900FFA1D0C9FFD003B1357 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		C0900FFC1D0CA002003B1357 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C0900FFE1D0CA009003B1357 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C09010001D0CA010003B1357 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		C09010021D0CA01E003B1357 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		C09010041D0CA051003B1357 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		C09010061D0CA060003B1357 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		C09010081D0CA068003B1357 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		C0C987351D0BBC1F00C4DF72 /* CardManagement.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CardManagement.storyboard; sourceTree = "<group>"; };
 		C0E9E4601D0BB709006218BE /* CardTrayDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardTrayDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E9E4631D0BB709006218BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,13 +142,38 @@
 		C0E9E47C1D0BB75E006218BE /* CardTray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardTray.h; sourceTree = "<group>"; };
 		C0E9E47E1D0BB75E006218BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6B8B334B6A5DD14B8562570 /* Pods-CardTrayDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardTrayDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-CardTrayDemo/Pods-CardTrayDemo.release.xcconfig"; sourceTree = "<group>"; };
+		E694073191037700B4EBF431 /* Pods-CardIO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardIO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CardIO/Pods-CardIO.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C0900FC41D0C9CDD003B1357 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C09010091D0CA068003B1357 /* CoreMedia.framework in Frameworks */,
+				C09010071D0CA060003B1357 /* CoreVideo.framework in Frameworks */,
+				C09010051D0CA051003B1357 /* libstdc++.tbd in Frameworks */,
+				C09010011D0CA010003B1357 /* AudioToolbox.framework in Frameworks */,
+				C0900FFF1D0CA009003B1357 /* QuartzCore.framework in Frameworks */,
+				C0900FFD1D0CA002003B1357 /* UIKit.framework in Frameworks */,
+				C0900FFB1D0C9FFD003B1357 /* Security.framework in Frameworks */,
+				C0900FF91D0C9FF7003B1357 /* OpenGLES.framework in Frameworks */,
+				C0900FF71D0C9FF3003B1357 /* MobileCoreServices.framework in Frameworks */,
+				C0900FF41D0C9FED003B1357 /* AVFoundation.framework in Frameworks */,
+				C0900FF51D0C9FED003B1357 /* Foundation.framework in Frameworks */,
+				C0900FF11D0C9FD6003B1357 /* Accelerate.framework in Frameworks */,
+				C0900FEF1D0C9FC8003B1357 /* CoreGraphics.framework in Frameworks */,
+				C0900FD71D0C9D3C003B1357 /* libCardIO.a in Frameworks */,
+				C0900FD81D0C9D3C003B1357 /* libopencv_core.a in Frameworks */,
+				C0900FD91D0C9D3C003B1357 /* libopencv_imgproc.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C0E9E45D1D0BB709006218BE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0900FCF1D0C9CDD003B1357 /* CardIOWrapper.framework in Frameworks */,
 				C0E9E4811D0BB75E006218BE /* CardTray.framework in Frameworks */,
 				01C260B6C41EFFA19593DC69 /* Pods_CardTrayDemo.framework in Frameworks */,
 			);
@@ -93,6 +183,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0900FED1D0C9ED4003B1357 /* CardIOWrapper.framework in Frameworks */,
 				C0473DA41D0C6FB600BB496F /* TesseractOCR.framework in Frameworks */,
 				C465C86420955D327B9BD8C5 /* Pods_CardTray.framework in Frameworks */,
 			);
@@ -108,6 +199,8 @@
 				106E929F57DDA60B4EAC3C22 /* Pods-CardTray.release.xcconfig */,
 				4D82D1016EC0DEAB08B89FFA /* Pods-CardTrayDemo.debug.xcconfig */,
 				D6B8B334B6A5DD14B8562570 /* Pods-CardTrayDemo.release.xcconfig */,
+				E694073191037700B4EBF431 /* Pods-CardIO.debug.xcconfig */,
+				5541BAE52E18C9B6997CED02 /* Pods-CardIO.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -115,10 +208,29 @@
 		75727771B077B5729EC03162 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C09010081D0CA068003B1357 /* CoreMedia.framework */,
+				C09010061D0CA060003B1357 /* CoreVideo.framework */,
+				C09010041D0CA051003B1357 /* libstdc++.tbd */,
+				C09010021D0CA01E003B1357 /* libstdc++.6.0.9.tbd */,
+				C09010001D0CA010003B1357 /* AudioToolbox.framework */,
+				C0900FFE1D0CA009003B1357 /* QuartzCore.framework */,
+				C0900FFC1D0CA002003B1357 /* UIKit.framework */,
+				C0900FFA1D0C9FFD003B1357 /* Security.framework */,
+				C0900FF81D0C9FF7003B1357 /* OpenGLES.framework */,
+				C0900FF61D0C9FF2003B1357 /* MobileCoreServices.framework */,
+				C0900FF21D0C9FED003B1357 /* AVFoundation.framework */,
+				C0900FF31D0C9FED003B1357 /* Foundation.framework */,
+				C0900FF01D0C9FD6003B1357 /* Accelerate.framework */,
+				C0900FEE1D0C9FC8003B1357 /* CoreGraphics.framework */,
+				C0900FDB1D0C9D3C003B1357 /* libopencv_core.a */,
+				C0900FDC1D0C9D3D003B1357 /* libopencv_imgproc.a */,
+				C0900FD41D0C9D3C003B1357 /* libCardIO.a */,
+				C0900FD51D0C9D3C003B1357 /* libopencv_core.a */,
+				C0900FD61D0C9D3C003B1357 /* libopencv_imgproc.a */,
 				C0473DA31D0C6FB600BB496F /* TesseractOCR.framework */,
-				C0473DA01D0C6C8900BB496F /* TesseractOCR.framework */,
 				5511F907E598CBB27A5F2760 /* Pods_CardTray.framework */,
 				9786026A62B651C6328F4479 /* Pods_CardTrayDemo.framework */,
+				BF8B02236F083A19A17420FD /* Pods_CardIO.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -139,6 +251,23 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		C0900FC91D0C9CDD003B1357 /* CardIOWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				C0900FDD1D0C9D5C003B1357 /* CardIO.h */,
+				C0900FDE1D0C9D5C003B1357 /* CardIOCreditCardInfo.h */,
+				C0900FDF1D0C9D5C003B1357 /* CardIODetectionMode.h */,
+				C0900FE01D0C9D5C003B1357 /* CardIOPaymentViewController.h */,
+				C0900FE11D0C9D5C003B1357 /* CardIOPaymentViewControllerDelegate.h */,
+				C0900FE21D0C9D5C003B1357 /* CardIOUtilities.h */,
+				C0900FE31D0C9D5C003B1357 /* CardIOView.h */,
+				C0900FE41D0C9D5C003B1357 /* CardIOViewDelegate.h */,
+				C0900FCA1D0C9CDD003B1357 /* CardIOWrapper.h */,
+				C0900FCC1D0C9CDD003B1357 /* Info.plist */,
+			);
+			path = CardIOWrapper;
+			sourceTree = "<group>";
+		};
 		C0C987341D0BBBFF00C4DF72 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +281,7 @@
 			children = (
 				C0E9E4621D0BB709006218BE /* CardTrayDemo */,
 				C0E9E47B1D0BB75E006218BE /* CardTray */,
+				C0900FC91D0C9CDD003B1357 /* CardIOWrapper */,
 				C0E9E4611D0BB709006218BE /* Products */,
 				19478F0BBEB5ABD619A44C19 /* Pods */,
 				75727771B077B5729EC03162 /* Frameworks */,
@@ -163,6 +293,7 @@
 			children = (
 				C0E9E4601D0BB709006218BE /* CardTrayDemo.app */,
 				C0E9E47A1D0BB75E006218BE /* CardTray.framework */,
+				C0900FC81D0C9CDD003B1357 /* CardIOWrapper.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -222,6 +353,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		C0900FC51D0C9CDD003B1357 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0900FCB1D0C9CDD003B1357 /* CardIOWrapper.h in Headers */,
+				C0900FE51D0C9D5C003B1357 /* CardIO.h in Headers */,
+				C0900FE61D0C9D5C003B1357 /* CardIOCreditCardInfo.h in Headers */,
+				C0900FE71D0C9D5C003B1357 /* CardIODetectionMode.h in Headers */,
+				C0900FE81D0C9D5C003B1357 /* CardIOPaymentViewController.h in Headers */,
+				C0900FE91D0C9D5C003B1357 /* CardIOPaymentViewControllerDelegate.h in Headers */,
+				C0900FEA1D0C9D5C003B1357 /* CardIOUtilities.h in Headers */,
+				C0900FEB1D0C9D5C003B1357 /* CardIOView.h in Headers */,
+				C0900FEC1D0C9D5C003B1357 /* CardIOViewDelegate.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C0E9E4771D0BB75E006218BE /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -233,6 +380,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		C0900FC71D0C9CDD003B1357 /* CardIOWrapper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C0900FD11D0C9CDD003B1357 /* Build configuration list for PBXNativeTarget "CardIOWrapper" */;
+			buildPhases = (
+				C0900FC31D0C9CDD003B1357 /* Sources */,
+				C0900FC41D0C9CDD003B1357 /* Frameworks */,
+				C0900FC51D0C9CDD003B1357 /* Headers */,
+				C0900FC61D0C9CDD003B1357 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CardIOWrapper;
+			productName = CardIOWrapper;
+			productReference = C0900FC81D0C9CDD003B1357 /* CardIOWrapper.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		C0E9E45F1D0BB709006218BE /* CardTrayDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C0E9E4721D0BB70A006218BE /* Build configuration list for PBXNativeTarget "CardTrayDemo" */;
@@ -249,6 +414,7 @@
 			);
 			dependencies = (
 				C0E9E4801D0BB75E006218BE /* PBXTargetDependency */,
+				C0900FCE1D0C9CDD003B1357 /* PBXTargetDependency */,
 			);
 			name = CardTrayDemo;
 			productName = CardTrayDemo;
@@ -285,6 +451,9 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Basil Salad Software";
 				TargetAttributes = {
+					C0900FC71D0C9CDD003B1357 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
 					C0E9E45F1D0BB709006218BE = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
@@ -308,11 +477,19 @@
 			targets = (
 				C0E9E45F1D0BB709006218BE /* CardTrayDemo */,
 				C0E9E4791D0BB75E006218BE /* CardTray */,
+				C0900FC71D0C9CDD003B1357 /* CardIOWrapper */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C0900FC61D0C9CDD003B1357 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C0E9E45E1D0BB709006218BE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -412,6 +589,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C0900FC31D0C9CDD003B1357 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C0E9E45C1D0BB709006218BE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -436,6 +620,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C0900FCE1D0C9CDD003B1357 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C0900FC71D0C9CDD003B1357 /* CardIOWrapper */;
+			targetProxy = C0900FCD1D0C9CDD003B1357 /* PBXContainerItemProxy */;
+		};
 		C0E9E4801D0BB75E006218BE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C0E9E4791D0BB75E006218BE /* CardTray */;
@@ -455,10 +644,59 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C0900FD21D0C9CDD003B1357 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = CardIOWrapper/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/CardIO/CardIO",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.basilsalad.CardIOWrapper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C0900FD31D0C9CDD003B1357 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = CardIOWrapper/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/CardIO/CardIO",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.basilsalad.CardIOWrapper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		C0E9E4701D0BB70A006218BE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -506,6 +744,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -616,6 +855,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C0900FD11D0C9CDD003B1357 /* Build configuration list for PBXNativeTarget "CardIOWrapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0900FD21D0C9CDD003B1357 /* Debug */,
+				C0900FD31D0C9CDD003B1357 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		C0E9E45B1D0BB709006218BE /* Build configuration list for PBXProject "CardTrayDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

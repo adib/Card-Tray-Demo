@@ -4,6 +4,21 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>CardIO-wrapper.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>CardIO.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>CardIOWrapper.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
 		<key>CardTray.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -17,6 +32,21 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>C0900FA51D0C9C57003B1357</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C0900FB61D0C9CB0003B1357</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C0900FC71D0C9CDD003B1357</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C0E9E45F1D0BB709006218BE</key>
 		<dict>
 			<key>primary</key>
