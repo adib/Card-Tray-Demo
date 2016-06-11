@@ -30,7 +30,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         return view
     }()
     
-    let cardItemOffset = CGFloat(20)
+    let cardItemOffset = CGFloat(44)
     
     var dynamicAnimator : UIDynamicAnimator? {
         didSet {
@@ -167,7 +167,9 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
     // MARK: UIDynamicAnimatorDelegate
     
     func  dynamicAnimatorDidPause(animator: UIDynamicAnimator) {
-        setNeedsUpdateConstraints()
+        if self.cardDragAttachment == nil {
+            setNeedsUpdateConstraints()
+        }
     }
     
     
@@ -178,6 +180,13 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
             return
         }
         let touchPoint = gesture.locationInView(containerView)
+        
+        let cleanupDrag = {
+            if let attachment = self.cardDragAttachment {
+                self.dynamicAnimator?.removeBehavior(attachment)
+                self.cardDragAttachment = nil
+            }
+        }
         
         switch gesture.state {
         case .Began:
@@ -209,32 +218,31 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
                                 cardSnapPoints.append(pt)
                             }
                         }
-                        
-                        cardViews.removeAtIndex(cardViewIndex)
-                        cardViews.append(cardView)
-                        containerView.bringSubviewToFront(cardView)
 
-                        dynamicAnimator?.updateItemUsingCurrentState(containerView)
-                        for i in 0..<cardSnapPoints.count {
-                            let cv = cardViews[i]
-                            let pt = cardSnapPoints[i]
-                            if let attachment = cardCenterAttachments.objectForKey(cv) as? UIAttachmentBehavior {
-                                attachment.anchorPoint = pt
+                        self.cardViews.removeAtIndex(cardViewIndex)
+                        self.cardViews.append(cardView)
+                        self.containerView.bringSubviewToFront(cardView)
+                        self.dynamicAnimator?.updateItemUsingCurrentState(self.containerView)
+
+                        dispatch_async(dispatch_get_main_queue(),{
+                            for i in 0..<cardSnapPoints.count {
+                                let cv = self.cardViews[i]
+                                let pt = cardSnapPoints[i]
+                                if let attachment = self.cardCenterAttachments.objectForKey(cv) as? UIAttachmentBehavior {
+                                    attachment.anchorPoint = pt
+                                }
+                                if let snap = self.cardCenterSnaps.objectForKey(cv) as? UISnapBehavior {
+                                    snap.snapPoint = pt
+                                }
+                                self.dynamicAnimator?.updateItemUsingCurrentState(cv)
                             }
-                            if let snap = cardCenterSnaps.objectForKey(cv) as? UISnapBehavior {
-                                snap.snapPoint = pt
-                            }
-                            dynamicAnimator?.updateItemUsingCurrentState(cv)
-                        }
+                            cleanupDrag()
+                        })
                     }
                 }
             }
-            fallthrough
         case .Cancelled:
-            if let attachment = cardDragAttachment {
-                dynamicAnimator?.removeBehavior(attachment)
-                cardDragAttachment = nil
-            }
+            cleanupDrag()
         default:
             ()
         }
