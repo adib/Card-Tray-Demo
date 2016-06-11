@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>CardTray.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>CardTrayDemo.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +18,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>C0E9E45F1D0BB709006218BE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C0E9E4791D0BB75E006218BE</key>
 		<dict>
 			<key>primary</key>
 			<true/>

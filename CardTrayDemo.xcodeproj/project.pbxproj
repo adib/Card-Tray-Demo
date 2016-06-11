@@ -7,14 +7,48 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01C260B6C41EFFA19593DC69 /* Pods_CardTrayDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9786026A62B651C6328F4479 /* Pods_CardTrayDemo.framework */; };
 		C0E9E4641D0BB709006218BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E9E4631D0BB709006218BE /* AppDelegate.swift */; };
 		C0E9E4661D0BB709006218BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E9E4651D0BB709006218BE /* ViewController.swift */; };
 		C0E9E4691D0BB70A006218BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0E9E4671D0BB70A006218BE /* Main.storyboard */; };
 		C0E9E46B1D0BB70A006218BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0E9E46A1D0BB70A006218BE /* Assets.xcassets */; };
 		C0E9E46E1D0BB70A006218BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0E9E46C1D0BB70A006218BE /* LaunchScreen.storyboard */; };
+		C0E9E47D1D0BB75E006218BE /* CardTray.h in Headers */ = {isa = PBXBuildFile; fileRef = C0E9E47C1D0BB75E006218BE /* CardTray.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C0E9E4811D0BB75E006218BE /* CardTray.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E9E47A1D0BB75E006218BE /* CardTray.framework */; };
+		C0E9E4821D0BB75E006218BE /* CardTray.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0E9E47A1D0BB75E006218BE /* CardTray.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C465C86420955D327B9BD8C5 /* Pods_CardTray.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5511F907E598CBB27A5F2760 /* Pods_CardTray.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C0E9E47F1D0BB75E006218BE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E9E4581D0BB709006218BE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C0E9E4791D0BB75E006218BE;
+			remoteInfo = CardTray;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C0E9E4861D0BB75E006218BE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C0E9E4821D0BB75E006218BE /* CardTray.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		106E929F57DDA60B4EAC3C22 /* Pods-CardTray.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardTray.release.xcconfig"; path = "Pods/Target Support Files/Pods-CardTray/Pods-CardTray.release.xcconfig"; sourceTree = "<group>"; };
+		4D82D1016EC0DEAB08B89FFA /* Pods-CardTrayDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardTrayDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CardTrayDemo/Pods-CardTrayDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		5276DFFBD95A0C05466BAD67 /* Pods-CardTray.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardTray.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CardTray/Pods-CardTray.debug.xcconfig"; sourceTree = "<group>"; };
+		5511F907E598CBB27A5F2760 /* Pods_CardTray.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CardTray.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9786026A62B651C6328F4479 /* Pods_CardTrayDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CardTrayDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E9E4601D0BB709006218BE /* CardTrayDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardTrayDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E9E4631D0BB709006218BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0E9E4651D0BB709006218BE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +56,10 @@
 		C0E9E46A1D0BB70A006218BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0E9E46D1D0BB70A006218BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C0E9E46F1D0BB70A006218BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0E9E47A1D0BB75E006218BE /* CardTray.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CardTray.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0E9E47C1D0BB75E006218BE /* CardTray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardTray.h; sourceTree = "<group>"; };
+		C0E9E47E1D0BB75E006218BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D6B8B334B6A5DD14B8562570 /* Pods-CardTrayDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardTrayDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-CardTrayDemo/Pods-CardTrayDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +67,50 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0E9E4811D0BB75E006218BE /* CardTray.framework in Frameworks */,
+				01C260B6C41EFFA19593DC69 /* Pods_CardTrayDemo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0E9E4761D0BB75E006218BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C465C86420955D327B9BD8C5 /* Pods_CardTray.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		19478F0BBEB5ABD619A44C19 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5276DFFBD95A0C05466BAD67 /* Pods-CardTray.debug.xcconfig */,
+				106E929F57DDA60B4EAC3C22 /* Pods-CardTray.release.xcconfig */,
+				4D82D1016EC0DEAB08B89FFA /* Pods-CardTrayDemo.debug.xcconfig */,
+				D6B8B334B6A5DD14B8562570 /* Pods-CardTrayDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		75727771B077B5729EC03162 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5511F907E598CBB27A5F2760 /* Pods_CardTray.framework */,
+				9786026A62B651C6328F4479 /* Pods_CardTrayDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C0E9E4571D0BB709006218BE = {
 			isa = PBXGroup;
 			children = (
 				C0E9E4621D0BB709006218BE /* CardTrayDemo */,
+				C0E9E47B1D0BB75E006218BE /* CardTray */,
 				C0E9E4611D0BB709006218BE /* Products */,
+				19478F0BBEB5ABD619A44C19 /* Pods */,
+				75727771B077B5729EC03162 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -47,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				C0E9E4601D0BB709006218BE /* CardTrayDemo.app */,
+				C0E9E47A1D0BB75E006218BE /* CardTray.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,25 +136,94 @@
 			path = CardTrayDemo;
 			sourceTree = "<group>";
 		};
+		C0E9E47B1D0BB75E006218BE /* CardTray */ = {
+			isa = PBXGroup;
+			children = (
+				C0E9E4871D0BB9A7006218BE /* Controllers */,
+				C0E9E4881D0BB9A7006218BE /* Views */,
+				C0E9E4891D0BB9A7006218BE /* Models */,
+				C0E9E47C1D0BB75E006218BE /* CardTray.h */,
+				C0E9E47E1D0BB75E006218BE /* Info.plist */,
+			);
+			path = CardTray;
+			sourceTree = "<group>";
+		};
+		C0E9E4871D0BB9A7006218BE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C0E9E4881D0BB9A7006218BE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C0E9E4891D0BB9A7006218BE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		C0E9E4771D0BB75E006218BE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0E9E47D1D0BB75E006218BE /* CardTray.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		C0E9E45F1D0BB709006218BE /* CardTrayDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C0E9E4721D0BB70A006218BE /* Build configuration list for PBXNativeTarget "CardTrayDemo" */;
 			buildPhases = (
+				5023E151711BCC2E727DE0B1 /* [CP] Check Pods Manifest.lock */,
 				C0E9E45C1D0BB709006218BE /* Sources */,
 				C0E9E45D1D0BB709006218BE /* Frameworks */,
 				C0E9E45E1D0BB709006218BE /* Resources */,
+				C0E9E4861D0BB75E006218BE /* Embed Frameworks */,
+				2C5210976C21DCEBE25CA62B /* [CP] Embed Pods Frameworks */,
+				FCE1FC56F4EEAD4F8A7D47E6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C0E9E4801D0BB75E006218BE /* PBXTargetDependency */,
 			);
 			name = CardTrayDemo;
 			productName = CardTrayDemo;
 			productReference = C0E9E4601D0BB709006218BE /* CardTrayDemo.app */;
 			productType = "com.apple.product-type.application";
+		};
+		C0E9E4791D0BB75E006218BE /* CardTray */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C0E9E4831D0BB75E006218BE /* Build configuration list for PBXNativeTarget "CardTray" */;
+			buildPhases = (
+				3A169C4CFB497F33558C356F /* [CP] Check Pods Manifest.lock */,
+				C0E9E4751D0BB75E006218BE /* Sources */,
+				C0E9E4761D0BB75E006218BE /* Frameworks */,
+				C0E9E4771D0BB75E006218BE /* Headers */,
+				C0E9E4781D0BB75E006218BE /* Resources */,
+				2DF0613F5349802B8E5D0F92 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CardTray;
+			productName = CardTray;
+			productReference = C0E9E47A1D0BB75E006218BE /* CardTray.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -95,6 +236,9 @@
 				ORGANIZATIONNAME = "Basil Salad Software";
 				TargetAttributes = {
 					C0E9E45F1D0BB709006218BE = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					C0E9E4791D0BB75E006218BE = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
 				};
@@ -113,6 +257,7 @@
 			projectRoot = "";
 			targets = (
 				C0E9E45F1D0BB709006218BE /* CardTrayDemo */,
+				C0E9E4791D0BB75E006218BE /* CardTray */,
 			);
 		};
 /* End PBXProject section */
@@ -128,7 +273,92 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C0E9E4781D0BB75E006218BE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2C5210976C21DCEBE25CA62B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CardTrayDemo/Pods-CardTrayDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2DF0613F5349802B8E5D0F92 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CardTray/Pods-CardTray-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3A169C4CFB497F33558C356F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5023E151711BCC2E727DE0B1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FCE1FC56F4EEAD4F8A7D47E6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CardTrayDemo/Pods-CardTrayDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C0E9E45C1D0BB709006218BE /* Sources */ = {
@@ -140,7 +370,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C0E9E4751D0BB75E006218BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C0E9E4801D0BB75E006218BE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C0E9E4791D0BB75E006218BE /* CardTray */;
+			targetProxy = C0E9E47F1D0BB75E006218BE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C0E9E4671D0BB70A006218BE /* Main.storyboard */ = {
@@ -249,6 +494,7 @@
 		};
 		C0E9E4731D0BB70A006218BE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D82D1016EC0DEAB08B89FFA /* Pods-CardTrayDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CardTrayDemo/Info.plist;
@@ -260,12 +506,53 @@
 		};
 		C0E9E4741D0BB70A006218BE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6B8B334B6A5DD14B8562570 /* Pods-CardTrayDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CardTrayDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.basilsalad.CardTrayDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		C0E9E4841D0BB75E006218BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5276DFFBD95A0C05466BAD67 /* Pods-CardTray.debug.xcconfig */;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = CardTray/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.basilsalad.CardTray;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C0E9E4851D0BB75E006218BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 106E929F57DDA60B4EAC3C22 /* Pods-CardTray.release.xcconfig */;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = CardTray/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.basilsalad.CardTray;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -288,6 +575,16 @@
 				C0E9E4741D0BB70A006218BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C0E9E4831D0BB75E006218BE /* Build configuration list for PBXNativeTarget "CardTray" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0E9E4841D0BB75E006218BE /* Debug */,
+				C0E9E4851D0BB75E006218BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
