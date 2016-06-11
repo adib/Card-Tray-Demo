@@ -60,7 +60,7 @@
         <!--Card Scan-->
         <scene sceneID="2KZ-ov-9N0">
             <objects>
-                <viewController id="cSu-th-eS1" userLabel="Card Scan" sceneMemberID="viewController">
+                <viewController id="cSu-th-eS1" userLabel="Card Scan" customClass="CardCaptureViewController" customModule="CardTray" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CT3-Zd-OFd"/>
                         <viewControllerLayoutGuide type="bottom" id="hzy-ho-Myt"/>
@@ -69,10 +69,10 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="470"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OPB-gB-PIk">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="445"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OPB-gB-PIk">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="441"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" horizontalHuggingPriority="50" verticalHuggingPriority="50" translatesAutoresizingMaskIntoConstraints="NO" id="M7k-ij-NE4" userLabel="Camera View">
+                                    <view contentMode="scaleToFill" horizontalHuggingPriority="50" verticalHuggingPriority="50" translatesAutoresizingMaskIntoConstraints="NO" id="M7k-ij-NE4" userLabel="Camera View" customClass="CardCaptureView" customModule="CardTray" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -106,8 +106,8 @@
                                             <constraint firstAttribute="trailingMargin" secondItem="W73-aO-wls" secondAttribute="trailing" id="yOB-M8-rt2"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ycn-pJ-6Y7">
-                                        <rect key="frame" x="0.0" y="395" width="320" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ycn-pJ-6Y7">
+                                        <rect key="frame" x="0.0" y="395" width="320" height="46"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NCX-GX-EhA">
                                                 <rect key="frame" x="8" y="8" width="304" height="30"/>
@@ -152,6 +152,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="578"/>
                     <connections>
+                        <outlet property="cardCaptureView" destination="M7k-ij-NE4" id="324-aa-sAY"/>
                         <outlet property="view" destination="DJI-ql-Crm" id="Rv8-Yu-Fcm"/>
                     </connections>
                 </viewController>
