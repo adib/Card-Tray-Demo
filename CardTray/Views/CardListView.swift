@@ -60,7 +60,6 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         //let animator =
     }
     
-    
     override func layoutSubviews() {
         dynamicAnimator?.removeAllBehaviors()
         super.layoutSubviews()

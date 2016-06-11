@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <TesseractOCR/TesseractOCR.h>
 
 //! Project version number for CardTray.
 FOUNDATION_EXPORT double CardTrayVersionNumber;

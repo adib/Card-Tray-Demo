@@ -10,6 +10,9 @@
 		01C260B6C41EFFA19593DC69 /* Pods_CardTrayDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9786026A62B651C6328F4479 /* Pods_CardTrayDemo.framework */; };
 		C0473D9B1D0C5B2B00BB496F /* CardCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0473D9A1D0C5B2B00BB496F /* CardCaptureView.swift */; };
 		C0473D9D1D0C5B7C00BB496F /* CardCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0473D9C1D0C5B7C00BB496F /* CardCaptureViewController.swift */; };
+		C0473DA21D0C6E8C00BB496F /* TesseractOCR.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0473DA01D0C6C8900BB496F /* TesseractOCR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C0473DA41D0C6FB600BB496F /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0473DA31D0C6FB600BB496F /* TesseractOCR.framework */; };
+		C0473DA71D0C744200BB496F /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = C0473DA61D0C744200BB496F /* tessdata */; };
 		C05827711D0BF87E0086BD35 /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05827701D0BF87E0086BD35 /* CardListView.swift */; };
 		C05827731D0BF8900086BD35 /* CardItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05827721D0BF8900086BD35 /* CardItemView.swift */; };
 		C05827751D0C01920086BD35 /* CardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05827741D0C01920086BD35 /* CardListViewController.swift */; };
@@ -41,6 +44,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				C0473DA21D0C6E8C00BB496F /* TesseractOCR.framework in Embed Frameworks */,
 				C0E9E4821D0BB75E006218BE /* CardTray.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -56,6 +60,9 @@
 		9786026A62B651C6328F4479 /* Pods_CardTrayDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CardTrayDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0473D9A1D0C5B2B00BB496F /* CardCaptureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCaptureView.swift; sourceTree = "<group>"; };
 		C0473D9C1D0C5B7C00BB496F /* CardCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCaptureViewController.swift; sourceTree = "<group>"; };
+		C0473DA01D0C6C8900BB496F /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TesseractOCR.framework; path = "../../../../Library/Developer/Xcode/DerivedData/CardTrayDemo-ezjxpdfuxmolgvfpsyccipahpcdt/Build/Products/Debug-iphoneos/TesseractOCRiOS/TesseractOCR.framework"; sourceTree = "<group>"; };
+		C0473DA31D0C6FB600BB496F /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TesseractOCR.framework; path = "../../../../Library/Developer/Xcode/DerivedData/CardTrayDemo-ezjxpdfuxmolgvfpsyccipahpcdt/Build/Products/Debug-iphonesimulator/TesseractOCRiOS/TesseractOCR.framework"; sourceTree = "<group>"; };
+		C0473DA61D0C744200BB496F /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		C05827701D0BF87E0086BD35 /* CardListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
 		C05827721D0BF8900086BD35 /* CardItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardItemView.swift; sourceTree = "<group>"; };
 		C05827741D0C01920086BD35 /* CardListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0473DA41D0C6FB600BB496F /* TesseractOCR.framework in Frameworks */,
 				C465C86420955D327B9BD8C5 /* Pods_CardTray.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -107,10 +115,20 @@
 		75727771B077B5729EC03162 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C0473DA31D0C6FB600BB496F /* TesseractOCR.framework */,
+				C0473DA01D0C6C8900BB496F /* TesseractOCR.framework */,
 				5511F907E598CBB27A5F2760 /* Pods_CardTray.framework */,
 				9786026A62B651C6328F4479 /* Pods_CardTrayDemo.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C0473DA51D0C741B00BB496F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C0473DA61D0C744200BB496F /* tessdata */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		C07592551D0BE31200E44268 /* Managers */ = {
@@ -152,6 +170,7 @@
 		C0E9E4621D0BB709006218BE /* CardTrayDemo */ = {
 			isa = PBXGroup;
 			children = (
+				C0473DA51D0C741B00BB496F /* Resources */,
 				C0E9E4631D0BB709006218BE /* AppDelegate.swift */,
 				C0E9E46A1D0BB70A006218BE /* Assets.xcassets */,
 				C0E9E46C1D0BB70A006218BE /* LaunchScreen.storyboard */,
@@ -300,6 +319,7 @@
 			files = (
 				C0E9E46E1D0BB70A006218BE /* LaunchScreen.storyboard in Resources */,
 				C0E9E46B1D0BB70A006218BE /* Assets.xcassets in Resources */,
+				C0473DA71D0C744200BB496F /* tessdata in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,6 +578,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/TesseractOCRiOS";
 				INFOPLIST_FILE = CardTray/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -580,6 +601,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/TesseractOCRiOS";
 				INFOPLIST_FILE = CardTray/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

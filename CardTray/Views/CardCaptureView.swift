@@ -11,7 +11,6 @@ import CoreImage
 import AVFoundation
 
 class CardCaptureView: UIView,AVCaptureVideoDataOutputSampleBufferDelegate {
-    
     private var captureSession: AVCaptureSession?
     private weak var captureDevice : AVCaptureDevice?
     private weak var captureLayer: AVCaptureVideoPreviewLayer?
@@ -30,6 +29,29 @@ class CardCaptureView: UIView,AVCaptureVideoDataOutputSampleBufferDelegate {
             CIDetectorAccuracy : CIDetectorAccuracyHigh,
             ]
         return CIDetector(ofType: CIDetectorTypeText, context: nil, options: detectorOptions)
+    }()
+    
+    private lazy var tesseract : G8Tesseract = {
+        let t = G8Tesseract(language: "eng", engineMode: .TesseractCubeCombined)
+        // ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        t.charWhitelist = "0123456789"
+        t.maximumRecognitionTime = 2
+        return t
+    }()
+    
+    private lazy var tesseractFilter : (CIFilter,CIFilter) = {
+        //        CIImage *blackAndWhite = [CIFilter filterWithName:@"CIColorControls" keysAndValues:kCIInputImageKey, beginImage, @"inputBrightness", @0.0, @"inputContrast", @1.1, @"inputSaturation", @0.0, nil].outputImage;
+        //        CIImage *output = [CIFilter filterWithName:@"CIExposureAdjust" keysAndValues:kCIInputImageKey, blackAndWhite, @"inputEV", @0.7, nil].outputImage;
+        
+        let blackAndWhiteFilter = CIFilter(name: "CIColorControls")
+        blackAndWhiteFilter?.setValue(NSNumber(float: 0), forKey: "inputBrightness")
+        blackAndWhiteFilter?.setValue(NSNumber(float: 1.1), forKey: "inputContrast")
+        blackAndWhiteFilter?.setValue(NSNumber(float: 0), forKey: "inputSaturation")
+        
+        let exposureAdjustFilter = CIFilter(name: "CIExposureAdjust")
+        exposureAdjustFilter?.setValue(blackAndWhiteFilter!.outputImage, forKey: kCIInputImageKey)
+        exposureAdjustFilter?.setValue(NSNumber(float: 0.7), forKey: "inputEV")
+        return (blackAndWhiteFilter!,exposureAdjustFilter!)
     }()
 
     private var isUsingFrontFacingCamera = false
@@ -364,11 +386,55 @@ class CardCaptureView: UIView,AVCaptureVideoDataOutputSampleBufferDelegate {
         
         let imageOptions = [ CIDetectorImageOrientation : NSNumber(int:exifOrientation.rawValue)]
         
-        let textFeatures = self.textDetector.featuresInImage(image, options: imageOptions)
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            self.drawBoxes(UIColor.greenColor(),features:textFeatures,videoBox:clap,orientation:curDeviceOrientation)
+//        let textFeatures = self.textDetector.featuresInImage(image, options: imageOptions)
+//        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+//            self.drawBoxes(UIColor.greenColor(),features:textFeatures,videoBox:clap,orientation:curDeviceOrientation)
+//        }
+
+        var imageTransform : CGAffineTransform
+        switch(curDeviceOrientation) {
+        case UIDeviceOrientation.FaceUp:
+            fallthrough
+        case UIDeviceOrientation.Portrait:
+            fallthrough
+        case UIDeviceOrientation.FaceDown:
+            imageTransform = CGAffineTransformMakeRotation(RadiansFromDegrees(-90))
+        case UIDeviceOrientation.PortraitUpsideDown:
+            imageTransform = CGAffineTransformMakeRotation(RadiansFromDegrees(-270))
+        case UIDeviceOrientation.LandscapeRight:
+            imageTransform = CGAffineTransformMakeRotation(RadiansFromDegrees(-180))
+        case UIDeviceOrientation.LandscapeLeft:
+            fallthrough
+        default:
+            imageTransform = CGAffineTransformIdentity
+            break
+            // leave the layer in its last known orientation
         }
+
+        let rotatedImage = image.imageByApplyingTransform(imageTransform)
         
+        let blackAndWhiteFilter = CIFilter(name: "CIColorControls")!
+        blackAndWhiteFilter.setValue(NSNumber(float: 0), forKey: "inputBrightness")
+        blackAndWhiteFilter.setValue(NSNumber(float: 1.1), forKey: "inputContrast")
+        blackAndWhiteFilter.setValue(NSNumber(float: 0), forKey: "inputSaturation")
+        blackAndWhiteFilter.setValue(rotatedImage, forKey: kCIInputImageKey)
+        
+        let exposureAdjustFilter = CIFilter(name: "CIExposureAdjust")!
+        exposureAdjustFilter.setValue(blackAndWhiteFilter.outputImage, forKey: kCIInputImageKey)
+        exposureAdjustFilter.setValue(NSNumber(float: 0.7), forKey: "inputEV")
+
+        
+        if let filteredImage = exposureAdjustFilter.outputImage {
+            let context = CIContext(options: nil)
+            let cgImage = context.createCGImage(filteredImage, fromRect: filteredImage.extent)
+            let candidateImage = UIImage(CGImage: cgImage)
+            tesseract.image = candidateImage
+            tesseract.recognize()
+            let recognizedText = tesseract.recognizedText
+            if !recognizedText.isEmpty {
+                NSLog("Recognized text: %@",recognizedText)
+            }
+        }
     }
 }
 
