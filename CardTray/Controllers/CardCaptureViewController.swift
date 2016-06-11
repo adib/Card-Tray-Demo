@@ -51,9 +51,11 @@ class CardCaptureViewController: UIViewController,CardIOViewDelegate {
     */
     
     // MARK: CardIOViewDelegate
-    func cardIOView(view: CardIOView,didScanCard cardInfo: CardIOCreditCardInfo) {
-        let cardNumber = cardInfo.cardNumber
-        NSLog("Scanned card: %@",cardNumber)
+    func cardIOView(view: CardIOView,didScanCard cardInfo: CardIOCreditCardInfo?) {
+        let cardNumber = cardInfo?.cardNumber
+        let cardName = cardInfo?.cardholderName
+        // Card.IO doesn't scan the cardholder name: http://stackoverflow.com/a/16844513/199360
+        NSLog("Scanned card – number: \(cardNumber) name: \(cardName)")
     }
     
 
