@@ -8,10 +8,10 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Card Tray-->
+        <!--Card List-->
         <scene sceneID="lhj-Nv-NMv">
             <objects>
-                <viewController id="Yj4-Xm-wub" userLabel="Card Tray" sceneMemberID="viewController">
+                <viewController id="Yj4-Xm-wub" userLabel="Card List" customClass="CardListViewController" customModule="CardTray" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="33P-ZR-LN0"/>
                         <viewControllerLayoutGuide type="bottom" id="uPh-y8-rtd"/>
@@ -20,9 +20,12 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzw-EU-zJx" userLabel="Card View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzw-EU-zJx" userLabel="Card View" customClass="CardListView" customModule="CardTray" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Yj4-Xm-wub" id="Vzd-3y-Vxj"/>
+                                </connections>
                             </view>
                         </subviews>
                         <constraints>
@@ -46,6 +49,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="cardListView" destination="jzw-EU-zJx" id="wCC-yG-QU6"/>
                         <segue destination="BAh-SH-Fup" kind="custom" identifier="embedTransactionList" id="lo8-DD-Mur"/>
                     </connections>
                 </viewController>
