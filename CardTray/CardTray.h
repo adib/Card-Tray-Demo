@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <TesseractOCR/TesseractOCR.h>
 #import <CardIOWrapper/CardIOWrapper.h>
 
 //! Project version number for CardTray.
