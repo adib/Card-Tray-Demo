@@ -189,9 +189,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         
         switch gesture.state {
         case .Began:
-            if let existingDrag = cardDragAttachment {
-                dynamicAnimator?.removeBehavior(existingDrag)
-            }
+            cleanupDrag()
             let attachment = UIAttachmentBehavior(item: draggedView, attachedToAnchor: touchPoint)
             dynamicAnimator?.addBehavior(attachment)
             cardDragAttachment = attachment
@@ -223,23 +221,21 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
                         self.containerView.bringSubviewToFront(cardView)
                         self.dynamicAnimator?.updateItemUsingCurrentState(self.containerView)
 
-                        dispatch_async(dispatch_get_main_queue(),{
-                            for i in 0..<cardSnapPoints.count {
-                                let cv = self.cardViews[i]
-                                let pt = cardSnapPoints[i]
-                                if let attachment = self.cardCenterAttachments.objectForKey(cv) as? UIAttachmentBehavior {
-                                    attachment.anchorPoint = pt
-                                }
-                                if let snap = self.cardCenterSnaps.objectForKey(cv) as? UISnapBehavior {
-                                    snap.snapPoint = pt
-                                }
-                                self.dynamicAnimator?.updateItemUsingCurrentState(cv)
+                        for i in 0..<cardSnapPoints.count {
+                            let cv = self.cardViews[i]
+                            let pt = cardSnapPoints[i]
+                            if let attachment = self.cardCenterAttachments.objectForKey(cv) as? UIAttachmentBehavior {
+                                attachment.anchorPoint = pt
                             }
-                            cleanupDrag()
-                        })
+                            if let snap = self.cardCenterSnaps.objectForKey(cv) as? UISnapBehavior {
+                                snap.snapPoint = pt
+                            }
+                            self.dynamicAnimator?.updateItemUsingCurrentState(cv)
+                        }
                     }
                 }
             }
+            fallthrough
         case .Cancelled:
             cleanupDrag()
         default:
