@@ -9,11 +9,30 @@
 import UIKit
 
 class CardListView: UIView,UIDynamicAnimatorDelegate {
-
-    
+        
     @IBOutlet weak var delegate : CardListViewDelegate?
     
     var cardViews = Array<CardItemView>()
+    
+    var focusedCardView : CardItemView?
+    
+    var isFocusedCard : Bool {
+        get {
+            return focusedCardView != nil
+        }
+    }
+    
+    var focusedCardBottomMargin : CGFloat {
+        get {
+            if let firstCardView = cardViews.first {
+                let bounds = firstCardView.bounds
+                let frame = firstCardView.convertRect(bounds, toView: self)
+                let bottom = ceil(frame.origin.y + frame.size.height + 8)
+                return bottom
+            }
+            return 0
+        }
+    }
     
     var lowestCardPos = CGFloat(0)
     
@@ -98,11 +117,31 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
     
     override func updateConstraints() {
         super.updateConstraints()
-        var currentOffset = cardItemOffset
-        for cardView in cardViews {
-            if let constraint = topOffsetConstraints.objectForKey(cardView) as? NSLayoutConstraint {
-                constraint.constant = currentOffset
-                currentOffset += cardItemOffset
+        if let focusedCardView = self.focusedCardView {
+            let containerBounds = containerView.bounds
+            let bottomCardConstant = containerBounds.size.height - cardItemOffset
+            let topCardConstant = cardItemOffset
+            var foundFocusedCard = false
+            for curView in cardViews {
+                guard let constraint = topOffsetConstraints.objectForKey(curView) as? NSLayoutConstraint else {
+                    continue
+                }
+                if foundFocusedCard {
+                    constraint.constant = bottomCardConstant;
+                } else {
+                    constraint.constant = topCardConstant
+                }
+                if curView === focusedCardView {
+                    foundFocusedCard = true
+                }
+            }
+        } else {
+            var currentOffset = cardItemOffset
+            for cardView in cardViews {
+                if let constraint = topOffsetConstraints.objectForKey(cardView) as? NSLayoutConstraint {
+                    constraint.constant = currentOffset
+                    currentOffset += cardItemOffset
+                }
             }
         }
     }
@@ -124,6 +163,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
             view.removeFromSuperview()
         }
         cardViews.removeAll()
+        
 
         let leftMargin = 8
         let rightMargin = 8
@@ -159,6 +199,9 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
             dragGesture.maximumNumberOfTouches = 1
             itemView.addGestureRecognizer(dragGesture)
             
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleCardTapGesture))
+            tapGesture.numberOfTapsRequired = 1
+            itemView.addGestureRecognizer(tapGesture)
             // Apparently UIInterpolatingMotionEffect is not compatible with UIDynamicAnimator
         }
     }
@@ -179,7 +222,6 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
             return
         }
         let touchPoint = gesture.locationInView(containerView)
-        
         let cleanupDrag = {
             if let attachment = self.cardDragAttachment {
                 self.dynamicAnimator?.removeBehavior(attachment)
@@ -188,6 +230,12 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         }
         
         switch gesture.state {
+        case .Possible:
+            if self.focusedCardView != nil {
+                // cancel the gesture if display mode is focus
+                gesture.enabled = false
+                gesture.enabled = true
+            }
         case .Began:
             cleanupDrag()
             let attachment = UIAttachmentBehavior(item: draggedView, attachedToAnchor: touchPoint)
@@ -241,14 +289,42 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         default:
             ()
         }
-
     }
 
+    func handleCardTapGesture(gesture:UITapGestureRecognizer) {
+        guard let   tappedCardView = gesture.view  as? CardItemView else {
+            return
+        }
+        
+        let cardAnimationDuration = 0.5
+        switch gesture.state {
+        case .Ended:
+            self.delegate?.cardListViewWillChangeDisplayMode?(self)
+            if self.focusedCardView != nil {
+                // has card view in focus. unfocus it.
+                self.focusedCardView = nil
+            } else {
+                // focus the card view
+                self.focusedCardView = tappedCardView
+            }
+            UIView.animateWithDuration(cardAnimationDuration, delay: 0, options: [.BeginFromCurrentState], animations: {
+                self.updateConstraints()
+                self.layoutSubviews()
+                }, completion: { (completed) in
+                    self.delegate?.cardListViewDidChangeDisplayMode?(self)
+            })
+
+        default: ()
+        }
+    }
 }
 
 
 @objc protocol CardListViewDelegate  {
     
     func numberOfItemsInCardListView(view: CardListView) -> Int
+
+    optional func cardListViewWillChangeDisplayMode(view: CardListView) -> Void
+    optional func cardListViewDidChangeDisplayMode(view: CardListView) -> Void
     
 }
