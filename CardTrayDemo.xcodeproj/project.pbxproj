@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		01C260B6C41EFFA19593DC69 /* Pods_CardTrayDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9786026A62B651C6328F4479 /* Pods_CardTrayDemo.framework */; };
 		40DDDDBD1D0FC72E002A2A98 /* CardTransactionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DDDDBC1D0FC72E002A2A98 /* CardTransactionListViewController.swift */; };
+		40DDDDBF1D0FCD51002A2A98 /* CardServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DDDDBE1D0FCD51002A2A98 /* CardServicesViewController.swift */; };
 		C0473D9D1D0C5B7C00BB496F /* CardCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0473D9C1D0C5B7C00BB496F /* CardCaptureViewController.swift */; };
 		C0473DA71D0C744200BB496F /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = C0473DA61D0C744200BB496F /* tessdata */; };
 		C05827711D0BF87E0086BD35 /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05827701D0BF87E0086BD35 /* CardListView.swift */; };
@@ -89,6 +90,7 @@
 /* Begin PBXFileReference section */
 		106E929F57DDA60B4EAC3C22 /* Pods-CardTray.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardTray.release.xcconfig"; path = "Pods/Target Support Files/Pods-CardTray/Pods-CardTray.release.xcconfig"; sourceTree = "<group>"; };
 		40DDDDBC1D0FC72E002A2A98 /* CardTransactionListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTransactionListViewController.swift; sourceTree = "<group>"; };
+		40DDDDBE1D0FCD51002A2A98 /* CardServicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardServicesViewController.swift; sourceTree = "<group>"; };
 		4D82D1016EC0DEAB08B89FFA /* Pods-CardTrayDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardTrayDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CardTrayDemo/Pods-CardTrayDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		5276DFFBD95A0C05466BAD67 /* Pods-CardTray.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardTray.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CardTray/Pods-CardTray.debug.xcconfig"; sourceTree = "<group>"; };
 		536FA5864D66DEA185019D68 /* Pods_CardIOWrapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CardIOWrapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -336,6 +338,7 @@
 				C05827741D0C01920086BD35 /* CardListViewController.swift */,
 				C0473D9C1D0C5B7C00BB496F /* CardCaptureViewController.swift */,
 				40DDDDBC1D0FC72E002A2A98 /* CardTransactionListViewController.swift */,
+				40DDDDBE1D0FCD51002A2A98 /* CardServicesViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -647,6 +650,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C05827751D0C01920086BD35 /* CardListViewController.swift in Sources */,
+				40DDDDBF1D0FCD51002A2A98 /* CardServicesViewController.swift in Sources */,
 				C05827711D0BF87E0086BD35 /* CardListView.swift in Sources */,
 				C07592571D0BE33E00E44268 /* CardTrayFacade.swift in Sources */,
 				C05827731D0BF8900086BD35 /* CardItemView.swift in Sources */,
