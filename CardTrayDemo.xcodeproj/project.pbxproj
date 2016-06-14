@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		01C260B6C41EFFA19593DC69 /* Pods_CardTrayDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9786026A62B651C6328F4479 /* Pods_CardTrayDemo.framework */; };
+		404056451D0FDEBA00C5F025 /* CardItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 404056441D0FDEB900C5F025 /* CardItemView.xib */; };
+		40D008101D0FE32B003360CC /* CardTrayAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40D0080F1D0FE32B003360CC /* CardTrayAssets.xcassets */; };
 		40DDDDBD1D0FC72E002A2A98 /* CardTransactionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DDDDBC1D0FC72E002A2A98 /* CardTransactionListViewController.swift */; };
 		40DDDDBF1D0FCD51002A2A98 /* CardServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DDDDBE1D0FCD51002A2A98 /* CardServicesViewController.swift */; };
 		C0473D9D1D0C5B7C00BB496F /* CardCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0473D9C1D0C5B7C00BB496F /* CardCaptureViewController.swift */; };
@@ -89,6 +91,8 @@
 
 /* Begin PBXFileReference section */
 		106E929F57DDA60B4EAC3C22 /* Pods-CardTray.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardTray.release.xcconfig"; path = "Pods/Target Support Files/Pods-CardTray/Pods-CardTray.release.xcconfig"; sourceTree = "<group>"; };
+		404056441D0FDEB900C5F025 /* CardItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CardItemView.xib; path = CardTray/Resources/CardItemView.xib; sourceTree = SOURCE_ROOT; };
+		40D0080F1D0FE32B003360CC /* CardTrayAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CardTrayAssets.xcassets; sourceTree = "<group>"; };
 		40DDDDBC1D0FC72E002A2A98 /* CardTransactionListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTransactionListViewController.swift; sourceTree = "<group>"; };
 		40DDDDBE1D0FCD51002A2A98 /* CardServicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardServicesViewController.swift; sourceTree = "<group>"; };
 		4D82D1016EC0DEAB08B89FFA /* Pods-CardTrayDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardTrayDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CardTrayDemo/Pods-CardTrayDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -279,7 +283,9 @@
 		C0C987341D0BBBFF00C4DF72 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				404056441D0FDEB900C5F025 /* CardItemView.xib */,
 				C0C987351D0BBC1F00C4DF72 /* CardManagement.storyboard */,
+				40D0080F1D0FE32B003360CC /* CardTrayAssets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -516,6 +522,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0C987361D0BBC1F00C4DF72 /* CardManagement.storyboard in Resources */,
+				40D008101D0FE32B003360CC /* CardTrayAssets.xcassets in Resources */,
+				404056451D0FDEBA00C5F025 /* CardItemView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

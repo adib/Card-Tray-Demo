@@ -175,9 +175,12 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         let numberOfItems = delegate.numberOfItemsInCardListView(self)
         cardViews.reserveCapacity(numberOfItems)
         var currentOffset = topCardMargin
-        
+
+        let bundle = NSBundle(forClass: self.dynamicType)
+
         for i in 0..<numberOfItems {
-            let itemView = CardItemView()
+//            let itemView = CardItemView()
+            let itemView = bundle.loadNibNamed("CardItemView", owner: self, options: [:]).first as! CardItemView
             itemView.translatesAutoresizingMaskIntoConstraints = false
             itemView.backgroundColor = colors[i]
 
