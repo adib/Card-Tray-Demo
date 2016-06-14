@@ -33,7 +33,9 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
             return 0
         }
     }
-    
+
+    let topCardMargin = CGFloat(8)
+
     var lowestCardPos = CGFloat(0)
     
     var topOffsetConstraints = NSMapTable.weakToWeakObjectsMapTable()
@@ -119,8 +121,8 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         super.updateConstraints()
         if let focusedCardView = self.focusedCardView {
             let containerBounds = containerView.bounds
-            let bottomCardConstant = containerBounds.size.height - cardItemOffset
-            let topCardConstant = cardItemOffset
+            let bottomCardConstant = containerBounds.size.height - topCardMargin * 2
+            let topCardConstant = topCardMargin
             var foundFocusedCard = false
             for curView in cardViews {
                 guard let constraint = topOffsetConstraints.objectForKey(curView) as? NSLayoutConstraint else {
@@ -136,7 +138,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
                 }
             }
         } else {
-            var currentOffset = cardItemOffset
+            var currentOffset = topCardMargin
             for cardView in cardViews {
                 if let constraint = topOffsetConstraints.objectForKey(cardView) as? NSLayoutConstraint {
                     constraint.constant = currentOffset
@@ -167,12 +169,12 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
 
         let leftMargin = 8
         let rightMargin = 8
-        
+
         // temporary colors
         let colors = [UIColor.greenColor(),UIColor.yellowColor(),UIColor.redColor(),UIColor.blueColor()]
         let numberOfItems = delegate.numberOfItemsInCardListView(self)
         cardViews.reserveCapacity(numberOfItems)
-        var currentOffset = cardItemOffset
+        var currentOffset = topCardMargin
         
         for i in 0..<numberOfItems {
             let itemView = CardItemView()
