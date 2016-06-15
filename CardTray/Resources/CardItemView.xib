@@ -25,7 +25,7 @@
                         <constraint firstAttribute="height" priority="700" constant="44" id="MjQ-cP-Iqc"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sYI-4u-zdE" userLabel="Bank Logo">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_raybank" translatesAutoresizingMaskIntoConstraints="NO" id="sYI-4u-zdE" userLabel="Bank Logo">
                     <rect key="frame" x="199" y="20" width="85" height="52"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="sYI-4u-zdE" secondAttribute="height" multiplier="1.64242" id="j4V-n7-81h"/>
@@ -48,6 +48,7 @@
         </view>
     </objects>
     <resources>
+        <image name="logo_raybank" width="85" height="52"/>
         <image name="logo_visa" width="72" height="44"/>
     </resources>
 </document>
