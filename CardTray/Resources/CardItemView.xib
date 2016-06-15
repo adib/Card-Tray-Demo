@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="398" height="251"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cardback_1" translatesAutoresizingMaskIntoConstraints="NO" id="7c3-4l-Rx5">
+                <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardback_1" translatesAutoresizingMaskIntoConstraints="NO" id="7c3-4l-Rx5">
                     <rect key="frame" x="0.0" y="0.0" width="398" height="251"/>
                     <color key="backgroundColor" red="0.90196162462234497" green="0.49602121114730835" blue="0.19957861304283142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </imageView>
@@ -38,14 +38,18 @@
             </subviews>
             <constraints>
                 <constraint firstItem="dgI-Kk-N9r" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="9ab-bd-fXr"/>
+                <constraint firstItem="7c3-4l-Rx5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9pa-9H-SNM"/>
                 <constraint firstAttribute="trailing" secondItem="sYI-4u-zdE" secondAttribute="trailing" constant="20" symbolic="YES" id="JQB-FU-D3B"/>
+                <constraint firstAttribute="trailing" secondItem="7c3-4l-Rx5" secondAttribute="trailing" id="R9w-lQ-Ni0"/>
                 <constraint firstItem="iRW-tK-Efn" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.25" id="TGh-Nb-fD9"/>
                 <constraint firstAttribute="bottom" secondItem="iRW-tK-Efn" secondAttribute="bottom" constant="20" symbolic="YES" id="VtS-ZW-04k"/>
                 <constraint firstItem="iRW-tK-Efn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dgI-Kk-N9r" secondAttribute="trailing" priority="750" constant="8" symbolic="YES" id="cAK-wD-AVj"/>
                 <constraint firstAttribute="bottom" secondItem="dgI-Kk-N9r" secondAttribute="bottom" constant="20" symbolic="YES" id="eRH-ZA-7Nu"/>
                 <constraint firstItem="iRW-tK-Efn" firstAttribute="top" relation="greaterThanOrEqual" secondItem="sYI-4u-zdE" secondAttribute="bottom" constant="8" symbolic="YES" id="f7t-eN-TDe"/>
+                <constraint firstAttribute="bottom" secondItem="7c3-4l-Rx5" secondAttribute="bottom" id="fwu-GX-xb4"/>
                 <constraint firstItem="sYI-4u-zdE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" symbolic="YES" id="gnz-9R-pt0"/>
                 <constraint firstItem="sYI-4u-zdE" firstAttribute="height" secondItem="iRW-tK-Efn" secondAttribute="height" multiplier="1.2" id="jY1-1B-yeV"/>
+                <constraint firstItem="7c3-4l-Rx5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nug-nH-HUJ"/>
                 <constraint firstAttribute="trailing" secondItem="iRW-tK-Efn" secondAttribute="trailing" constant="20" symbolic="YES" id="qgw-LF-pVc"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

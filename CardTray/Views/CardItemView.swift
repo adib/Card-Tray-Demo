@@ -15,7 +15,7 @@ class CardItemView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        let borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.6)
+        let borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.4)
 
         let cornerRadius = CGFloat(10)
         let backgroundLayer = backgroundImageView.layer
@@ -25,9 +25,9 @@ class CardItemView: UIView {
         backgroundLayer.borderWidth = 1
 
         let shadowLayer = self.layer
-        shadowLayer.shadowColor = UIColor.darkGrayColor().CGColor
+        shadowLayer.shadowColor = UIColor.blackColor().CGColor
         shadowLayer.shadowOffset = CGSizeZero
-        shadowLayer.shadowOpacity = 0.4
+        shadowLayer.shadowOpacity = 0.3
         shadowLayer.shadowRadius = cornerRadius / 2
 
     }
