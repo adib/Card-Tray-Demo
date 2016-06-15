@@ -13,6 +13,10 @@
             <rect key="frame" x="0.0" y="0.0" width="398" height="251"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cardback_1" translatesAutoresizingMaskIntoConstraints="NO" id="7c3-4l-Rx5">
+                    <rect key="frame" x="0.0" y="0.0" width="398" height="251"/>
+                    <color key="backgroundColor" red="0.90196162462234497" green="0.49602121114730835" blue="0.19957861304283142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•••• 1234" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgI-Kk-N9r" userLabel="Card Number">
                     <rect key="frame" x="20" y="211" width="72" height="20"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -32,7 +36,6 @@
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="dgI-Kk-N9r" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="9ab-bd-fXr"/>
                 <constraint firstAttribute="trailing" secondItem="sYI-4u-zdE" secondAttribute="trailing" constant="20" symbolic="YES" id="JQB-FU-D3B"/>
@@ -46,9 +49,13 @@
                 <constraint firstAttribute="trailing" secondItem="iRW-tK-Efn" secondAttribute="trailing" constant="20" symbolic="YES" id="qgw-LF-pVc"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="backgroundImageView" destination="7c3-4l-Rx5" id="6YT-w2-tvw"/>
+            </connections>
         </view>
     </objects>
     <resources>
+        <image name="cardback_1" width="2500" height="2000"/>
         <image name="logo_raybank" width="124" height="76"/>
         <image name="logo_visa" width="103" height="63"/>
     </resources>

@@ -171,7 +171,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         let rightMargin = 8
 
         // temporary colors
-        let colors = [UIColor.greenColor(),UIColor.yellowColor(),UIColor.redColor(),UIColor.blueColor()]
+//        let colors = [UIColor.greenColor(),UIColor.yellowColor(),UIColor.redColor(),UIColor.blueColor()]
         let numberOfItems = delegate.numberOfItemsInCardListView(self)
         cardViews.reserveCapacity(numberOfItems)
         var currentOffset = topCardMargin
@@ -182,7 +182,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
 //            let itemView = CardItemView()
             let itemView = bundle.loadNibNamed("CardItemView", owner: self, options: [:]).first as! CardItemView
             itemView.translatesAutoresizingMaskIntoConstraints = false
-            itemView.backgroundColor = colors[i]
+//            itemView.backgroundColor = colors[i]
 
             containerView.addSubview(itemView)
             
