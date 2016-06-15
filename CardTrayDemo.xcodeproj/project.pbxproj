@@ -17,6 +17,10 @@
 		C05827711D0BF87E0086BD35 /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05827701D0BF87E0086BD35 /* CardListView.swift */; };
 		C05827731D0BF8900086BD35 /* CardItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05827721D0BF8900086BD35 /* CardItemView.swift */; };
 		C05827751D0C01920086BD35 /* CardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05827741D0C01920086BD35 /* CardListViewController.swift */; };
+		C065D03D1D1163BD00433963 /* CardEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C065D03C1D1163BD00433963 /* CardEntity.swift */; };
+		C065D0451D1181D900433963 /* CardTrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C065D0441D1181D900433963 /* CardTrayTests.swift */; };
+		C065D0471D1181D900433963 /* CardTray.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E9E47A1D0BB75E006218BE /* CardTray.framework */; };
+		C065D04E1D11824200433963 /* CardNumberValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C065D04D1D11824200433963 /* CardNumberValidationTests.swift */; };
 		C07592571D0BE33E00E44268 /* CardTrayFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07592561D0BE33E00E44268 /* CardTrayFacade.swift */; };
 		C0900FCB1D0C9CDD003B1357 /* CardIOWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = C0900FCA1D0C9CDD003B1357 /* CardIOWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C0900FCF1D0C9CDD003B1357 /* CardIOWrapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0900FC81D0C9CDD003B1357 /* CardIOWrapper.framework */; };
@@ -58,6 +62,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C065D0481D1181D900433963 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E9E4581D0BB709006218BE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C0E9E4791D0BB75E006218BE;
+			remoteInfo = CardTray;
+		};
 		C0900FCD1D0C9CDD003B1357 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C0E9E4581D0BB709006218BE /* Project object */;
@@ -108,6 +119,11 @@
 		C05827701D0BF87E0086BD35 /* CardListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
 		C05827721D0BF8900086BD35 /* CardItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardItemView.swift; sourceTree = "<group>"; };
 		C05827741D0C01920086BD35 /* CardListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListViewController.swift; sourceTree = "<group>"; };
+		C065D03C1D1163BD00433963 /* CardEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardEntity.swift; sourceTree = "<group>"; };
+		C065D0421D1181D900433963 /* CardTrayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardTrayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C065D0441D1181D900433963 /* CardTrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTrayTests.swift; sourceTree = "<group>"; };
+		C065D0461D1181D900433963 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C065D04D1D11824200433963 /* CardNumberValidationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardNumberValidationTests.swift; sourceTree = "<group>"; };
 		C07592561D0BE33E00E44268 /* CardTrayFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTrayFacade.swift; sourceTree = "<group>"; };
 		C0900FC81D0C9CDD003B1357 /* CardIOWrapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CardIOWrapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0900FCA1D0C9CDD003B1357 /* CardIOWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardIOWrapper.h; sourceTree = "<group>"; };
@@ -155,6 +171,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C065D03F1D1181D900433963 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C065D0471D1181D900433963 /* CardTray.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C0900FC41D0C9CDD003B1357 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -255,6 +279,16 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		C065D0431D1181D900433963 /* CardTrayTests */ = {
+			isa = PBXGroup;
+			children = (
+				C065D0441D1181D900433963 /* CardTrayTests.swift */,
+				C065D0461D1181D900433963 /* Info.plist */,
+				C065D04D1D11824200433963 /* CardNumberValidationTests.swift */,
+			);
+			path = CardTrayTests;
+			sourceTree = "<group>";
+		};
 		C07592551D0BE31200E44268 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,6 +330,7 @@
 				C0E9E4621D0BB709006218BE /* CardTrayDemo */,
 				C0E9E47B1D0BB75E006218BE /* CardTray */,
 				C0900FC91D0C9CDD003B1357 /* CardIOWrapper */,
+				C065D0431D1181D900433963 /* CardTrayTests */,
 				C0E9E4611D0BB709006218BE /* Products */,
 				19478F0BBEB5ABD619A44C19 /* Pods */,
 				75727771B077B5729EC03162 /* Frameworks */,
@@ -308,6 +343,7 @@
 				C0E9E4601D0BB709006218BE /* CardTrayDemo.app */,
 				C0E9E47A1D0BB75E006218BE /* CardTray.framework */,
 				C0900FC81D0C9CDD003B1357 /* CardIOWrapper.framework */,
+				C065D0421D1181D900433963 /* CardTrayTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -361,6 +397,7 @@
 		C0E9E4891D0BB9A7006218BE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C065D03C1D1163BD00433963 /* CardEntity.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -395,6 +432,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		C065D0411D1181D900433963 /* CardTrayTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C065D04A1D1181D900433963 /* Build configuration list for PBXNativeTarget "CardTrayTests" */;
+			buildPhases = (
+				C065D03E1D1181D900433963 /* Sources */,
+				C065D03F1D1181D900433963 /* Frameworks */,
+				C065D0401D1181D900433963 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C065D0491D1181D900433963 /* PBXTargetDependency */,
+			);
+			name = CardTrayTests;
+			productName = CardTrayTests;
+			productReference = C065D0421D1181D900433963 /* CardTrayTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		C0900FC71D0C9CDD003B1357 /* CardIOWrapper */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C0900FD11D0C9CDD003B1357 /* Build configuration list for PBXNativeTarget "CardIOWrapper" */;
@@ -468,6 +523,9 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Basil Salad Software";
 				TargetAttributes = {
+					C065D0411D1181D900433963 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
 					C0900FC71D0C9CDD003B1357 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
@@ -495,11 +553,19 @@
 				C0E9E45F1D0BB709006218BE /* CardTrayDemo */,
 				C0E9E4791D0BB75E006218BE /* CardTray */,
 				C0900FC71D0C9CDD003B1357 /* CardIOWrapper */,
+				C065D0411D1181D900433963 /* CardTrayTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C065D0401D1181D900433963 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C0900FC61D0C9CDD003B1357 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -638,6 +704,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C065D03E1D1181D900433963 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C065D0451D1181D900433963 /* CardTrayTests.swift in Sources */,
+				C065D04E1D11824200433963 /* CardNumberValidationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C0900FC31D0C9CDD003B1357 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -659,6 +734,7 @@
 			files = (
 				C05827751D0C01920086BD35 /* CardListViewController.swift in Sources */,
 				40DDDDBF1D0FCD51002A2A98 /* CardServicesViewController.swift in Sources */,
+				C065D03D1D1163BD00433963 /* CardEntity.swift in Sources */,
 				C05827711D0BF87E0086BD35 /* CardListView.swift in Sources */,
 				C07592571D0BE33E00E44268 /* CardTrayFacade.swift in Sources */,
 				C05827731D0BF8900086BD35 /* CardItemView.swift in Sources */,
@@ -670,6 +746,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C065D0491D1181D900433963 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C0E9E4791D0BB75E006218BE /* CardTray */;
+			targetProxy = C065D0481D1181D900433963 /* PBXContainerItemProxy */;
+		};
 		C0900FCE1D0C9CDD003B1357 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C0900FC71D0C9CDD003B1357 /* CardIOWrapper */;
@@ -694,6 +775,26 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C065D04B1D1181D900433963 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = CardTrayTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.basilsalad.CardTrayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C065D04C1D1181D900433963 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = CardTrayTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.basilsalad.CardTrayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		C0900FD21D0C9CDD003B1357 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F51BF5DE8D6F401999CC0F67 /* Pods-CardIOWrapper.debug.xcconfig */;
@@ -905,6 +1006,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C065D04A1D1181D900433963 /* Build configuration list for PBXNativeTarget "CardTrayTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C065D04B1D1181D900433963 /* Debug */,
+				C065D04C1D1181D900433963 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		C0900FD11D0C9CDD003B1357 /* Build configuration list for PBXNativeTarget "CardIOWrapper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
