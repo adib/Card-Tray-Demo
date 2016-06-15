@@ -20,7 +20,7 @@ class CardEntity: NSObject,NSCoding {
     enum IssuerType : String {
         case Unknown = ""
         case Visa = "visa"
-        case MasterCard = "master-card"
+        case MasterCard = "mastercard"
     }
     
     var cardNumber : String?
@@ -44,6 +44,7 @@ class CardEntity: NSObject,NSCoding {
         cardholderName = aDecoder.decodeObjectForKey("cardholderName") as? String ?? ""
         expiryDayOfMonth = aDecoder.decodeIntForKey("expiryDayOfMonth")
         expiryYear = aDecoder.decodeIntForKey("expiryYear")
+        issuer = IssuerType(rawValue:aDecoder.decodeObjectForKey("issuer") as? String ?? "") ?? .Unknown
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
@@ -51,6 +52,7 @@ class CardEntity: NSObject,NSCoding {
         aCoder.encodeObject(cardholderName, forKey: "cardholderName")
         aCoder.encodeInt(expiryDayOfMonth, forKey: "expiryDayOfMonth")
         aCoder.encodeInt(expiryYear, forKey: "expiryYear")
+        aCoder.encodeObject(issuer.rawValue, forKey: "issuer")
     }
 
     /**
