@@ -16,6 +16,8 @@ class CardCaptureViewController: UIViewController,CardIOViewDelegate {
 
     @IBOutlet weak var cardView: CardIOView!
     
+    var cardEntity = CardEntity()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
