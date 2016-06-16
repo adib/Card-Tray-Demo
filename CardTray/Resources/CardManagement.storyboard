@@ -501,11 +501,6 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="NbE-ug-mEr" firstAttribute="trailing" secondItem="ted-6S-G2w" secondAttribute="trailingMargin" id="0fP-HL-3cp"/>
-                                            <constraint firstItem="NbE-ug-mEr" firstAttribute="top" secondItem="ted-6S-G2w" secondAttribute="topMargin" id="4Wg-Pz-6XP"/>
-                                            <constraint firstItem="NbE-ug-mEr" firstAttribute="leading" secondItem="ted-6S-G2w" secondAttribute="leadingMargin" id="Y5N-2W-vev"/>
-                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -641,11 +636,6 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="T2b-iK-TRm" firstAttribute="trailing" secondItem="mw1-nY-C2U" secondAttribute="trailingMargin" id="A1w-YA-6aa"/>
-                                            <constraint firstItem="T2b-iK-TRm" firstAttribute="top" secondItem="mw1-nY-C2U" secondAttribute="topMargin" id="Zgq-A4-q9x"/>
-                                            <constraint firstItem="T2b-iK-TRm" firstAttribute="leading" secondItem="mw1-nY-C2U" secondAttribute="leadingMargin" id="ozy-So-mUT"/>
-                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>
