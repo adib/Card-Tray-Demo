@@ -533,9 +533,11 @@
                     <size key="freeformSize" width="320" height="576"/>
                     <connections>
                         <outlet property="view" destination="Jpq-v1-tqH" id="bzv-MI-0VF"/>
+                        <segue destination="ZZ7-Gc-qfR" kind="unwind" identifier="retryAddCard" unwindAction="retryAddCard:" id="3og-bS-Zj2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wAz-bc-mph" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ZZ7-Gc-qfR" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1927" y="189"/>
         </scene>
@@ -674,6 +676,7 @@
                         <outlet property="securityCodeTextField" destination="09Z-oc-Mkg" id="seX-mp-FGa"/>
                         <outlet property="view" destination="S1O-Rv-eLk" id="buu-co-IV6"/>
                         <segue destination="nPM-mo-RN3" kind="unwind" identifier="verifyCompleted" unwindAction="addCardDone:" id="U6V-u7-7Hw"/>
+                        <segue destination="nPM-mo-RN3" kind="unwind" identifier="addCardCancel" unwindAction="addCardCancel:" id="jK1-4x-F4U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Q8-aj-G3v" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -52,6 +52,10 @@ class CardCaptureViewController: UIViewController,CardIOViewDelegate {
     }
     */
     
+    @IBAction func retryAddCard(unwindSegue:UIStoryboardSegue) {
+        
+    }
+    
     // MARK: CardIOViewDelegate
     func cardIOView(view: CardIOView,didScanCard cardInfo: CardIOCreditCardInfo?) {
         let cardNumber = cardInfo?.cardNumber
