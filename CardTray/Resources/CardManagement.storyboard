@@ -412,11 +412,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Qrq-jM-MsM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Jpq-v1-tqH">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="532"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="468"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nRF-QR-DE4">
-                                <rect key="frame" x="0.0" y="64" width="320" height="468"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="468"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="ted-6S-G2w">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="167"/>
@@ -520,6 +520,7 @@
                             <constraint firstItem="Qrq-jM-MsM" firstAttribute="top" secondItem="nRF-QR-DE4" secondAttribute="bottom" id="jXy-uE-pEs"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="LdU-d3-UF9">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="LTQ-0B-Xs2">
                             <connections>
@@ -527,7 +528,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="576"/>
                     <connections>
@@ -592,7 +593,7 @@
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="mm/yy" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u4y-N9-T3v">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="mm/yy" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="u4y-N9-T3v">
                                                         <rect key="frame" x="143" y="8" width="137" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
@@ -618,7 +619,7 @@
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="123" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="09Z-oc-Mkg">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="123" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="09Z-oc-Mkg">
                                                         <rect key="frame" x="143" y="8" width="137" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" secureTextEntry="YES"/>
@@ -655,16 +656,28 @@
                             <constraint firstAttribute="trailingMargin" secondItem="NTq-hk-E5M" secondAttribute="trailing" id="o1T-70-ZGh"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="fLf-uZ-KHo">
+                        <barButtonItem key="rightBarButtonItem" title="Verify" id="aD3-ww-Cca">
+                            <connections>
+                                <action selector="performVerify:" destination="1st-JO-sXa" id="dbA-x3-CL2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="576"/>
                     <connections>
                         <outlet property="expirationDatePicker" destination="Ra4-1B-9SV" id="lAh-Ab-hfF"/>
+                        <outlet property="scrollView" destination="NTq-hk-E5M" id="a5B-I6-F3x"/>
                         <outlet property="securityCodeTextField" destination="09Z-oc-Mkg" id="seX-mp-FGa"/>
                         <outlet property="view" destination="S1O-Rv-eLk" id="buu-co-IV6"/>
+                        <segue destination="nPM-mo-RN3" kind="unwind" identifier="verifyCompleted" unwindAction="addCardDone:" id="U6V-u7-7Hw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Q8-aj-G3v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="nPM-mo-RN3" userLabel="Exit" sceneMemberID="exit"/>
                 <pickerView contentMode="scaleToFill" id="CoO-bG-gtQ">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

@@ -10,6 +10,7 @@ import UIKit
 
 class CardVerifyViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet var expirationDatePicker: CardExpirationPickerController!
     
     @IBOutlet weak var securityCodeTextField: UITextField!
@@ -37,5 +38,11 @@ class CardVerifyViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func performVerify(sender: AnyObject) {
+        // TODO: verify the card number
+    }
+    // MARK: - UITextFieldDelegate
+    
 
 }

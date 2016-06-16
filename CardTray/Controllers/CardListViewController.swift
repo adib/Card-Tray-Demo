@@ -62,6 +62,10 @@ class CardListViewController: UIViewController, CardListViewDelegate {
     }
     */
     
+    @IBAction func addCardDone(unwindSegue:UIStoryboardSegue) {
+        
+    }
+    
     // MARK: - CardListViewDelegate
     func numberOfItemsInCardListView(view: CardListView) -> Int {
         return 3
