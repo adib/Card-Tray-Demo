@@ -541,7 +541,7 @@
         <!--Card Verify-->
         <scene sceneID="ziG-OG-32b">
             <objects>
-                <viewController id="1st-JO-sXa" userLabel="Card Verify" sceneMemberID="viewController">
+                <viewController id="1st-JO-sXa" userLabel="Card Verify" customClass="CardVerifyViewController" customModule="CardTray" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="E5u-Fo-SA4"/>
                         <viewControllerLayoutGuide type="bottom" id="KbO-to-BLO"/>
@@ -592,10 +592,10 @@
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u4y-N9-T3v">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="mm/yy" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u4y-N9-T3v">
                                                         <rect key="frame" x="143" y="8" width="137" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -618,10 +618,10 @@
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="09Z-oc-Mkg">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="123" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="09Z-oc-Mkg">
                                                         <rect key="frame" x="143" y="8" width="137" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" secureTextEntry="YES"/>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -646,17 +646,12 @@
                                     <constraint firstAttribute="trailing" secondItem="mw1-nY-C2U" secondAttribute="trailing" id="jbs-Ov-1xS"/>
                                 </constraints>
                             </scrollView>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CoO-bG-gtQ">
-                                <rect key="frame" x="0.0" y="252" width="320" height="216"/>
-                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="CoO-bG-gtQ" firstAttribute="centerX" secondItem="S1O-Rv-eLk" secondAttribute="centerX" id="ICR-rh-vj7"/>
                             <constraint firstItem="KbO-to-BLO" firstAttribute="top" secondItem="NTq-hk-E5M" secondAttribute="bottom" id="UsG-Yu-Ymt"/>
                             <constraint firstItem="NTq-hk-E5M" firstAttribute="top" secondItem="E5u-Fo-SA4" secondAttribute="bottom" id="dGl-kR-LcN"/>
                             <constraint firstItem="NTq-hk-E5M" firstAttribute="leading" secondItem="S1O-Rv-eLk" secondAttribute="leadingMargin" id="dK3-jb-0gj"/>
-                            <constraint firstItem="KbO-to-BLO" firstAttribute="top" secondItem="CoO-bG-gtQ" secondAttribute="bottom" id="gk1-46-TUW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="NTq-hk-E5M" secondAttribute="trailing" id="o1T-70-ZGh"/>
                         </constraints>
                     </view>
@@ -664,10 +659,22 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="576"/>
                     <connections>
+                        <outlet property="expirationDatePicker" destination="Ra4-1B-9SV" id="lAh-Ab-hfF"/>
+                        <outlet property="securityCodeTextField" destination="09Z-oc-Mkg" id="seX-mp-FGa"/>
                         <outlet property="view" destination="S1O-Rv-eLk" id="buu-co-IV6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Q8-aj-G3v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pickerView contentMode="scaleToFill" id="CoO-bG-gtQ">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </pickerView>
+                <customObject id="Ra4-1B-9SV" customClass="CardExpirationPickerController" customModule="CardTray" customModuleProvider="target">
+                    <connections>
+                        <outlet property="pickerView" destination="CoO-bG-gtQ" id="YEz-Lw-Zfk"/>
+                        <outlet property="textField" destination="u4y-N9-T3v" id="fzo-3A-H4q"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="2435" y="190"/>
         </scene>

@@ -12,6 +12,8 @@
 		40D008101D0FE32B003360CC /* CardTrayAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40D0080F1D0FE32B003360CC /* CardTrayAssets.xcassets */; };
 		40DDDDBD1D0FC72E002A2A98 /* CardTransactionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DDDDBC1D0FC72E002A2A98 /* CardTransactionListViewController.swift */; };
 		40DDDDBF1D0FCD51002A2A98 /* CardServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DDDDBE1D0FCD51002A2A98 /* CardServicesViewController.swift */; };
+		C0442BCB1D127806002A6E58 /* CardExpirationPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0442BCA1D127805002A6E58 /* CardExpirationPickerController.swift */; };
+		C0442BCF1D127AD1002A6E58 /* CardVerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0442BCE1D127AD1002A6E58 /* CardVerifyViewController.swift */; };
 		C0473D9D1D0C5B7C00BB496F /* CardCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0473D9C1D0C5B7C00BB496F /* CardCaptureViewController.swift */; };
 		C0473DA71D0C744200BB496F /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = C0473DA61D0C744200BB496F /* tessdata */; };
 		C05827711D0BF87E0086BD35 /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05827701D0BF87E0086BD35 /* CardListView.swift */; };
@@ -113,6 +115,8 @@
 		5541BAE52E18C9B6997CED02 /* Pods-CardIO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardIO.release.xcconfig"; path = "Pods/Target Support Files/Pods-CardIO/Pods-CardIO.release.xcconfig"; sourceTree = "<group>"; };
 		9786026A62B651C6328F4479 /* Pods_CardTrayDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CardTrayDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF8B02236F083A19A17420FD /* Pods_CardIO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CardIO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0442BCA1D127805002A6E58 /* CardExpirationPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardExpirationPickerController.swift; sourceTree = "<group>"; };
+		C0442BCE1D127AD1002A6E58 /* CardVerifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardVerifyViewController.swift; sourceTree = "<group>"; };
 		C0473D9C1D0C5B7C00BB496F /* CardCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCaptureViewController.swift; sourceTree = "<group>"; };
 		C0473DA31D0C6FB600BB496F /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TesseractOCR.framework; path = "../../../../Library/Developer/Xcode/DerivedData/CardTrayDemo-ezjxpdfuxmolgvfpsyccipahpcdt/Build/Products/Debug-iphonesimulator/TesseractOCRiOS/TesseractOCR.framework"; sourceTree = "<group>"; };
 		C0473DA61D0C744200BB496F /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
@@ -381,6 +385,8 @@
 				C0473D9C1D0C5B7C00BB496F /* CardCaptureViewController.swift */,
 				40DDDDBC1D0FC72E002A2A98 /* CardTransactionListViewController.swift */,
 				40DDDDBE1D0FCD51002A2A98 /* CardServicesViewController.swift */,
+				C0442BCA1D127805002A6E58 /* CardExpirationPickerController.swift */,
+				C0442BCE1D127AD1002A6E58 /* CardVerifyViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -732,12 +738,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0442BCB1D127806002A6E58 /* CardExpirationPickerController.swift in Sources */,
 				C05827751D0C01920086BD35 /* CardListViewController.swift in Sources */,
 				40DDDDBF1D0FCD51002A2A98 /* CardServicesViewController.swift in Sources */,
 				C065D03D1D1163BD00433963 /* CardEntity.swift in Sources */,
 				C05827711D0BF87E0086BD35 /* CardListView.swift in Sources */,
 				C07592571D0BE33E00E44268 /* CardTrayFacade.swift in Sources */,
 				C05827731D0BF8900086BD35 /* CardItemView.swift in Sources */,
+				C0442BCF1D127AD1002A6E58 /* CardVerifyViewController.swift in Sources */,
 				40DDDDBD1D0FC72E002A2A98 /* CardTransactionListViewController.swift in Sources */,
 				C0473D9D1D0C5B7C00BB496F /* CardCaptureViewController.swift in Sources */,
 			);
@@ -1013,6 +1021,7 @@
 				C065D04C1D1181D900433963 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C0900FD11D0C9CDD003B1357 /* Build configuration list for PBXNativeTarget "CardIOWrapper" */ = {
 			isa = XCConfigurationList;
