@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -22,7 +21,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzw-EU-zJx" userLabel="Card View" customClass="CardListView" customModule="CardTray" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="468"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="delegate" destination="Yj4-Xm-wub" id="Vzd-3y-Vxj"/>
                                 </connections>
@@ -317,86 +316,40 @@
                         <viewControllerLayoutGuide type="top" id="CT3-Zd-OFd"/>
                         <viewControllerLayoutGuide type="bottom" id="hzy-ho-Myt"/>
                     </layoutGuides>
-                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="DJI-ql-Crm">
-                        <rect key="frame" x="0.0" y="64" width="320" height="470"/>
+                    <view key="view" contentMode="scaleToFill" id="fIt-Bk-mUl">
+                        <rect key="frame" x="0.0" y="64" width="320" height="514"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OPB-gB-PIk">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="441"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" horizontalHuggingPriority="50" verticalHuggingPriority="50" translatesAutoresizingMaskIntoConstraints="NO" id="M7k-ij-NE4" userLabel="Camera View" customClass="CardIOView">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="M7k-ij-NE4" secondAttribute="height" multiplier="1:1" id="1mD-yT-njL"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ljM-Ei-fP2" userLabel="Instructions Container">
-                                        <rect key="frame" x="0.0" y="320" width="320" height="75"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="751" text="Add Card" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W73-aO-wls" userLabel="Title">
-                                                <rect key="frame" x="8" y="8" width="304" height="33"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="740" text="Position your card in the frame." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHQ-kt-EkI" userLabel="Prompt">
-                                                <rect key="frame" x="8" y="49" width="304" height="18"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailingMargin" secondItem="dHQ-kt-EkI" secondAttribute="trailing" id="Iez-aL-G7X"/>
-                                            <constraint firstItem="W73-aO-wls" firstAttribute="leading" secondItem="ljM-Ei-fP2" secondAttribute="leadingMargin" id="O94-Ky-4q6"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="dHQ-kt-EkI" secondAttribute="bottom" id="OTP-98-AQI"/>
-                                            <constraint firstItem="dHQ-kt-EkI" firstAttribute="leading" secondItem="ljM-Ei-fP2" secondAttribute="leadingMargin" id="SAr-rr-B5f"/>
-                                            <constraint firstItem="dHQ-kt-EkI" firstAttribute="top" secondItem="W73-aO-wls" secondAttribute="bottom" constant="8" symbolic="YES" id="UoV-Fu-fK3"/>
-                                            <constraint firstItem="W73-aO-wls" firstAttribute="top" secondItem="ljM-Ei-fP2" secondAttribute="topMargin" id="xAG-My-Hct"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="W73-aO-wls" secondAttribute="trailing" id="yOB-M8-rt2"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ycn-pJ-6Y7">
-                                        <rect key="frame" x="0.0" y="395" width="320" height="46"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NCX-GX-EhA" userLabel="Skip Button">
-                                                <rect key="frame" x="8" y="8" width="304" height="30"/>
-                                                <state key="normal" title="Enter Card Details Manually"/>
-                                                <connections>
-                                                    <segue destination="P3K-3P-Nax" kind="show" id="nf7-4u-uiQ"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="NCX-GX-EhA" firstAttribute="top" secondItem="Ycn-pJ-6Y7" secondAttribute="topMargin" id="14n-IQ-PrN"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="NCX-GX-EhA" secondAttribute="bottom" id="HWQ-Nc-SsO"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="NCX-GX-EhA" secondAttribute="trailing" id="L32-sj-oe3"/>
-                                            <constraint firstItem="NCX-GX-EhA" firstAttribute="leading" secondItem="Ycn-pJ-6Y7" secondAttribute="leadingMargin" id="gfY-ia-U88"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                            </stackView>
+                            <view contentMode="scaleToFill" horizontalHuggingPriority="50" verticalHuggingPriority="50" translatesAutoresizingMaskIntoConstraints="NO" id="M7k-ij-NE4" userLabel="Camera View" customClass="CardIOView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="468"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NCX-GX-EhA" userLabel="Skip Button">
+                                <rect key="frame" x="66" y="476" width="189" height="30"/>
+                                <state key="normal" title="Enter Card Details Manually"/>
+                                <connections>
+                                    <segue destination="P3K-3P-Nax" kind="show" identifier="enterCardDetails" id="nf7-4u-uiQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="OPB-gB-PIk" secondAttribute="trailing" id="Bhh-ZD-kid"/>
-                            <constraint firstItem="OPB-gB-PIk" firstAttribute="width" secondItem="DJI-ql-Crm" secondAttribute="width" id="bqG-da-QtR"/>
-                            <constraint firstItem="OPB-gB-PIk" firstAttribute="leading" secondItem="DJI-ql-Crm" secondAttribute="leading" id="qrf-tV-m6G"/>
-                            <constraint firstAttribute="bottom" secondItem="OPB-gB-PIk" secondAttribute="bottom" id="wNP-fF-aG2"/>
-                            <constraint firstItem="OPB-gB-PIk" firstAttribute="top" secondItem="DJI-ql-Crm" secondAttribute="top" id="zgW-2c-RzL"/>
+                            <constraint firstItem="NCX-GX-EhA" firstAttribute="centerX" secondItem="fIt-Bk-mUl" secondAttribute="centerX" id="D4c-mr-ghy"/>
+                            <constraint firstItem="NCX-GX-EhA" firstAttribute="top" secondItem="M7k-ij-NE4" secondAttribute="bottom" constant="8" symbolic="YES" id="Uwf-pP-xcK"/>
+                            <constraint firstAttribute="trailing" secondItem="M7k-ij-NE4" secondAttribute="trailing" id="coa-49-OV1"/>
+                            <constraint firstItem="hzy-ho-Myt" firstAttribute="top" secondItem="NCX-GX-EhA" secondAttribute="bottom" constant="8" symbolic="YES" id="j0Z-1G-NW2"/>
+                            <constraint firstItem="M7k-ij-NE4" firstAttribute="leading" secondItem="fIt-Bk-mUl" secondAttribute="leading" id="laB-q9-b6Y"/>
+                            <constraint firstItem="M7k-ij-NE4" firstAttribute="top" secondItem="CT3-Zd-OFd" secondAttribute="bottom" id="pgS-uj-JtK"/>
                         </constraints>
-                    </scrollView>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="578"/>
                     <connections>
                         <outlet property="cardView" destination="M7k-ij-NE4" id="kdk-dE-sMg"/>
-                        <outlet property="view" destination="DJI-ql-Crm" id="Rv8-Yu-Fcm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gft-8U-aH0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -406,17 +359,17 @@
         <!--Card Details-->
         <scene sceneID="b3f-QS-CeU">
             <objects>
-                <viewController id="P3K-3P-Nax" userLabel="Card Details" sceneMemberID="viewController">
+                <viewController id="P3K-3P-Nax" userLabel="Card Details" customClass="CardDetailsViewController" customModule="CardTray" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="m9e-g8-ngt"/>
                         <viewControllerLayoutGuide type="bottom" id="Qrq-jM-MsM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Jpq-v1-tqH">
-                        <rect key="frame" x="0.0" y="64" width="320" height="468"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="512"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nRF-QR-DE4">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="468"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="512"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="ted-6S-G2w">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="167"/>
@@ -452,15 +405,18 @@
                                                 <rect key="frame" x="0.0" y="75" width="320" height="46"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ab4-0T-aqN">
-                                                        <rect key="frame" x="20" y="11" width="128" height="21"/>
+                                                        <rect key="frame" x="20" y="11" width="96" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="92p-dZ-kbQ" userLabel="Name Text Field">
-                                                        <rect key="frame" x="156" y="8" width="156" height="30"/>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="10" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="92p-dZ-kbQ" userLabel="Name Text Field">
+                                                        <rect key="frame" x="124" y="8" width="188" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="P3K-3P-Nax" id="74z-zr-LjE"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -468,7 +424,7 @@
                                                     <constraint firstItem="92p-dZ-kbQ" firstAttribute="trailing" secondItem="Dlx-td-9au" secondAttribute="trailingMargin" id="22M-b7-FhV"/>
                                                     <constraint firstItem="92p-dZ-kbQ" firstAttribute="leading" secondItem="ab4-0T-aqN" secondAttribute="trailing" constant="8" symbolic="YES" id="3Az-Di-kVF"/>
                                                     <constraint firstItem="ab4-0T-aqN" firstAttribute="baseline" secondItem="92p-dZ-kbQ" secondAttribute="baseline" id="SGW-0U-OaD"/>
-                                                    <constraint firstItem="ab4-0T-aqN" firstAttribute="width" secondItem="Dlx-td-9au" secondAttribute="width" multiplier="0.4" id="VSa-Wz-p5m"/>
+                                                    <constraint firstItem="ab4-0T-aqN" firstAttribute="width" secondItem="Dlx-td-9au" secondAttribute="width" multiplier="0.3" id="VSa-Wz-p5m"/>
                                                     <constraint firstAttribute="bottomMargin" secondItem="92p-dZ-kbQ" secondAttribute="bottom" id="YMg-ot-A98"/>
                                                     <constraint firstItem="ab4-0T-aqN" firstAttribute="leading" secondItem="Dlx-td-9au" secondAttribute="leading" constant="20" symbolic="YES" id="aYN-kk-GFJ"/>
                                                     <constraint firstItem="92p-dZ-kbQ" firstAttribute="top" secondItem="Dlx-td-9au" secondAttribute="topMargin" id="vo8-K8-Q7S"/>
@@ -477,13 +433,16 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tiu-8S-xju" userLabel="Expiration Label">
                                                 <rect key="frame" x="0.0" y="121" width="320" height="46"/>
                                                 <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OQR-Ym-dot" userLabel="Number Text Field">
-                                                        <rect key="frame" x="156" y="8" width="156" height="30"/>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="10" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="OQR-Ym-dot" userLabel="Number Text Field">
+                                                        <rect key="frame" x="124" y="8" width="188" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" returnKeyType="next"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="P3K-3P-Nax" id="G4W-Y2-3Ic"/>
+                                                        </connections>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Card Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="riv-qm-sa0">
-                                                        <rect key="frame" x="20" y="11" width="128" height="21"/>
+                                                        <rect key="frame" x="20" y="11" width="96" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -495,7 +454,7 @@
                                                     <constraint firstItem="OQR-Ym-dot" firstAttribute="leading" secondItem="riv-qm-sa0" secondAttribute="trailing" constant="8" symbolic="YES" id="A94-Vp-wbJ"/>
                                                     <constraint firstItem="OQR-Ym-dot" firstAttribute="trailing" secondItem="tiu-8S-xju" secondAttribute="trailingMargin" id="Iiz-t9-gh3"/>
                                                     <constraint firstItem="OQR-Ym-dot" firstAttribute="top" secondItem="tiu-8S-xju" secondAttribute="topMargin" id="Xqs-Ky-kim"/>
-                                                    <constraint firstItem="riv-qm-sa0" firstAttribute="width" secondItem="tiu-8S-xju" secondAttribute="width" multiplier="0.4" id="rtx-nT-nJ7"/>
+                                                    <constraint firstItem="riv-qm-sa0" firstAttribute="width" secondItem="tiu-8S-xju" secondAttribute="width" multiplier="0.3" id="rtx-nT-nJ7"/>
                                                     <constraint firstItem="riv-qm-sa0" firstAttribute="baseline" secondItem="OQR-Ym-dot" secondAttribute="baseline" id="tsf-Bw-bLo"/>
                                                     <constraint firstAttribute="bottomMargin" secondItem="OQR-Ym-dot" secondAttribute="bottom" id="zxJ-8N-MwQ"/>
                                                 </constraints>
@@ -524,7 +483,7 @@
                     <navigationItem key="navigationItem" id="LdU-d3-UF9">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="LTQ-0B-Xs2">
                             <connections>
-                                <segue destination="1st-JO-sXa" kind="show" id="4KS-6e-jsi"/>
+                                <segue destination="1st-JO-sXa" kind="show" identifier="cardVerify" id="4KS-6e-jsi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -532,6 +491,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="576"/>
                     <connections>
+                        <outlet property="cardNumberTextField" destination="OQR-Ym-dot" id="Jav-Cs-nFe"/>
+                        <outlet property="cardholderNameTextField" destination="92p-dZ-kbQ" id="q7F-ok-AIB"/>
                         <outlet property="view" destination="Jpq-v1-tqH" id="bzv-MI-0VF"/>
                         <segue destination="ZZ7-Gc-qfR" kind="unwind" identifier="retryAddCard" unwindAction="retryAddCard:" id="3og-bS-Zj2"/>
                     </connections>
@@ -550,11 +511,11 @@
                         <viewControllerLayoutGuide type="bottom" id="KbO-to-BLO"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="S1O-Rv-eLk">
-                        <rect key="frame" x="0.0" y="64" width="320" height="468"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="512"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NTq-hk-E5M">
-                                <rect key="frame" x="16" y="0.0" width="288" height="468"/>
+                                <rect key="frame" x="16" y="0.0" width="288" height="512"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="mw1-nY-C2U">
                                         <rect key="frame" x="0.0" y="0.0" width="288" height="167"/>
@@ -599,6 +560,9 @@
                                                         <rect key="frame" x="143" y="8" width="137" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="1st-JO-sXa" id="iYT-zs-Krv"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -672,11 +636,13 @@
                     <size key="freeformSize" width="320" height="576"/>
                     <connections>
                         <outlet property="expirationDatePicker" destination="Ra4-1B-9SV" id="lAh-Ab-hfF"/>
+                        <outlet property="expirationDateTextField" destination="u4y-N9-T3v" id="nGH-Sd-1J4"/>
                         <outlet property="scrollView" destination="NTq-hk-E5M" id="a5B-I6-F3x"/>
-                        <outlet property="securityCodeTextField" destination="09Z-oc-Mkg" id="seX-mp-FGa"/>
+                        <outlet property="securityCodeTextField" destination="09Z-oc-Mkg" id="kWq-Wt-Itm"/>
                         <outlet property="view" destination="S1O-Rv-eLk" id="buu-co-IV6"/>
                         <segue destination="nPM-mo-RN3" kind="unwind" identifier="verifyCompleted" unwindAction="addCardDone:" id="U6V-u7-7Hw"/>
                         <segue destination="nPM-mo-RN3" kind="unwind" identifier="addCardCancel" unwindAction="addCardCancel:" id="jK1-4x-F4U"/>
+                        <segue destination="nPM-mo-RN3" kind="unwind" identifier="retryAddCard" unwindAction="retryAddCard:" id="s0x-gk-M9x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Q8-aj-G3v" userLabel="First Responder" sceneMemberID="firstResponder"/>

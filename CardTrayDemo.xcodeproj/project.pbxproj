@@ -53,6 +53,7 @@
 		C09010091D0CA068003B1357 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09010081D0CA068003B1357 /* CoreMedia.framework */; };
 		C090100A1D0CA098003B1357 /* CardIOWrapper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0900FC81D0C9CDD003B1357 /* CardIOWrapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C0C987361D0BBC1F00C4DF72 /* CardManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0C987351D0BBC1F00C4DF72 /* CardManagement.storyboard */; };
+		C0D06F381D13861700580B2A /* CardDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D06F371D13861700580B2A /* CardDetailsViewController.swift */; };
 		C0E9E4641D0BB709006218BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E9E4631D0BB709006218BE /* AppDelegate.swift */; };
 		C0E9E46B1D0BB70A006218BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0E9E46A1D0BB70A006218BE /* Assets.xcassets */; };
 		C0E9E46E1D0BB70A006218BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0E9E46C1D0BB70A006218BE /* LaunchScreen.storyboard */; };
@@ -160,6 +161,7 @@
 		C09010061D0CA060003B1357 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		C09010081D0CA068003B1357 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		C0C987351D0BBC1F00C4DF72 /* CardManagement.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CardManagement.storyboard; sourceTree = "<group>"; };
+		C0D06F371D13861700580B2A /* CardDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailsViewController.swift; sourceTree = "<group>"; };
 		C0E9E4601D0BB709006218BE /* CardTrayDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardTrayDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E9E4631D0BB709006218BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0E9E46A1D0BB70A006218BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 				40DDDDBE1D0FCD51002A2A98 /* CardServicesViewController.swift */,
 				C0442BCA1D127805002A6E58 /* CardExpirationPickerController.swift */,
 				C0442BCE1D127AD1002A6E58 /* CardVerifyViewController.swift */,
+				C0D06F371D13861700580B2A /* CardDetailsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -739,6 +742,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0442BCB1D127806002A6E58 /* CardExpirationPickerController.swift in Sources */,
+				C0D06F381D13861700580B2A /* CardDetailsViewController.swift in Sources */,
 				C05827751D0C01920086BD35 /* CardListViewController.swift in Sources */,
 				40DDDDBF1D0FCD51002A2A98 /* CardServicesViewController.swift in Sources */,
 				C065D03D1D1163BD00433963 /* CardEntity.swift in Sources */,

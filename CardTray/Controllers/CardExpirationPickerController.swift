@@ -50,12 +50,22 @@ class CardExpirationPickerController: UIResponder,UIPickerViewDataSource,UIPicke
         return NSCalendar(identifier:NSCalendarIdentifierISO8601)!
     }()
 
-    lazy var yearLookup : [(String,Int)] = {
+    lazy var yearLookup : [(String,Int?)] = {
         [unowned self] in
-        var l = Array<(String,Int)>()
+        var l = Array<(String,Int?)>()
+        l.append(("",nil))
         let yearRange = self.yearRange
         for year in yearRange.location..<yearRange.location+yearRange.length {
             l.append((String(format:"%04d",year),year))
+        }
+        return l
+    }()
+    
+    lazy var monthLookup : [(String,Int?)] = {
+        var l = Array<(String,Int?)>()
+        l.append(("",nil))
+        for month in 1...12 {
+            l.append((String(format:"%02d",month),month))
         }
         return l
     }()
@@ -94,12 +104,20 @@ class CardExpirationPickerController: UIResponder,UIPickerViewDataSource,UIPicke
     }
     
     func setSelectedMonth(month: Int?,year: Int?, animated: Bool) {
-        
         if let m = month where 1...12 ~= m && selectedMonth != m  {
             selectedMonth = m
             if let pickerView = self.pickerView {
-                let monthIndex = m - 1
-                pickerView.selectRow(monthIndex, inComponent: 0, animated: animated)
+                var monthIndex : Int?
+                for i in 0..<monthLookup.count {
+                    if monthLookup[i].1 == m {
+                        monthIndex = i
+                        break
+                    }
+                }
+                
+                if let selectedMonthIndex = monthIndex {
+                    pickerView.selectRow(selectedMonthIndex, inComponent: 0, animated: animated)
+                }
             }
         }
         
@@ -126,32 +144,36 @@ class CardExpirationPickerController: UIResponder,UIPickerViewDataSource,UIPicke
     }
     
     
-    func setSelectedText(userText:String,animated:Bool) {
+    func setSelectedText(userText:String,animated:Bool) -> Bool {
         var objectValue : AnyObject?
         if self.dateTextFormatter.getObjectValue(&objectValue, forString: userText, errorDescription: nil) {
             if let dateValue = objectValue as? NSDate {
                 let dateComponents = self.calendar.components([.Month,.Year], fromDate: dateValue)
                 if dateComponents.year >= yearRange.location {
                     setSelectedMonth(dateComponents.month, year: dateComponents.year, animated: animated)
+                    return true
                 }
             }
         }
+        return false
     }
     
     var selectedText : String? {
-        guard let   selectedMonth = self.selectedMonth,
-                    selectedYear  = self.selectedYear else {
-                return nil
+        get {
+            guard let   selectedMonth = self.selectedMonth,
+                selectedYear  = self.selectedYear else {
+                    return nil
+            }
+            let calendar = self.calendar
+            let comps = NSDateComponents()
+            comps.calendar = calendar
+            comps.month = selectedMonth
+            comps.year = selectedYear
+            if let date = calendar.dateFromComponents(comps) {
+                return self.dateTextFormatter.stringFromDate(date)
+            }
+            return nil
         }
-        let calendar = self.calendar
-        let comps = NSDateComponents()
-        comps.calendar = calendar
-        comps.month = selectedMonth
-        comps.year = selectedYear
-        if let date = calendar.dateFromComponents(comps) {
-            return self.dateTextFormatter.stringFromDate(date)
-        }
-        return nil
     }
     
     func setNeedsReadText() {
@@ -199,10 +221,10 @@ class CardExpirationPickerController: UIResponder,UIPickerViewDataSource,UIPicke
         switch component {
         case 0:
             // month
-            return 12
+            return monthLookup.count
         case 1:
             // year
-            return yearRange.length
+            return yearLookup.count
         default:
             return 0
         }
@@ -214,8 +236,7 @@ class CardExpirationPickerController: UIResponder,UIPickerViewDataSource,UIPicke
         switch component {
         case 0:
             // month
-            let monthNum = row + 1
-            return String(format:"%02d",monthNum)
+            return monthLookup[row].0
         case 1:
             // year
             return yearLookup[row].0
@@ -227,7 +248,7 @@ class CardExpirationPickerController: UIResponder,UIPickerViewDataSource,UIPicke
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch component {
         case 0: //month
-            let selMonth = row + 1
+            let (_,selMonth) = monthLookup[row]
             selectedMonth = selMonth
             setNeedsWriteText()
         case 1: // year

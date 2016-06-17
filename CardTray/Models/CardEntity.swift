@@ -27,9 +27,11 @@ class CardEntity: NSObject,NSCoding {
     
     var cardholderName : String?
     
-    var expiryDayOfMonth = Int32(0)
+    var securityCode : String?
     
-    var expiryYear = Int32(0)
+    var expiryDayOfMonth : Int?
+    
+    var expiryYear : Int?
     
     var issuer = IssuerType.Unknown
     
@@ -40,18 +42,33 @@ class CardEntity: NSObject,NSCoding {
     // MARK: - NSCoding
     
     required init(coder aDecoder: NSCoder) {
+        let decodeInt = {
+            (key:String) -> Int? in
+            if let num = aDecoder.decodeObjectForKey(key) as? NSNumber {
+                return Int(num.intValue)
+            }
+            return nil
+        }
         cardNumber = aDecoder.decodeObjectForKey("cardNumber") as? String
-        cardholderName = aDecoder.decodeObjectForKey("cardholderName") as? String ?? ""
-        expiryDayOfMonth = aDecoder.decodeIntForKey("expiryDayOfMonth")
-        expiryYear = aDecoder.decodeIntForKey("expiryYear")
+        cardholderName = aDecoder.decodeObjectForKey("cardholderName") as? String
+        securityCode = aDecoder.decodeObjectForKey("securityCode") as? String
+        expiryDayOfMonth = decodeInt("expiryDayOfMonth")
+        expiryYear = decodeInt("expiryYear")
         issuer = IssuerType(rawValue:aDecoder.decodeObjectForKey("issuer") as? String ?? "") ?? .Unknown
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
+        let encodeInt = {
+            (v:Int?,key:String) in
+            if let value = v {
+                aCoder.encodeInt(Int32(value), forKey: key)
+            }
+        }
         aCoder.encodeObject(cardNumber, forKey: "cardNumber")
         aCoder.encodeObject(cardholderName, forKey: "cardholderName")
-        aCoder.encodeInt(expiryDayOfMonth, forKey: "expiryDayOfMonth")
-        aCoder.encodeInt(expiryYear, forKey: "expiryYear")
+        aCoder.encodeObject(securityCode, forKey: "securityCode")
+        encodeInt(expiryDayOfMonth,"expiryDayOfMonth")
+        encodeInt(expiryYear,"expiryYear")
         aCoder.encodeObject(issuer.rawValue, forKey: "issuer")
     }
 
@@ -94,7 +111,6 @@ class CardEntity: NSObject,NSCoding {
             }
         }
         completionHandler?(error: nil)
-
     }
 }
 

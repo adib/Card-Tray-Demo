@@ -21,6 +21,8 @@ class CardCaptureViewController: UIViewController,CardIOViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        cardView.useCardIOLogo = false
+        cardView.hideCardIOLogo = true
         cardView.delegate = self
         // Do any additional setup after loading the view.
     }
@@ -42,15 +44,21 @@ class CardCaptureViewController: UIViewController,CardIOViewDelegate {
         super.viewWillDisappear(animated)
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let segueIdentifier = segue.identifier {
+            switch segueIdentifier {
+            case "enterCardDetails":
+                if let cardCtrl = segue.destinationViewController as? CardDetailsViewController {
+                    cardCtrl.cardEntity = self.cardEntity
+                }
+            default:
+                ()
+            }
+        }
     }
-    */
     
     @IBAction func retryAddCard(unwindSegue:UIStoryboardSegue) {
         
@@ -58,10 +66,13 @@ class CardCaptureViewController: UIViewController,CardIOViewDelegate {
     
     // MARK: CardIOViewDelegate
     func cardIOView(view: CardIOView,didScanCard cardInfo: CardIOCreditCardInfo?) {
-        let cardNumber = cardInfo?.cardNumber
-        let cardName = cardInfo?.cardholderName
+        guard let cardNumber = cardInfo?.cardNumber else {
+            return
+        }
+        
         // Card.IO doesn't scan the cardholder name: http://stackoverflow.com/a/16844513/199360
-        NSLog("Scanned card – number: \(cardNumber) name: \(cardName)")
+        cardEntity.cardNumber = cardNumber
+        self.performSegueWithIdentifier("enterCardDetails", sender: view)
     }
     
 
