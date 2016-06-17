@@ -9,8 +9,15 @@
 import UIKit
 
 class CardListView: UIView,UIDynamicAnimatorDelegate {
-        
+    
+    
     @IBOutlet weak var delegate : CardListViewDelegate?
+    
+    var cardList : CardListModel? {
+        didSet {
+            self.reloadData()
+        }
+    }
     
     var cardViews = Array<CardItemView>()
     
@@ -81,6 +88,10 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         //let animator =
     }
     
+    deinit {
+        self.cardList = nil
+    }
+    
     override func layoutSubviews() {
         dynamicAnimator?.removeAllBehaviors()
         super.layoutSubviews()
@@ -148,6 +159,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         }
     }
     
+    
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -177,38 +189,40 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         var currentOffset = topCardMargin
 
         let bundle = NSBundle(forClass: self.dynamicType)
-
-        for i in 0..<numberOfItems {
-//            let itemView = CardItemView()
-            let itemView = bundle.loadNibNamed("CardItemView", owner: self, options: [:]).first as! CardItemView
-            itemView.translatesAutoresizingMaskIntoConstraints = false
-//            itemView.backgroundColor = colors[i]
-
-            containerView.addSubview(itemView)
-            
-            //  the size of credit cards is 85.60 × 53.98 mm ratio is 1.5858
-            let ratioConstraint = NSLayoutConstraint(item: itemView, attribute: .Width, relatedBy: .Equal, toItem: itemView, attribute: .Height, multiplier: CGFloat(1.5858), constant: 0)
-            let topConstraint = NSLayoutConstraint(item: itemView, attribute: .Top, relatedBy: .Equal, toItem: containerView, attribute: .Top, multiplier: 1, constant: CGFloat(currentOffset))
-            
-            containerView.addConstraint(NSLayoutConstraint(item: itemView, attribute: .Leading, relatedBy: .Equal, toItem: containerView, attribute: .Leading, multiplier: 1, constant: CGFloat(leftMargin)))
-            containerView.addConstraint(NSLayoutConstraint(item: itemView, attribute: .Trailing, relatedBy: .Equal, toItem: containerView, attribute: .Trailing, multiplier: 1, constant: -CGFloat(rightMargin)))
-            containerView.addConstraint(ratioConstraint)
-            containerView.addConstraint(topConstraint)
-            
-            cardViews.append(itemView)
-            topOffsetConstraints.setObject(topConstraint, forKey: itemView)
-            
-            currentOffset += cardItemOffset
-            
-            let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(handleCardDragGesture))
-            dragGesture.maximumNumberOfTouches = 1
-            itemView.addGestureRecognizer(dragGesture)
-            
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleCardTapGesture))
-            tapGesture.numberOfTapsRequired = 1
-            itemView.addGestureRecognizer(tapGesture)
-            // Apparently UIInterpolatingMotionEffect is not compatible with UIDynamicAnimator
+        
+        if let cards = self.cardList?.cards {
+            for card in cards {
+                let itemView = bundle.loadNibNamed("CardItemView", owner: self, options: [:]).first as! CardItemView
+                itemView.card = card
+                itemView.translatesAutoresizingMaskIntoConstraints = false
+                
+                containerView.addSubview(itemView)
+                
+                //  the size of credit cards is 85.60 × 53.98 mm ratio is 1.5858
+                let ratioConstraint = NSLayoutConstraint(item: itemView, attribute: .Width, relatedBy: .Equal, toItem: itemView, attribute: .Height, multiplier: CGFloat(1.5858), constant: 0)
+                let topConstraint = NSLayoutConstraint(item: itemView, attribute: .Top, relatedBy: .Equal, toItem: containerView, attribute: .Top, multiplier: 1, constant: CGFloat(currentOffset))
+                
+                containerView.addConstraint(NSLayoutConstraint(item: itemView, attribute: .Leading, relatedBy: .Equal, toItem: containerView, attribute: .Leading, multiplier: 1, constant: CGFloat(leftMargin)))
+                containerView.addConstraint(NSLayoutConstraint(item: itemView, attribute: .Trailing, relatedBy: .Equal, toItem: containerView, attribute: .Trailing, multiplier: 1, constant: -CGFloat(rightMargin)))
+                containerView.addConstraint(ratioConstraint)
+                containerView.addConstraint(topConstraint)
+                
+                cardViews.append(itemView)
+                topOffsetConstraints.setObject(topConstraint, forKey: itemView)
+                
+                currentOffset += cardItemOffset
+                
+                let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(handleCardDragGesture))
+                dragGesture.maximumNumberOfTouches = 1
+                itemView.addGestureRecognizer(dragGesture)
+                
+                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleCardTapGesture))
+                tapGesture.numberOfTapsRequired = 1
+                itemView.addGestureRecognizer(tapGesture)
+                // Apparently UIInterpolatingMotionEffect is not compatible with UIDynamicAnimator
+            }
         }
+
     }
     
     // MARK: UIDynamicAnimatorDelegate

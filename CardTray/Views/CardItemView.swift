@@ -11,6 +11,8 @@ import UIKit
 class CardItemView: UIView {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
+    
+    var card : CardEntity?
 
     override func awakeFromNib() {
         super.awakeFromNib()

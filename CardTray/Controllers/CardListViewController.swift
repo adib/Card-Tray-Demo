@@ -19,6 +19,12 @@ class CardListViewController: UIViewController, CardListViewDelegate {
  
     @IBOutlet weak var cardBackContainerViewTopConstraint: NSLayoutConstraint!
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    var cardList = CardListModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,6 +39,15 @@ class CardListViewController: UIViewController, CardListViewDelegate {
         cardBackContainerView.alpha = 0
         cardBackContainerView.hidden = true
         
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: #selector(protectedDataBecameAvailable), name: UIApplicationProtectedDataDidBecomeAvailable, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplicationDidEnterBackgroundNotification, object: nil)
+    }
+    
+    
+    override func viewWillDisappear(animated: Bool) {
+        setNeedsSaveCardList()
+        super.viewWillDisappear(animated)
     }
     
     override func viewWillLayoutSubviews() {
@@ -50,6 +65,34 @@ class CardListViewController: UIViewController, CardListViewDelegate {
         rect.size.height = cardListView.focusedCardBottomMargin
         rect = cardListView.convertRect(rect, toView: self.view)
         self.cardBackContainerViewTopConstraint.constant = rect.origin.x + rect.size.height
+    }
+    
+    func loadCardList() {
+        
+    }
+    
+    func saveCardList() {
+        let processInfo = NSProcessInfo.processInfo()
+        let token = processInfo.beginActivityWithOptions([.Background], reason: "saving card list")
+        cardList.save { (error) in
+            processInfo.endActivity(token)
+        }
+    }
+    
+    func setNeedsSaveCardList() {
+        let sel = #selector(saveCardList)
+        NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: sel, object: nil)
+        self.performSelector(sel, withObject: nil, afterDelay: 0)
+    }
+    
+    func protectedDataBecameAvailable(notification:NSNotification) {
+        if !cardList.loaded {
+            loadCardList()
+        }
+    }
+    
+    func applicationDidEnterBackground(notification:NSNotification) {
+        setNeedsSaveCardList()
     }
 
     /*
