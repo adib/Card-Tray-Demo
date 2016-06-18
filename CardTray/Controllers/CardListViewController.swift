@@ -22,6 +22,8 @@ class CardListViewController: UIViewController, CardListViewDelegate {
     
     @IBOutlet var addCardBarItem: UIBarButtonItem!
     
+    @IBOutlet weak var addCardInstructionLabel: UILabel!
+    
     lazy var removeCardBarItem: UIBarButtonItem = {
         let barItem = UIBarButtonItem(title: NSLocalizedString("Remove", comment: "Bar Item"), style: .Plain, target: self, action: #selector(removeSelectedCard))
         return barItem
@@ -39,6 +41,8 @@ class CardListViewController: UIViewController, CardListViewDelegate {
         cardListView.reloadData()
         cardBackContainerView.alpha = 0
         cardBackContainerView.hidden = true
+        
+        showBlankStateInfo(false, animated: false)
         
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: #selector(protectedDataBecameAvailable), name: UIApplicationProtectedDataDidBecomeAvailable, object: nil)
@@ -81,6 +85,8 @@ class CardListViewController: UIViewController, CardListViewDelegate {
         cardList.load { (error) in
             self.cardListView.reloadData()
             processInfo.endActivity(token)
+            
+            self.showBlankStateInfo(self.cardList.cards?.isEmpty ?? true, animated: true)
         }
     }
     
@@ -98,15 +104,37 @@ class CardListViewController: UIViewController, CardListViewDelegate {
         self.performSelector(sel, withObject: nil, afterDelay: 0)
     }
     
-    func protectedDataBecameAvailable(notification:NSNotification) {
-        if !cardList.loaded {
-            loadCardList()
+    
+    func showBlankStateInfo(show:Bool, animated: Bool) {
+        let animationBlock = {
+            if show {
+                self.addCardInstructionLabel.alpha = 1
+            } else {
+                self.addCardInstructionLabel.alpha = 0
+            }
+        }
+        
+        let cleanupBlock = {
+            (completed : Bool) in
+            if show {
+                self.addCardInstructionLabel.hidden = false
+            } else {
+                self.addCardInstructionLabel.hidden = true
+            }
+        }
+        
+        if animated {
+            if show {
+                self.addCardInstructionLabel.alpha = 0
+                self.addCardInstructionLabel.hidden = false
+            }
+            UIView.animateWithDuration(0.2, delay: 0, options: [.BeginFromCurrentState], animations: animationBlock, completion: cleanupBlock)
+        } else {
+            animationBlock()
+            cleanupBlock(true)
         }
     }
     
-    func applicationDidEnterBackground(notification:NSNotification) {
-        setNeedsSaveCardList()
-    }
 
     // MARK: - Navigation
     
@@ -136,14 +164,32 @@ class CardListViewController: UIViewController, CardListViewDelegate {
         }
     }
     
+    // MARK: - Event Handlers
+    
+    func protectedDataBecameAvailable(notification:NSNotification) {
+        if !cardList.loaded {
+            loadCardList()
+        }
+    }
+    
+    func applicationDidEnterBackground(notification:NSNotification) {
+        setNeedsSaveCardList()
+    }
+
+    // MARK: - Action Handlers
+    
     @IBAction func addCardDone(unwindSegue:UIStoryboardSegue) {
         guard let   verifyCtrl = unwindSegue.sourceViewController as? CardVerifyViewController,
                     addedCard = verifyCtrl.card else {
             return
         }
         cardList.add(addedCard)
-        cardListView.appendItem()
+        cardListView.appendItem(completion: {
+            (Bool) in
+            self.showBlankStateInfo(self.cardList.cards?.isEmpty ?? true, animated: true)
+        })
         setNeedsSaveCardList()
+        
     }
 
     @IBAction func addCardCancel(unwindSegue:UIStoryboardSegue) {
@@ -159,8 +205,12 @@ class CardListViewController: UIViewController, CardListViewDelegate {
         let alertCtrl = UIAlertController(title: NSLocalizedString("Remove Card",comment:"Card Removal"), message:NSLocalizedString("Remove selected card?\nYou cannot undo this.", comment: "confirm remove card") , preferredStyle: .Alert)
         alertCtrl.addAction(UIAlertAction(title: NSLocalizedString("Remove", comment: "default remove") , style: .Destructive, handler: { (action) in
             if let removedIndex = self.cardList.remove(focusedCardHolder.card) {
-                self.cardListView.removeItemAtIndex(removedIndex)
+                self.cardListView.removeItemAtIndex(removedIndex,completion: {
+                    (Bool) in
+                    self.showBlankStateInfo(self.cardList.cards?.isEmpty ?? true, animated: true)
+                })
                 self.setNeedsSaveCardList()
+                
             }
         }))
         alertCtrl.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "default cancel"), style: .Cancel, handler: { (action) in

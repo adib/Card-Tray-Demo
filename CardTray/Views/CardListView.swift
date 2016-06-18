@@ -211,7 +211,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
     
     let cardMovementAnimationDuration = NSTimeInterval(0.5)
     
-    func appendItem() {
+    func appendItem(completion completionBlock: ((Bool)->Void)? ) {
         guard let delegate = self.delegate else {
             return
         }
@@ -227,11 +227,11 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
             UIView.animateWithDuration(cardMovementAnimationDuration, animations: {
                 topConstraint.constant = originalTopOffset
                 self.layoutSubviews()
-                }, completion: nil)
+                }, completion: completionBlock)
         }
     }
     
-    func removeItemAtIndex(index:Int) {
+    func removeItemAtIndex(index:Int,completion completionBlock: ((Bool)->Void)? ) {
         let cardView = cardViews[index]
         
         let cleanup = {
@@ -252,9 +252,11 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
                 }, completion:  {
                     (completed) in
                     cleanup()
+                    completionBlock?(completed)
                 })
         } else {
             cleanup()
+            completionBlock?(true)
         }
     }
     

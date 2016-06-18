@@ -26,6 +26,12 @@
                                     <outlet property="delegate" destination="Yj4-Xm-wub" id="Vzd-3y-Vxj"/>
                                 </connections>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tap on &quot;+&quot; to add a new card ⬆︎" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PCb-Za-MLQ">
+                                <rect key="frame" x="81" y="8" width="223" height="18"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                <color key="textColor" red="0.16228657960891724" green="0.50168418884277344" blue="0.72613537311553955" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ezq-Sv-bcj">
                                 <rect key="frame" x="0.0" y="181" width="320" height="267"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -40,8 +46,11 @@
                             <constraint firstAttribute="trailing" secondItem="jzw-EU-zJx" secondAttribute="trailing" id="5wn-dJ-dkc"/>
                             <constraint firstItem="MYE-96-4RO" firstAttribute="top" secondItem="jzw-EU-zJx" secondAttribute="bottom" id="AEp-Hh-FHQ"/>
                             <constraint firstItem="jzw-EU-zJx" firstAttribute="leading" secondItem="Tm5-dD-10S" secondAttribute="leading" id="K9t-vb-Tbz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="PCb-Za-MLQ" secondAttribute="trailing" id="Plf-K8-jT6"/>
+                            <constraint firstItem="PCb-Za-MLQ" firstAttribute="top" secondItem="eOU-ql-1D0" secondAttribute="bottom" constant="8" symbolic="YES" id="Sdt-C5-2IO"/>
                             <constraint firstItem="jzw-EU-zJx" firstAttribute="top" secondItem="eOU-ql-1D0" secondAttribute="bottom" id="Swb-HT-lYc"/>
                             <constraint firstAttribute="trailing" secondItem="ezq-Sv-bcj" secondAttribute="trailing" id="ZW9-Pf-SjG"/>
+                            <constraint firstItem="PCb-Za-MLQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Tm5-dD-10S" secondAttribute="leadingMargin" id="fHX-Aj-TEX"/>
                             <constraint firstItem="ezq-Sv-bcj" firstAttribute="leading" secondItem="Tm5-dD-10S" secondAttribute="leading" id="pG2-G6-mDQ"/>
                             <constraint firstItem="MYE-96-4RO" firstAttribute="top" secondItem="ezq-Sv-bcj" secondAttribute="bottom" constant="20" id="tJ0-36-NHz"/>
                         </constraints>
@@ -61,6 +70,7 @@
                     <size key="freeformSize" width="320" height="576"/>
                     <connections>
                         <outlet property="addCardBarItem" destination="NMN-x8-vd2" id="PV0-To-wR4"/>
+                        <outlet property="addCardInstructionLabel" destination="PCb-Za-MLQ" id="UF4-9Z-tjf"/>
                         <outlet property="cardBackContainerView" destination="ezq-Sv-bcj" id="cvD-yx-Aov"/>
                         <outlet property="cardBackContainerViewBottomConstraint" destination="tJ0-36-NHz" id="wj6-zr-Er3"/>
                         <outlet property="cardBackContainerViewTopConstraint" destination="2nB-ZE-aya" id="esr-gf-INw"/>
