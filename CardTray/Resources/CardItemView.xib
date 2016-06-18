@@ -31,7 +31,7 @@
                         <constraint firstAttribute="width" secondItem="iRW-tK-Efn" secondAttribute="height" multiplier="1.64242" id="H63-Mi-xP6"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_raybank" translatesAutoresizingMaskIntoConstraints="NO" id="sYI-4u-zdE" userLabel="Bank Logo">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_barleys" translatesAutoresizingMaskIntoConstraints="NO" id="sYI-4u-zdE" userLabel="Bank Logo">
                     <rect key="frame" x="254" y="20" width="124" height="76"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="sYI-4u-zdE" secondAttribute="height" multiplier="1.64242" id="j4V-n7-81h"/>
@@ -65,7 +65,7 @@
     </objects>
     <resources>
         <image name="cardback_1" width="2500" height="2000"/>
-        <image name="logo_raybank" width="124" height="76"/>
+        <image name="logo_barleys" width="124" height="76"/>
         <image name="logo_visa" width="103" height="63"/>
     </resources>
 </document>

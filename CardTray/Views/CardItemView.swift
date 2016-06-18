@@ -32,8 +32,8 @@ class CardItemView: UIView,CardEntityHolder {
                 case .MasterCard:
                     // TODO: use other images for the background and issuer
                     networkLogoImageView.image = UIImage(named: "logo_mastercard", inBundle: bundle, compatibleWithTraitCollection: nil)
-                    issuerLogoImageView.image = UIImage(named: "logo_raybank", inBundle: bundle, compatibleWithTraitCollection: nil)
-                    backgroundImageView.image = UIImage(named: "cardback_1", inBundle: bundle, compatibleWithTraitCollection: nil)
+                    issuerLogoImageView.image = UIImage(named: "logo_barleys", inBundle: bundle, compatibleWithTraitCollection: nil)
+                    backgroundImageView.image = UIImage(named: "cardback_2", inBundle: bundle, compatibleWithTraitCollection: nil)
                     backgroundImageView.backgroundColor = UIColor(red: 0.18, green: 0.51, blue: 0.72, alpha: 1)
                 default:
                     backgroundImageView.image = nil
