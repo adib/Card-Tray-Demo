@@ -62,6 +62,17 @@ class CardListViewController: UIViewController, CardListViewDelegate {
         rect.size.height = cardListView.focusedCardBottomMargin
         rect = cardListView.convertRect(rect, toView: self.view)
         self.cardBackContainerViewTopConstraint.constant = rect.origin.x + rect.size.height
+        
+        if let  cards = cardList.cards,
+                focusedCardHolder = cardListView.focusedCardView as? CardEntityHolder,
+                focusedCard = focusedCardHolder.card {
+            if cards.indexOf(focusedCard) == cards.count - 1 {
+                cardBackContainerViewBottomConstraint.constant = 0
+            } else {
+                cardBackContainerViewBottomConstraint.constant = 20
+            }
+        }
+
     }
     
     func loadCardList() {
@@ -116,6 +127,7 @@ class CardListViewController: UIViewController, CardListViewDelegate {
             return
         }
         if let viewControllers = tabCtrl.viewControllers {
+            tabCtrl.selectedIndex = 0
             for viewCtrl in viewControllers {
                 if let cardCtrl = viewCtrl as? CardEntityHolder {
                     cardCtrl.card = selectedCard
@@ -191,8 +203,8 @@ class CardListViewController: UIViewController, CardListViewDelegate {
 
     func cardListView(view: CardListView,didFocusItem cardView:UIView) -> Void {
         // have completed focus, set alpha
-        self.view.layoutIfNeeded()
         updateCardBackConstraints()
+        self.view.layoutIfNeeded()
         self.cardBackContainerView.hidden = false
         UIView.animateWithDuration(cardFocusAnimationDuration, delay: 0, options: [.BeginFromCurrentState], animations: {
             self.cardBackContainerView.alpha = 1

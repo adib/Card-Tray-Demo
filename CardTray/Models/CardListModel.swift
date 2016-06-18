@@ -67,6 +67,7 @@ class CardListModel: NSObject {
     }
     
     
+    
     func load(completionHandler: ((NSError?)->Void)? ) {
         let targetURL = self.cardListURL
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) {

@@ -48,7 +48,7 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Title" id="Xyg-ka-cxg">
+                    <navigationItem key="navigationItem" id="Xyg-ka-cxg">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="NMN-x8-vd2">
                             <connections>
                                 <segue destination="cSu-th-eS1" kind="show" id="q5n-Fr-Mdz"/>
