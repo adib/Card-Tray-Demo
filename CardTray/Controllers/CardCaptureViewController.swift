@@ -36,11 +36,7 @@ class CardCaptureViewController: UIViewController,CardIOViewDelegate {
             }
         }
     }
-    
-    @IBAction func retryAddCard(unwindSegue:UIStoryboardSegue) {
-        // nothing yet. Just placeholder for unwind segue.
-    }
-    
+        
     // MARK: CardIOViewDelegate
     
     func cardIOView(view: CardIOView,didScanCard cardInfo: CardIOCreditCardInfo?) {

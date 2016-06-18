@@ -71,6 +71,10 @@ class CardDetailsViewController: UIViewController,UITextFieldDelegate, CardEntit
         return super.shouldPerformSegueWithIdentifier(segueIdentifier, sender: sender)
     }
     
+    @IBAction func retryAddCard(unwindSegue:UIStoryboardSegue) {
+        // nothing yet. Just placeholder for unwind segue.
+    }
+
     // MARK: - UITextFieldDelegate
 
 }
