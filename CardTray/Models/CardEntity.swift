@@ -17,7 +17,7 @@ class CardEntity: NSObject,NSCoding {
         case CardNumberChecksumFailed = 1
     }
     
-    enum IssuerType : String {
+    enum NetworkType : String {
         case Unknown = ""
         case Visa = "visa"
         case MasterCard = "mastercard"
@@ -33,7 +33,7 @@ class CardEntity: NSObject,NSCoding {
     
     var expiryYear : Int?
     
-    var issuer = IssuerType.Unknown
+    var networkType = NetworkType.Unknown
     
     override init() {
         // empty
@@ -54,7 +54,7 @@ class CardEntity: NSObject,NSCoding {
         securityCode = aDecoder.decodeObjectForKey("securityCode") as? String
         expiryDayOfMonth = decodeInt("expiryDayOfMonth")
         expiryYear = decodeInt("expiryYear")
-        issuer = IssuerType(rawValue:aDecoder.decodeObjectForKey("issuer") as? String ?? "") ?? .Unknown
+        networkType = NetworkType(rawValue:aDecoder.decodeObjectForKey("networkType") as? String ?? "") ?? .Unknown
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
@@ -69,7 +69,7 @@ class CardEntity: NSObject,NSCoding {
         aCoder.encodeObject(securityCode, forKey: "securityCode")
         encodeInt(expiryDayOfMonth,"expiryDayOfMonth")
         encodeInt(expiryYear,"expiryYear")
-        aCoder.encodeObject(issuer.rawValue, forKey: "issuer")
+        aCoder.encodeObject(networkType.rawValue, forKey: "networkType")
     }
 
     /**
@@ -94,7 +94,7 @@ class CardEntity: NSObject,NSCoding {
         let numberLen = characters.count
         
 
-        let validators : [(()->Bool,IssuerType)] = [
+        let validators : [(()->Bool,NetworkType)] = [
             // visa
             ({return (numberLen == 13 || numberLen == 16 || numberLen == 19) && cardNumber.hasPrefix("4")
             },.Visa),
@@ -106,7 +106,7 @@ class CardEntity: NSObject,NSCoding {
         
         for (v,type) in validators {
             if v() {
-                self.issuer = type
+                self.networkType = type
                 break
             }
         }

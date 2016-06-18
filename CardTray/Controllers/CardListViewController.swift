@@ -42,6 +42,8 @@ class CardListViewController: UIViewController, CardListViewDelegate {
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: #selector(protectedDataBecameAvailable), name: UIApplicationProtectedDataDidBecomeAvailable, object: nil)
         notificationCenter.addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        
+        loadCardList()
     }
     
     
@@ -71,6 +73,7 @@ class CardListViewController: UIViewController, CardListViewDelegate {
         let processInfo = NSProcessInfo.processInfo()
         let token = processInfo.beginActivityWithOptions([.UserInitiated], reason: "loading card list")
         cardList.load { (error) in
+            self.cardListView.reloadData()
             processInfo.endActivity(token)
         }
     }

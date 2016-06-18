@@ -211,6 +211,8 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         for currentRow in 0..<numberOfCards {
             newCardItemViewAtIndex(currentRow)
         }
+        
+        layoutSubviews()
     }
     
     func appendItem() {

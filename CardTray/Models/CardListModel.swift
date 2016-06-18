@@ -51,9 +51,9 @@ class CardListModel: NSObject {
         if cards == nil {
             cards = Array<CardEntity>()
             cards?.reserveCapacity(1)
-            dirty = true
         }
         cards?.append(card)
+        dirty = true
     }
     
     func remove(card:CardEntity) {

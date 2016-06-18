@@ -16,13 +16,13 @@ class CardNumberValidationTests: XCTestCase {
     
     
     
-    func runCardNumberValidation(cardNumber:String,expectedIssuer: CardEntity.IssuerType) {
+    func runCardNumberValidation(cardNumber:String,expectedNetwork: CardEntity.NetworkType) {
         let card = CardEntity()
         card.cardNumber = cardNumber
         let expectation = self.expectationWithDescription("validated card number \(cardNumber)")
         card.validate { (error) in
             XCTAssertNil(error)
-            XCTAssertEqual(card.issuer, expectedIssuer)
+            XCTAssertEqual(card.networkType, expectedNetwork)
             expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(2, handler: nil)
@@ -31,13 +31,13 @@ class CardNumberValidationTests: XCTestCase {
     
 
     func testValidateVisaNumber() {
-        runCardNumberValidation("4012888888881881", expectedIssuer: .Visa)
-        runCardNumberValidation("4111111111111111", expectedIssuer: .Visa)
+        runCardNumberValidation("4012888888881881", expectedNetwork: .Visa)
+        runCardNumberValidation("4111111111111111", expectedNetwork: .Visa)
     }
     
     func testValidateMasterCardNumber() {
-        runCardNumberValidation("5555555555554444", expectedIssuer: .MasterCard)
-        runCardNumberValidation("5105105105105100", expectedIssuer: .MasterCard)
+        runCardNumberValidation("5555555555554444", expectedNetwork: .MasterCard)
+        runCardNumberValidation("5105105105105100", expectedNetwork: .MasterCard)
     }
 
 }

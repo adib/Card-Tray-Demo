@@ -20,10 +20,12 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•••• 1234" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgI-Kk-N9r" userLabel="Card Number">
                     <rect key="frame" x="20" y="211" width="72" height="20"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.92495459318161011" green="0.94122463464736938" blue="0.94532805681228638" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
+                    <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <size key="shadowOffset" width="0.0" height="1"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_visa" translatesAutoresizingMaskIntoConstraints="NO" id="iRW-tK-Efn" userLabel="Issuer Logo">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_visa" translatesAutoresizingMaskIntoConstraints="NO" id="iRW-tK-Efn" userLabel="Network Logo">
                     <rect key="frame" x="275" y="168" width="103" height="63"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="iRW-tK-Efn" secondAttribute="height" multiplier="1.64242" id="H63-Mi-xP6"/>
@@ -55,6 +57,9 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="backgroundImageView" destination="7c3-4l-Rx5" id="6YT-w2-tvw"/>
+                <outlet property="cardNumberLabel" destination="dgI-Kk-N9r" id="9P2-4x-KVt"/>
+                <outlet property="issuerLogoImageView" destination="sYI-4u-zdE" id="A1u-Vm-ftQ"/>
+                <outlet property="networkLogoImageView" destination="iRW-tK-Efn" id="Fdg-qe-Vpf"/>
             </connections>
         </view>
     </objects>
