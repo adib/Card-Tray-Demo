@@ -68,7 +68,11 @@ class CardListViewController: UIViewController, CardListViewDelegate {
     }
     
     func loadCardList() {
-        
+        let processInfo = NSProcessInfo.processInfo()
+        let token = processInfo.beginActivityWithOptions([.UserInitiated], reason: "loading card list")
+        cardList.load { (error) in
+            processInfo.endActivity(token)
+        }
     }
     
     func saveCardList() {
@@ -106,7 +110,13 @@ class CardListViewController: UIViewController, CardListViewDelegate {
     */
     
     @IBAction func addCardDone(unwindSegue:UIStoryboardSegue) {
-        
+        guard let   verifyCtrl = unwindSegue.sourceViewController as? CardVerifyViewController,
+                    addedCard = verifyCtrl.card else {
+            return
+        }
+        cardList.add(addedCard)
+        cardListView.appendItem()
+        setNeedsSaveCardList()
     }
 
     @IBAction func addCardCancel(unwindSegue:UIStoryboardSegue) {
@@ -115,9 +125,26 @@ class CardListViewController: UIViewController, CardListViewDelegate {
 
     // MARK: - CardListViewDelegate
     func numberOfItemsInCardListView(view: CardListView) -> Int {
-        return 3
+        return cardList.cards?.count ?? 0
     }
     
+    
+    func cardListView(view: CardListView, itemAtIndex row: Int) -> UIView {
+        guard let cards = cardList.cards else {
+            // shouldn't happen. in case it does, return a blank UIView
+            return UIView(frame: CGRectZero)
+        }
+        let bundle = NSBundle(forClass: self.dynamicType)
+        let itemView = bundle.loadNibNamed("CardItemView", owner: self, options: [:]).first as! CardItemView
+        itemView.card = cards[row]
+        
+        return itemView
+    }
+    
+    func cardListView(view: CardListView, didMoveItemAtIndexToFront row: Int) -> Void {
+        // tODO: reorder cards array
+    }
+
     func cardListViewWillChangeDisplayMode(view: CardListView) -> Void {
         if view.isFocusedCard {
             // will remove remove focus, hide alpha

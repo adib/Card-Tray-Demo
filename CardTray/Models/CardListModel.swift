@@ -29,23 +29,29 @@ class CardListModel: NSObject {
 
     private(set) var loaded = false
     
+    private(set) var dirty = false
+    
     @objc private(set) var cards : Array<CardEntity>?
     
     static func automaticallyNotifiesObserversForCards() -> Bool {
         return true
     }
     
-    func moveToFront(card : CardEntity) {
-        if let index = cards?.indexOf(card) {
-            cards?.removeAtIndex(index)
-            cards?.append(card)
+    func moveToFront(index : Int) {
+        guard cards != nil else {
+            return
         }
+        let card = cards![index]
+        cards!.removeAtIndex(index)
+        cards!.append(card)
+        dirty = true
     }
     
     func add(card: CardEntity) {
         if cards == nil {
             cards = Array<CardEntity>()
             cards?.reserveCapacity(1)
+            dirty = true
         }
         cards?.append(card)
     }
@@ -53,26 +59,27 @@ class CardListModel: NSObject {
     func remove(card:CardEntity) {
         if let index = cards?.indexOf(card) {
             cards?.removeAtIndex(index)
+            dirty = true
         }
     }
     
     
     func load(completionHandler: ((NSError?)->Void)? ) {
         let targetURL = self.cardListURL
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) {
             var returnError : NSError?
             var resultArray : Array<CardEntity>?
             defer {
-                if returnError == nil && resultArray != nil {
-                    // TODO: raise KVO?
-                    self.cards = resultArray
-                    self.loaded = true
-                }
-                if let completion = completionHandler {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        completion(returnError)
-                    })
-                }
+                dispatch_async(dispatch_get_main_queue(), {
+                    if returnError == nil && resultArray != nil {
+                        // TODO: raise KVO?
+                        self.cards = resultArray
+                        self.loaded = true
+                        self.dirty = false
+                    }
+                    
+                    completionHandler?(returnError)
+                })
             }
             do {
                 let data = try NSData(contentsOfURL: targetURL, options: [.DataReadingMappedIfSafe,.DataReadingUncached])
@@ -86,6 +93,11 @@ class CardListModel: NSObject {
     }
     
     func save(completionHandler: ((NSError?)->Void)? ) {
+        guard dirty else {
+            // not dirty.
+            completionHandler?(nil)
+            return
+        }
         guard let cards = self.cards else {
             // todo: create error?
             completionHandler?(nil)
@@ -96,11 +108,12 @@ class CardListModel: NSObject {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
             var returnError : NSError?
             defer {
-                if let completion = completionHandler {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        completion(returnError)
-                    })
-                }
+                dispatch_async(dispatch_get_main_queue(), {
+                    if returnError == nil {
+                        self.dirty = false
+                    }
+                    completionHandler?(returnError)
+                })
             }
             do {
                 try archivedData.writeToURL(targetURL, options: [.DataWritingAtomic,.DataWritingFileProtectionComplete])

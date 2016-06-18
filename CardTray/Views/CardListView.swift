@@ -10,7 +10,6 @@ import UIKit
 
 class CardListView: UIView,UIDynamicAnimatorDelegate {
     
-    
     @IBOutlet weak var delegate : CardListViewDelegate?
     
     var cardList : CardListModel? {
@@ -19,9 +18,9 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         }
     }
     
-    var cardViews = Array<CardItemView>()
+    var cardViews = Array<UIView>()
     
-    var focusedCardView : CardItemView?
+    var focusedCardView : UIView?
     
     var isFocusedCard : Bool {
         get {
@@ -67,7 +66,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
     }
     
     /**
-     Maps CardItemView to UIAttachmentBehavior
+     Maps cards in `cardViews` to UIAttachmentBehavior
      */
     var cardCenterAttachments = NSMapTable.weakToWeakObjectsMapTable()
     var cardCenterSnaps = NSMapTable.weakToWeakObjectsMapTable()
@@ -159,70 +158,86 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         }
     }
     
-    
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
+    private func newCardItemViewAtIndex(cardIndex:Int) -> UIView {
+        let itemView = delegate!.cardListView(self, itemAtIndex: cardIndex)
+        itemView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(itemView)
+
+        let leftMargin = 8
+        let rightMargin = 8
+        let topOffset = topCardMargin + cardItemOffset * CGFloat(cardIndex)
+
+        itemView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(itemView)
+        
+        //  the size of credit cards is 85.60 × 53.98 mm ratio is 1.5858
+        let ratioConstraint = NSLayoutConstraint(item: itemView, attribute: .Width, relatedBy: .Equal, toItem: itemView, attribute: .Height, multiplier: CGFloat(1.5858), constant: 0)
+        let topConstraint = NSLayoutConstraint(item: itemView, attribute: .Top, relatedBy: .Equal, toItem: containerView, attribute: .Top, multiplier: 1, constant: topOffset)
+        
+        containerView.addConstraint(NSLayoutConstraint(item: itemView, attribute: .Leading, relatedBy: .Equal, toItem: containerView, attribute: .Leading, multiplier: 1, constant: CGFloat(leftMargin)))
+        containerView.addConstraint(NSLayoutConstraint(item: itemView, attribute: .Trailing, relatedBy: .Equal, toItem: containerView, attribute: .Trailing, multiplier: 1, constant: -CGFloat(rightMargin)))
+        containerView.addConstraint(ratioConstraint)
+        containerView.addConstraint(topConstraint)
+        
+        cardViews.insert(itemView, atIndex: cardIndex)
+        topOffsetConstraints.setObject(topConstraint, forKey: itemView)
+        
+        let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(handleCardDragGesture))
+        dragGesture.maximumNumberOfTouches = 1
+        itemView.addGestureRecognizer(dragGesture)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleCardTapGesture))
+        tapGesture.numberOfTapsRequired = 1
+        itemView.addGestureRecognizer(tapGesture)
+
+        // Apparently UIInterpolatingMotionEffect is not compatible with UIDynamicAnimator so we can't use it here
+
+        return itemView
     }
-    */
+    
     
     func reloadData() {
         guard let delegate = self.delegate else {
             return
         }
-        
         for view in cardViews {
             view.removeFromSuperview()
         }
         cardViews.removeAll()
+
+        let numberOfCards = delegate.numberOfItemsInCardListView(self)
+        cardViews.reserveCapacity(numberOfCards)
         
-
-        let leftMargin = 8
-        let rightMargin = 8
-
-        // temporary colors
-//        let colors = [UIColor.greenColor(),UIColor.yellowColor(),UIColor.redColor(),UIColor.blueColor()]
-        let numberOfItems = delegate.numberOfItemsInCardListView(self)
-        cardViews.reserveCapacity(numberOfItems)
-        var currentOffset = topCardMargin
-
-        let bundle = NSBundle(forClass: self.dynamicType)
-        
-        if let cards = self.cardList?.cards {
-            for card in cards {
-                let itemView = bundle.loadNibNamed("CardItemView", owner: self, options: [:]).first as! CardItemView
-                itemView.card = card
-                itemView.translatesAutoresizingMaskIntoConstraints = false
-                
-                containerView.addSubview(itemView)
-                
-                //  the size of credit cards is 85.60 × 53.98 mm ratio is 1.5858
-                let ratioConstraint = NSLayoutConstraint(item: itemView, attribute: .Width, relatedBy: .Equal, toItem: itemView, attribute: .Height, multiplier: CGFloat(1.5858), constant: 0)
-                let topConstraint = NSLayoutConstraint(item: itemView, attribute: .Top, relatedBy: .Equal, toItem: containerView, attribute: .Top, multiplier: 1, constant: CGFloat(currentOffset))
-                
-                containerView.addConstraint(NSLayoutConstraint(item: itemView, attribute: .Leading, relatedBy: .Equal, toItem: containerView, attribute: .Leading, multiplier: 1, constant: CGFloat(leftMargin)))
-                containerView.addConstraint(NSLayoutConstraint(item: itemView, attribute: .Trailing, relatedBy: .Equal, toItem: containerView, attribute: .Trailing, multiplier: 1, constant: -CGFloat(rightMargin)))
-                containerView.addConstraint(ratioConstraint)
-                containerView.addConstraint(topConstraint)
-                
-                cardViews.append(itemView)
-                topOffsetConstraints.setObject(topConstraint, forKey: itemView)
-                
-                currentOffset += cardItemOffset
-                
-                let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(handleCardDragGesture))
-                dragGesture.maximumNumberOfTouches = 1
-                itemView.addGestureRecognizer(dragGesture)
-                
-                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleCardTapGesture))
-                tapGesture.numberOfTapsRequired = 1
-                itemView.addGestureRecognizer(tapGesture)
-                // Apparently UIInterpolatingMotionEffect is not compatible with UIDynamicAnimator
-            }
+        for currentRow in 0..<numberOfCards {
+            newCardItemViewAtIndex(currentRow)
         }
-
+    }
+    
+    func appendItem() {
+        guard let delegate = self.delegate else {
+            return
+        }
+        let numberOfCards = delegate.numberOfItemsInCardListView(self)
+        cardViews.reserveCapacity(numberOfCards)
+        let newCardView = newCardItemViewAtIndex(numberOfCards-1)
+        
+        // animate drop down from top
+        if let topConstraint = topOffsetConstraints.objectForKey(newCardView) as? NSLayoutConstraint {
+            let originalTopOffset = topConstraint.constant
+            topConstraint.constant = -self.focusedCardBottomMargin
+            layoutSubviews()
+            // TODO: reduce animation duration
+            UIView.animateWithDuration(1, animations: {
+                topConstraint.constant = originalTopOffset
+                self.layoutSubviews()
+                }, completion: { (completion) in
+                    //<#code#>
+            })
+        }
+    }
+    
+    func removeItemAtIndex(index:Int) {
+        // TODO: card removal
     }
     
     // MARK: UIDynamicAnimatorDelegate
@@ -237,7 +252,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
     // MARK: - handlers
     
     func handleCardDragGesture(gesture : UIPanGestureRecognizer) {
-        guard let draggedView = gesture.view else {
+        guard let cardView = gesture.view else {
             return
         }
         let touchPoint = gesture.locationInView(containerView)
@@ -257,7 +272,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
             }
         case .Began:
             cleanupDrag()
-            let attachment = UIAttachmentBehavior(item: draggedView, attachedToAnchor: touchPoint)
+            let attachment = UIAttachmentBehavior(item: cardView, attachedToAnchor: touchPoint)
             dynamicAnimator?.addBehavior(attachment)
             cardDragAttachment = attachment
         case .Changed:
@@ -265,8 +280,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
                 attachment.anchorPoint = touchPoint
             }
         case .Ended:
-            if let  cardView = draggedView as? CardItemView,
-                    cardViewIndex = cardViews.indexOf(cardView) {
+            if let  cardViewIndex = cardViews.indexOf(cardView) {
                 let lastCardIndex = cardViews.count - 1
                 if cardViewIndex != lastCardIndex {
                     // if not end of card and top has gone below the bottom end
@@ -299,6 +313,8 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
                             }
                             self.dynamicAnimator?.updateItemUsingCurrentState(cv)
                         }
+                        
+                        self.delegate?.cardListView(self, didMoveItemAtIndexToFront: cardViewIndex)
                     }
                 }
             }
@@ -311,7 +327,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
     }
 
     func handleCardTapGesture(gesture:UITapGestureRecognizer) {
-        guard let   tappedCardView = gesture.view  as? CardItemView else {
+        guard let tappedCardView = gesture.view else {
             return
         }
         
@@ -343,6 +359,10 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
     
     func numberOfItemsInCardListView(view: CardListView) -> Int
 
+    func cardListView(view: CardListView, itemAtIndex row: Int) -> UIView
+    
+    func cardListView(view: CardListView, didMoveItemAtIndexToFront row: Int) -> Void
+    
     optional func cardListViewWillChangeDisplayMode(view: CardListView) -> Void
     optional func cardListViewDidChangeDisplayMode(view: CardListView) -> Void
     

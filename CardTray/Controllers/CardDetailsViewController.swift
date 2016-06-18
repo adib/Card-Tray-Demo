@@ -14,7 +14,7 @@ class CardDetailsViewController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var cardNumberTextField: UITextField!
     
-    var cardEntity : CardEntity?
+    var card : CardEntity?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class CardDetailsViewController: UIViewController,UITextFieldDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
-        if let cardEntity = self.cardEntity {
+        if let cardEntity = self.card {
             cardholderNameTextField.text = cardEntity.cardholderName
             cardNumberTextField.text = cardEntity.cardNumber
         }
@@ -42,7 +42,7 @@ class CardDetailsViewController: UIViewController,UITextFieldDelegate {
             switch segueIdentifier {
             case "cardVerify":
                 if let cardCtrl = segue.destinationViewController as? CardVerifyViewController {
-                    cardCtrl.cardEntity = self.cardEntity
+                    cardCtrl.card = self.card
                 }
             default:
                 ()
@@ -61,7 +61,7 @@ class CardDetailsViewController: UIViewController,UITextFieldDelegate {
         }
         switch segueIdentifier {
         case "cardVerify":
-            guard let cardEntity = self.cardEntity else {
+            guard let cardEntity = self.card else {
                 return false
             }
             guard let cardholderName = self.cardholderNameTextField.text where !cardholderName.isEmpty else {

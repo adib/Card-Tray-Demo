@@ -20,7 +20,7 @@ class CardVerifyViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var expirationDateTextField: UITextField!
     
     
-    var cardEntity : CardEntity?
+    var card : CardEntity?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ class CardVerifyViewController: UIViewController,UITextFieldDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
-        if let cardEntity = self.cardEntity {
+        if let cardEntity = self.card {
             expirationDatePicker.setSelectedMonth(cardEntity.expiryDayOfMonth, year: cardEntity.expiryYear, animated: animated)
             expirationDatePicker.setNeedsWriteText()
             self.securityCodeTextField.text = cardEntity.securityCode
@@ -39,7 +39,7 @@ class CardVerifyViewController: UIViewController,UITextFieldDelegate {
     
     
     @IBAction func performVerify(sender: AnyObject) {
-        guard let card = self.cardEntity else {
+        guard let card = self.card else {
             return
         }
         
