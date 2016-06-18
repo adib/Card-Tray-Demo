@@ -20,7 +20,6 @@
 		C05827731D0BF8900086BD35 /* CardItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05827721D0BF8900086BD35 /* CardItemView.swift */; };
 		C05827751D0C01920086BD35 /* CardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05827741D0C01920086BD35 /* CardListViewController.swift */; };
 		C065D03D1D1163BD00433963 /* CardEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C065D03C1D1163BD00433963 /* CardEntity.swift */; };
-		C065D0451D1181D900433963 /* CardTrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C065D0441D1181D900433963 /* CardTrayTests.swift */; };
 		C065D0471D1181D900433963 /* CardTray.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E9E47A1D0BB75E006218BE /* CardTray.framework */; };
 		C065D04E1D11824200433963 /* CardNumberValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C065D04D1D11824200433963 /* CardNumberValidationTests.swift */; };
 		C07592571D0BE33E00E44268 /* CardTrayFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07592561D0BE33E00E44268 /* CardTrayFacade.swift */; };
@@ -128,7 +127,6 @@
 		C05827741D0C01920086BD35 /* CardListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListViewController.swift; sourceTree = "<group>"; };
 		C065D03C1D1163BD00433963 /* CardEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardEntity.swift; sourceTree = "<group>"; };
 		C065D0421D1181D900433963 /* CardTrayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardTrayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C065D0441D1181D900433963 /* CardTrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTrayTests.swift; sourceTree = "<group>"; };
 		C065D0461D1181D900433963 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C065D04D1D11824200433963 /* CardNumberValidationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardNumberValidationTests.swift; sourceTree = "<group>"; };
 		C07592561D0BE33E00E44268 /* CardTrayFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTrayFacade.swift; sourceTree = "<group>"; };
@@ -292,7 +290,6 @@
 		C065D0431D1181D900433963 /* CardTrayTests */ = {
 			isa = PBXGroup;
 			children = (
-				C065D0441D1181D900433963 /* CardTrayTests.swift */,
 				C065D0461D1181D900433963 /* Info.plist */,
 				C065D04D1D11824200433963 /* CardNumberValidationTests.swift */,
 			);
@@ -723,7 +720,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C065D0451D1181D900433963 /* CardTrayTests.swift in Sources */,
 				C065D04E1D11824200433963 /* CardNumberValidationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

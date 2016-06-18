@@ -10,10 +10,6 @@ import UIKit
 
 class CardCaptureViewController: UIViewController,CardIOViewDelegate {
 
-//    @IBOutlet weak var cardCaptureView: CardCaptureView!
-
-//    @IBOutlet weak var cardView: CardIOView!
-
     @IBOutlet weak var cardView: CardIOView!
     
     var cardEntity = CardEntity()
@@ -24,29 +20,10 @@ class CardCaptureViewController: UIViewController,CardIOViewDelegate {
         cardView.useCardIOLogo = false
         cardView.hideCardIOLogo = true
         cardView.delegate = self
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-//        cardCaptureView.performSelector(#selector(cardCaptureView.startSession), withObject: nil, afterDelay: 0)
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-//        cardCaptureView.stopSession()
-        super.viewWillDisappear(animated)
     }
 
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let segueIdentifier = segue.identifier {
             switch segueIdentifier {
@@ -61,10 +38,11 @@ class CardCaptureViewController: UIViewController,CardIOViewDelegate {
     }
     
     @IBAction func retryAddCard(unwindSegue:UIStoryboardSegue) {
-        
+        // nothing yet. Just placeholder for unwind segue.
     }
     
     // MARK: CardIOViewDelegate
+    
     func cardIOView(view: CardIOView,didScanCard cardInfo: CardIOCreditCardInfo?) {
         guard let cardNumber = cardInfo?.cardNumber else {
             return
@@ -74,6 +52,4 @@ class CardCaptureViewController: UIViewController,CardIOViewDelegate {
         cardEntity.cardNumber = cardNumber
         self.performSegueWithIdentifier("enterCardDetails", sender: view)
     }
-    
-
 }

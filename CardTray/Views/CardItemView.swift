@@ -65,7 +65,5 @@ class CardItemView: UIView,CardEntityHolder {
         shadowLayer.shadowOffset = CGSizeZero
         shadowLayer.shadowOpacity = 0.3
         shadowLayer.shadowRadius = cornerRadius / 2
-
     }
-
 }

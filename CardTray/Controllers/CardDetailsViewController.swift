@@ -16,12 +16,6 @@ class CardDetailsViewController: UIViewController,UITextFieldDelegate, CardEntit
     
     var card : CardEntity?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-    
     override func viewWillAppear(animated: Bool) {
         if let cardEntity = self.card {
             cardholderNameTextField.text = cardEntity.cardholderName
@@ -29,12 +23,6 @@ class CardDetailsViewController: UIViewController,UITextFieldDelegate, CardEntit
         }
         super.viewWillAppear(animated)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

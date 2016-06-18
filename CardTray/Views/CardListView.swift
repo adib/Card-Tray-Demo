@@ -75,18 +75,12 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
     }
     
     required  init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        commonInit()
     }
 
-    func commonInit() {
-        //let animator =
-    }
-    
     deinit {
         self.cardList = nil
     }
@@ -228,13 +222,10 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
             let originalTopOffset = topConstraint.constant
             topConstraint.constant = -self.focusedCardBottomMargin
             layoutSubviews()
-            // TODO: reduce animation duration
-            UIView.animateWithDuration(1, animations: {
+            UIView.animateWithDuration(0.5, animations: {
                 topConstraint.constant = originalTopOffset
                 self.layoutSubviews()
-                }, completion: { (completion) in
-                    //<#code#>
-            })
+                }, completion: nil)
         }
     }
     

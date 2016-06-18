@@ -27,14 +27,7 @@ class CardListViewController: UIViewController, CardListViewDelegate {
     var cardList = CardListModel()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-
-        
-//        let hideCardBackConstraint = NSLayoutConstraint(item: cardBackFrameView, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1, constant: 0)
-//        hideCardBackConstraint.active = false
-//        view.addConstraint(hideCardBackConstraint)
-//        self.cardBackHiddenConstraint = hideCardBackConstraint
-        
+        super.viewDidLoad()        
         // Do any additional setup after loading the view.
         cardListView.reloadData()
         cardBackContainerView.alpha = 0
@@ -47,7 +40,6 @@ class CardListViewController: UIViewController, CardListViewDelegate {
         loadCardList()
     }
     
-    
     override func viewWillDisappear(animated: Bool) {
         setNeedsSaveCardList()
         super.viewWillDisappear(animated)
@@ -56,11 +48,6 @@ class CardListViewController: UIViewController, CardListViewDelegate {
     override func viewWillLayoutSubviews() {
         updateCardBackConstraints()
         super.viewWillLayoutSubviews()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func updateCardBackConstraints() {
@@ -102,11 +89,9 @@ class CardListViewController: UIViewController, CardListViewDelegate {
     func applicationDidEnterBackground(notification:NSNotification) {
         setNeedsSaveCardList()
     }
-    
 
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let segueIdentifier = segue.identifier {
             switch segueIdentifier {
@@ -117,8 +102,6 @@ class CardListViewController: UIViewController, CardListViewDelegate {
             default: ()
             }
         }
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
     
     func updateCardBackDisplay(selectedCard : CardEntity) {
@@ -153,7 +136,6 @@ class CardListViewController: UIViewController, CardListViewDelegate {
         return cardList.cards?.count ?? 0
     }
     
-    
     func cardListView(view: CardListView, itemAtIndex row: Int) -> UIView {
         guard let cards = cardList.cards else {
             // shouldn't happen. in case it does, return a blank UIView
@@ -167,7 +149,6 @@ class CardListViewController: UIViewController, CardListViewDelegate {
     }
     
     func cardListView(view: CardListView, didMoveItemAtIndexToFront row: Int) -> Void {
-        // tODO: reorder cards array
         cardList.moveToFront(row)
         setNeedsSaveCardList()
     }
@@ -201,5 +182,4 @@ class CardListViewController: UIViewController, CardListViewDelegate {
                 self.cardBackContainerView.hidden = true
         })
     }
-
 }

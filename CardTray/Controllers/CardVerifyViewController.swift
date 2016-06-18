@@ -8,8 +8,6 @@
 
 import UIKit
 
-// TODO: force-validate expiry date after leaving focus (clear it if syntax error or the like)
-
 class CardVerifyViewController: UIViewController,UITextFieldDelegate,CardEntityHolder {
 
     @IBOutlet weak var scrollView: UIScrollView!
@@ -25,7 +23,6 @@ class CardVerifyViewController: UIViewController,UITextFieldDelegate,CardEntityH
     override func viewDidLoad() {
         super.viewDidLoad()
         expirationDatePicker.viewDidLoad()
-        // TODO: populate UI
     }
     
     override func viewWillAppear(animated: Bool) {
