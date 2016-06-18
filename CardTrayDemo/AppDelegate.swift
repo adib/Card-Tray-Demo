@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let navCtrl = UINavigationController(rootViewController: cardTrayCtrl)
             
             let window = UIWindow()
+            window.backgroundColor = UIColor.whiteColor()
             window.rootViewController = navCtrl
             window.makeKeyAndVisible()
             self.window = window

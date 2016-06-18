@@ -76,17 +76,21 @@ class CardListViewController: UIViewController, CardListViewDelegate {
                 cardBackContainerViewBottomConstraint.constant = 20
             }
         }
-
     }
     
     func loadCardList() {
         let processInfo = NSProcessInfo.processInfo()
         let token = processInfo.beginActivityWithOptions([.UserInitiated], reason: "loading card list")
         cardList.load { (error) in
+            self.cardListView.alpha = 0
             self.cardListView.reloadData()
-            processInfo.endActivity(token)
-            
-            self.showBlankStateInfo(self.cardList.cards?.isEmpty ?? true, animated: true)
+            self.cardListView.layoutSubviews()
+            UIView.animateWithDuration(0.1, animations: {
+                self.cardListView.alpha = 1
+                }, completion: { (completed) in
+                    processInfo.endActivity(token)
+                    self.showBlankStateInfo(self.cardList.cards?.isEmpty ?? true, animated: true)
+            })
         }
     }
     
@@ -189,7 +193,6 @@ class CardListViewController: UIViewController, CardListViewDelegate {
             self.showBlankStateInfo(self.cardList.cards?.isEmpty ?? true, animated: true)
         })
         setNeedsSaveCardList()
-        
     }
 
     @IBAction func addCardCancel(unwindSegue:UIStoryboardSegue) {

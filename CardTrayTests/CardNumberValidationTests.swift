@@ -11,11 +11,6 @@ import XCTest
 
 class CardNumberValidationTests: XCTestCase {
     
-    // Test numbers
-    // https://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm
-    
-    
-    
     func runCardNumberValidation(cardNumber:String,expectedNetwork: CardEntity.NetworkType) {
         let card = CardEntity()
         card.cardNumber = cardNumber
@@ -28,8 +23,9 @@ class CardNumberValidationTests: XCTestCase {
         self.waitForExpectationsWithTimeout(2, handler: nil)
     }
     
+    // Test numbers
+    // https://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm
     
-
     func testValidateVisaNumber() {
         runCardNumberValidation("4012888888881881", expectedNetwork: .Visa)
         runCardNumberValidation("4111111111111111", expectedNetwork: .Visa)

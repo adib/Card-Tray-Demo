@@ -103,7 +103,6 @@ public class CardEntity: NSObject,NSCoding {
         
         let characters = cardNumber.characters
         let numberLen = characters.count
-        
 
         let validators : [(()->Bool,NetworkType)] = [
             // visa
