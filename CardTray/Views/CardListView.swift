@@ -209,6 +209,8 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         layoutSubviews()
     }
     
+    let cardMovementAnimationDuration = NSTimeInterval(0.5)
+    
     func appendItem() {
         guard let delegate = self.delegate else {
             return
@@ -222,7 +224,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
             let originalTopOffset = topConstraint.constant
             topConstraint.constant = -self.focusedCardBottomMargin
             layoutSubviews()
-            UIView.animateWithDuration(0.5, animations: {
+            UIView.animateWithDuration(cardMovementAnimationDuration, animations: {
                 topConstraint.constant = originalTopOffset
                 self.layoutSubviews()
                 }, completion: nil)
@@ -230,7 +232,55 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
     }
     
     func removeItemAtIndex(index:Int) {
-        // TODO: card removal
+        let cardView = cardViews[index]
+        
+        let cleanup = {
+            self.cardViews.removeAtIndex(index)
+            if let oldFocusedCardView = self.focusedCardView where oldFocusedCardView === cardView {
+                self.toggleFocus(nil)
+            }
+            cardView.removeFromSuperview()
+        }
+        
+        if let topConstraint = topOffsetConstraints.objectForKey(cardView) as? NSLayoutConstraint {
+            let bounds = containerView.bounds
+            let targetOffset = bounds.origin.y + bounds.size.height + cardItemOffset
+            layoutSubviews()
+            UIView.animateWithDuration(cardMovementAnimationDuration, animations: {
+                topConstraint.constant = targetOffset
+                self.layoutSubviews()
+                }, completion:  {
+                    (completed) in
+                    cleanup()
+                })
+        } else {
+            cleanup()
+        }
+    }
+    
+    private func toggleFocus(newFocusedCardView : UIView? ) {
+        // if no focused view, then will transition from unfocused to focused
+        let oldFocusedCardView = self.focusedCardView
+        if oldFocusedCardView == nil {
+            // focus the card view
+            self.delegate?.cardListView?(self, willFocusItem: newFocusedCardView!)
+            self.focusedCardView = newFocusedCardView!
+        } else {
+            // remove focus
+            self.delegate?.cardListView?(self, willUnfocusItem: oldFocusedCardView!)
+            self.focusedCardView = nil
+        }
+        let cardAnimationDuration = 0.3
+        UIView.animateWithDuration(cardAnimationDuration, delay: 0, options: [.BeginFromCurrentState], animations: {
+            self.updateConstraints()
+            self.layoutSubviews()
+            }, completion: { (completed) in
+                if oldFocusedCardView == nil {
+                    self.delegate?.cardListView?(self, didFocusItem: newFocusedCardView!)
+                } else {
+                    self.delegate?.cardListView?(self, didUnfocusItem: oldFocusedCardView!)
+                }
+        })
     }
     
     // MARK: UIDynamicAnimatorDelegate
@@ -324,30 +374,9 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
             return
         }
         
-        let cardAnimationDuration = 0.3
         switch gesture.state {
         case .Ended:
-            // if no focused view, then will transition from unfocused to focused
-            let oldFocusedCardView = self.focusedCardView
-            if oldFocusedCardView == nil {
-                // focus the card view
-                self.delegate?.cardListView?(self, willFocusItem: tappedCardView)
-                self.focusedCardView = tappedCardView
-            } else {
-                // remove focus
-                self.delegate?.cardListView?(self, willUnfocusItem: oldFocusedCardView!)
-                self.focusedCardView = nil
-            }
-            UIView.animateWithDuration(cardAnimationDuration, delay: 0, options: [.BeginFromCurrentState], animations: {
-                self.updateConstraints()
-                self.layoutSubviews()
-                }, completion: { (completed) in
-                    if oldFocusedCardView == nil {
-                        self.delegate?.cardListView?(self, didFocusItem: tappedCardView)
-                    } else {
-                        self.delegate?.cardListView?(self, didUnfocusItem: oldFocusedCardView!)
-                    }
-            })
+            toggleFocus(tappedCardView)
 
         default: ()
         }

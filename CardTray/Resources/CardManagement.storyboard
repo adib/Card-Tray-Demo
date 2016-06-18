@@ -60,6 +60,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="576"/>
                     <connections>
+                        <outlet property="addCardBarItem" destination="NMN-x8-vd2" id="PV0-To-wR4"/>
                         <outlet property="cardBackContainerView" destination="ezq-Sv-bcj" id="cvD-yx-Aov"/>
                         <outlet property="cardBackContainerViewBottomConstraint" destination="tJ0-36-NHz" id="wj6-zr-Er3"/>
                         <outlet property="cardBackContainerViewTopConstraint" destination="2nB-ZE-aya" id="esr-gf-INw"/>

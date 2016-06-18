@@ -56,11 +56,14 @@ class CardListModel: NSObject {
         dirty = true
     }
     
-    func remove(card:CardEntity) {
-        if let index = cards?.indexOf(card) {
+    func remove(cardToRemove:CardEntity?) -> Int? {
+        if let  card = cardToRemove,
+                index = cards?.indexOf(card) {
             cards?.removeAtIndex(index)
             dirty = true
+            return index
         }
+        return nil
     }
     
     

@@ -20,6 +20,13 @@ class CardListViewController: UIViewController, CardListViewDelegate {
  
     @IBOutlet weak var cardBackContainerViewTopConstraint: NSLayoutConstraint!
     
+    @IBOutlet var addCardBarItem: UIBarButtonItem!
+    
+    lazy var removeCardBarItem: UIBarButtonItem = {
+        let barItem = UIBarButtonItem(title: NSLocalizedString("Remove", comment: "Bar Item"), style: .Plain, target: self, action: #selector(removeSelectedCard))
+        return barItem
+    }()
+    
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
@@ -27,7 +34,7 @@ class CardListViewController: UIViewController, CardListViewDelegate {
     var cardList = CardListModel()
     
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
         // Do any additional setup after loading the view.
         cardListView.reloadData()
         cardBackContainerView.alpha = 0
@@ -128,7 +135,26 @@ class CardListViewController: UIViewController, CardListViewDelegate {
     }
 
     @IBAction func addCardCancel(unwindSegue:UIStoryboardSegue) {
+        // no implementation yet, just placholder for unwind segue.
+    }
+    
+    @IBAction func removeSelectedCard(sender:AnyObject) {
+        guard let   focusedView = cardListView.focusedCardView,
+                    focusedCardHolder = focusedView as? CardEntityHolder else {
+            return
+        }
         
+        let alertCtrl = UIAlertController(title: NSLocalizedString("Remove Card",comment:"Card Removal"), message:NSLocalizedString("Remove selected card?\nYou cannot undo this.", comment: "confirm remove card") , preferredStyle: .Alert)
+        alertCtrl.addAction(UIAlertAction(title: NSLocalizedString("Remove", comment: "default remove") , style: .Destructive, handler: { (action) in
+            if let removedIndex = self.cardList.remove(focusedCardHolder.card) {
+                self.cardListView.removeItemAtIndex(removedIndex)
+                self.setNeedsSaveCardList()
+            }
+        }))
+        alertCtrl.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "default cancel"), style: .Cancel, handler: { (action) in
+            // nothing yet
+        }))
+        self.presentViewController(alertCtrl, animated: true, completion: nil)
     }
 
     // MARK: - CardListViewDelegate
@@ -172,6 +198,7 @@ class CardListViewController: UIViewController, CardListViewDelegate {
             self.cardBackContainerView.alpha = 1
             self.view.layoutIfNeeded()
             }, completion: { (completed) in
+                self.navigationItem.rightBarButtonItem = self.removeCardBarItem
         })
     }
     
@@ -181,5 +208,9 @@ class CardListViewController: UIViewController, CardListViewDelegate {
             }, completion: { (completed) in
                 self.cardBackContainerView.hidden = true
         })
+    }
+    
+    func cardListView(view: CardListView, didUnfocusItem cardView: UIView) {
+        self.navigationItem.rightBarButtonItem = self.addCardBarItem
     }
 }
