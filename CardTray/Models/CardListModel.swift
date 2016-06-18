@@ -104,6 +104,10 @@ class CardListModel: NSObject {
             }
             do {
                 try archivedData.writeToURL(targetURL, options: [.DataWritingAtomic,.DataWritingFileProtectionComplete])
+                // In addition to passcode lock, we need to also prevent iTunes from creating a backup of the
+                // card tray data. If the user doesn't set a passcode to those backups, then they are stored in the clear,
+                // making it possible for malicious applications on the desktop to extract credit card numbers.
+                try targetURL.setResourceValue(NSNumber(bool:true), forKey: NSURLIsExcludedFromBackupKey)
             } catch let error as NSError {
                 returnError = error
             }
