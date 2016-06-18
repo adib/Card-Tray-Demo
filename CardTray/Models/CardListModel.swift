@@ -8,13 +8,13 @@
 
 import UIKit
 
-class CardListModel: NSObject {
+public class CardListModel: NSObject {
     
-    override init() {
+    public override init() {
         
     }
     
-    lazy var cardListURL : NSURL = {
+    public lazy private(set) var cardListURL : NSURL = {
         let fileManager = NSFileManager.defaultManager()
         let appSupportDir = fileManager.URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask).first!
         let cardDir = appSupportDir.URLByAppendingPathComponent("CardTray", isDirectory: true)
@@ -31,13 +31,13 @@ class CardListModel: NSObject {
     
     private(set) var dirty = false
     
-    @objc private(set) var cards : Array<CardEntity>?
+    @objc private(set) public var cards : Array<CardEntity>?
     
     static func automaticallyNotifiesObserversForCards() -> Bool {
         return true
     }
     
-    func moveToFront(index : Int) {
+    public func moveToFront(index : Int) {
         guard cards != nil else {
             return
         }
@@ -47,16 +47,16 @@ class CardListModel: NSObject {
         dirty = true
     }
     
-    func add(card: CardEntity) {
+    public func add(card: CardEntity) {
         if cards == nil {
             cards = Array<CardEntity>()
-            cards?.reserveCapacity(1)
+            cards?.reserveCapacity(6)
         }
         cards?.append(card)
         dirty = true
     }
     
-    func remove(cardToRemove:CardEntity?) -> Int? {
+    public func remove(cardToRemove:CardEntity?) -> Int? {
         if let  card = cardToRemove,
                 index = cards?.indexOf(card) {
             cards?.removeAtIndex(index)
@@ -68,7 +68,7 @@ class CardListModel: NSObject {
     
     
     
-    func load(completionHandler: ((NSError?)->Void)? ) {
+    public func load(completionHandler: ((NSError?)->Void)? ) {
         let targetURL = self.cardListURL
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) {
             var returnError : NSError?
@@ -96,7 +96,7 @@ class CardListModel: NSObject {
         }
     }
     
-    func save(completionHandler: ((NSError?)->Void)? ) {
+    public func save(completionHandler: ((NSError?)->Void)? ) {
         guard dirty else {
             // not dirty.
             completionHandler?(nil)
@@ -130,5 +130,4 @@ class CardListModel: NSObject {
             }
         }
     }
-    
 }

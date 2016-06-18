@@ -8,34 +8,34 @@
 
 import UIKit
 
-class CardEntity: NSObject,NSCoding {
+public class CardEntity: NSObject,NSCoding {
     
     static let ErrorDomain = "CardEntityErrorDomain"
     
-    enum ErrorCode : Int {
+    public enum ErrorCode : Int {
         case None = 0
         case CardNumberChecksumFailed = 1
     }
     
-    enum NetworkType : String {
+    public enum NetworkType : String {
         case Unknown = ""
         case Visa = "visa"
         case MasterCard = "mastercard"
     }
     
-    var cardNumber : String?
+    public var cardNumber : String?
     
-    var cardholderName : String?
+    public var cardholderName : String?
     
-    var securityCode : String?
+    public var securityCode : String?
     
-    var expiryDayOfMonth : Int?
+    public var expiryDayOfMonth : Int?
     
-    var expiryYear : Int?
+    public var expiryYear : Int?
     
-    var networkType = NetworkType.Unknown
+    public var networkType = NetworkType.Unknown
     
-    var obfuscatedCardNumber : String? {
+    public var obfuscatedCardNumber : String? {
         get {
             if let cardNumber = self.cardNumber {
                 let displayNumbers = String(cardNumber.characters.suffix(4))
@@ -46,13 +46,13 @@ class CardEntity: NSObject,NSCoding {
         }
     }
     
-    override init() {
+    public override init() {
         // empty
     }
     
     // MARK: - NSCoding
     
-    required init(coder aDecoder: NSCoder) {
+    public required init(coder aDecoder: NSCoder) {
         let decodeInt = {
             (key:String) -> Int? in
             if let num = aDecoder.decodeObjectForKey(key) as? NSNumber {
@@ -68,7 +68,7 @@ class CardEntity: NSObject,NSCoding {
         networkType = NetworkType(rawValue:aDecoder.decodeObjectForKey("networkType") as? String ?? "") ?? .Unknown
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
+    public func encodeWithCoder(aCoder: NSCoder) {
         let encodeInt = {
             (v:Int?,key:String) in
             if let value = v {
@@ -87,7 +87,7 @@ class CardEntity: NSObject,NSCoding {
      Validates the card details and modifies the entity data accordingly.
      This function may eventually call the network, hence has an asynchronous style signature.
     */
-    func validate(completionHandler: ((error : NSError?)->Void)? ) {
+    public func validate(completionHandler: ((error : NSError?)->Void)? ) {
         guard   let cardNumber = self.cardNumber where
                     LuhnChecksum(cardNumber) else {
             let userInfo = [
@@ -126,7 +126,7 @@ class CardEntity: NSObject,NSCoding {
 }
 
 
-@objc protocol CardEntityHolder {
+@objc public protocol CardEntityHolder {
     
     // We can't make this property optional because Swift 2.2 would choke on it.
     // http://stackoverflow.com/a/26083681/199360

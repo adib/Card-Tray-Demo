@@ -20,13 +20,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        let cardTrayCtrl = cardTrayFacade.mainViewController
-        let navCtrl = UINavigationController(rootViewController: cardTrayCtrl)
+
+        let showMainCtrl = {
+            let cardTrayCtrl = self.cardTrayFacade.mainViewController
+            let navCtrl = UINavigationController(rootViewController: cardTrayCtrl)
+            
+            let window = UIWindow()
+            window.rootViewController = navCtrl
+            window.makeKeyAndVisible()
+            self.window = window
+        }
         
-        let window = UIWindow()
-        window.rootViewController = navCtrl
-        window.makeKeyAndVisible()
-        self.window = window
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let hadWrittenSampleCardsKey = "BSSampleCardsWasWritten"
+        if !userDefaults.boolForKey(hadWrittenSampleCardsKey) {
+            // We write sample cards into the list before showing the UI
+            
+            let cardList = CardListModel()
+            cardList.load({
+                (errorOrNil) in
+                
+                // we've attempted a load of the existing card list. 
+                // whatever the result is, assume the sample cards was written
+                userDefaults.setBool(true, forKey: hadWrittenSampleCardsKey)
+                
+                // only actually create cards if we can't load anything
+                if cardList.cards?.isEmpty ?? true {
+                    // These are "test" card numbers
+                    // https://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm
+                    let sampleCards = [
+                        ("4111111111111111",CardEntity.NetworkType.Visa),
+                        ("5555555555554444",CardEntity.NetworkType.MasterCard)
+                    ]
+                    for (cardNumber,cardType) in sampleCards {
+                        let card = CardEntity()
+                        card.cardNumber = cardNumber
+                        card.networkType = cardType
+                        cardList.add(card)
+                    }
+                    cardList.save({ (errorOrNil) in
+                        showMainCtrl()
+                    })
+                } else {
+                    showMainCtrl()
+                }
+            })
+        } else {
+            showMainCtrl()
+        }
+        
+        
         return true
     }
 
@@ -51,7 +94,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 
