@@ -333,22 +333,29 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
             return
         }
         
-        let cardAnimationDuration = 0.5
+        let cardAnimationDuration = 0.3
         switch gesture.state {
         case .Ended:
-            self.delegate?.cardListViewWillChangeDisplayMode?(self)
-            if self.focusedCardView != nil {
-                // has card view in focus. unfocus it.
-                self.focusedCardView = nil
-            } else {
+            // if no focused view, then will transition from unfocused to focused
+            let oldFocusedCardView = self.focusedCardView
+            if oldFocusedCardView == nil {
                 // focus the card view
+                self.delegate?.cardListView?(self, willFocusItem: tappedCardView)
                 self.focusedCardView = tappedCardView
+            } else {
+                // remove focus
+                self.delegate?.cardListView?(self, willUnfocusItem: oldFocusedCardView!)
+                self.focusedCardView = nil
             }
             UIView.animateWithDuration(cardAnimationDuration, delay: 0, options: [.BeginFromCurrentState], animations: {
                 self.updateConstraints()
                 self.layoutSubviews()
                 }, completion: { (completed) in
-                    self.delegate?.cardListViewDidChangeDisplayMode?(self)
+                    if oldFocusedCardView == nil {
+                        self.delegate?.cardListView?(self, didFocusItem: tappedCardView)
+                    } else {
+                        self.delegate?.cardListView?(self, didUnfocusItem: oldFocusedCardView!)
+                    }
             })
 
         default: ()
@@ -365,7 +372,10 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
     
     func cardListView(view: CardListView, didMoveItemAtIndexToFront row: Int) -> Void
     
-    optional func cardListViewWillChangeDisplayMode(view: CardListView) -> Void
-    optional func cardListViewDidChangeDisplayMode(view: CardListView) -> Void
-    
+    optional func cardListView(view: CardListView,willFocusItem cardView:UIView) -> Void
+    optional func cardListView(view: CardListView,didFocusItem cardView:UIView) -> Void
+
+    optional func cardListView(view: CardListView,willUnfocusItem cardView:UIView) -> Void
+    optional func cardListView(view: CardListView,didUnfocusItem cardView:UIView) -> Void
+
 }

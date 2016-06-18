@@ -16,7 +16,7 @@ class CardCaptureViewController: UIViewController,CardIOViewDelegate {
 
     @IBOutlet weak var cardView: CardIOView!
     
-    var card = CardEntity()
+    var cardEntity = CardEntity()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,8 +51,8 @@ class CardCaptureViewController: UIViewController,CardIOViewDelegate {
         if let segueIdentifier = segue.identifier {
             switch segueIdentifier {
             case "enterCardDetails":
-                if let cardCtrl = segue.destinationViewController as? CardDetailsViewController {
-                    cardCtrl.card = self.card
+                if let cardCtrl = segue.destinationViewController as? CardEntityHolder {
+                    cardCtrl.card = self.cardEntity
                 }
             default:
                 ()
@@ -71,7 +71,7 @@ class CardCaptureViewController: UIViewController,CardIOViewDelegate {
         }
         
         // Card.IO doesn't scan the cardholder name: http://stackoverflow.com/a/16844513/199360
-        card.cardNumber = cardNumber
+        cardEntity.cardNumber = cardNumber
         self.performSegueWithIdentifier("enterCardDetails", sender: view)
     }
     

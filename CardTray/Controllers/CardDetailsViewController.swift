@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CardDetailsViewController: UIViewController,UITextFieldDelegate {
+class CardDetailsViewController: UIViewController,UITextFieldDelegate, CardEntityHolder {
 
     @IBOutlet weak var cardholderNameTextField: UITextField!
     
@@ -41,7 +41,7 @@ class CardDetailsViewController: UIViewController,UITextFieldDelegate {
         if let segueIdentifier = segue.identifier {
             switch segueIdentifier {
             case "cardVerify":
-                if let cardCtrl = segue.destinationViewController as? CardVerifyViewController {
+                if let cardCtrl = segue.destinationViewController as? CardEntityHolder {
                     cardCtrl.card = self.card
                 }
             default:

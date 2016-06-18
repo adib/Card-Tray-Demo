@@ -30,7 +30,7 @@
                                 <rect key="frame" x="0.0" y="181" width="320" height="267"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <segue destination="lVT-FA-5iB" kind="embed" id="cQC-yk-OXN"/>
+                                    <segue destination="lVT-FA-5iB" kind="embed" identifier="embedCardBackTabs" id="cQC-yk-OXN"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -75,10 +75,10 @@
             </objects>
             <point key="canvasLocation" x="333" y="412"/>
         </scene>
-        <!--Card Details-->
+        <!--Card Info-->
         <scene sceneID="aM4-u3-bEd">
             <objects>
-                <viewController id="XRx-cK-aYZ" userLabel="Card Details" sceneMemberID="viewController">
+                <viewController id="XRx-cK-aYZ" userLabel="Card Info" customClass="CardInfoViewController" customModule="CardTray" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xXs-F6-c9j"/>
                         <viewControllerLayoutGuide type="bottom" id="Wsh-n7-STC"/>
@@ -99,7 +99,7 @@
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4012 8888 8888 1881" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WdT-i7-rzu">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•••• 1234" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WdT-i7-rzu" userLabel="Card Number Display">
                                                 <rect key="frame" x="124" y="20" width="176" height="20"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -156,6 +156,10 @@
                         </constraints>
                     </scrollView>
                     <tabBarItem key="tabBarItem" title="Card Details" id="JMx-DT-K3h" userLabel="Tab Item"/>
+                    <connections>
+                        <outlet property="cardNumberLabel" destination="WdT-i7-rzu" id="SeV-Hy-hUE"/>
+                        <outlet property="deviceNumberLabel" destination="c1C-d9-k7Y" id="hQz-5C-EKD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vle-zg-So0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

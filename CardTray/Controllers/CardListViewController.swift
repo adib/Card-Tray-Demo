@@ -10,6 +10,7 @@ import UIKit
 
 class CardListViewController: UIViewController, CardListViewDelegate {
 
+    weak var cardBackTabController : UITabBarController?
     
     @IBOutlet weak var cardListView: CardListView!
     
@@ -101,16 +102,37 @@ class CardListViewController: UIViewController, CardListViewDelegate {
     func applicationDidEnterBackground(notification:NSNotification) {
         setNeedsSaveCardList()
     }
+    
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let segueIdentifier = segue.identifier {
+            switch segueIdentifier {
+            case "embedCardBackTabs":
+                if let tabCtrl = segue.destinationViewController as? UITabBarController {
+                    cardBackTabController = tabCtrl
+                }
+            default: ()
+            }
+        }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
+    func updateCardBackDisplay(selectedCard : CardEntity) {
+        guard let tabCtrl = self.cardBackTabController else {
+            return
+        }
+        if let viewControllers = tabCtrl.viewControllers {
+            for viewCtrl in viewControllers {
+                if let cardCtrl = viewCtrl as? CardEntityHolder {
+                    cardCtrl.card = selectedCard
+                }
+            }
+        }
+    }
     
     @IBAction func addCardDone(unwindSegue:UIStoryboardSegue) {
         guard let   verifyCtrl = unwindSegue.sourceViewController as? CardVerifyViewController,
@@ -146,32 +168,38 @@ class CardListViewController: UIViewController, CardListViewDelegate {
     
     func cardListView(view: CardListView, didMoveItemAtIndexToFront row: Int) -> Void {
         // tODO: reorder cards array
+        cardList.moveToFront(row)
+        setNeedsSaveCardList()
     }
 
-    func cardListViewWillChangeDisplayMode(view: CardListView) -> Void {
-        if view.isFocusedCard {
-            // will remove remove focus, hide alpha
-            UIView.animateWithDuration(0.2, delay: 0, options: [.BeginFromCurrentState], animations: {
-                self.cardBackContainerView.alpha = 0
-                }, completion: { (completed) in
-                    self.cardBackContainerView.hidden = true
-            })
+    
+    func cardListView(view: CardListView,willFocusItem itemView:UIView) -> Void {
+        if let  cardView = itemView as? CardEntityHolder,
+                selectedCard = cardView.card {
+            updateCardBackDisplay(selectedCard)
         }
     }
-    
-    func cardListViewDidChangeDisplayMode(cardView: CardListView) -> Void {
-        if cardView.isFocusedCard {
-            // have completed focus, set alpha
-            
+
+    let cardFocusAnimationDuration = NSTimeInterval(0.2)
+
+    func cardListView(view: CardListView,didFocusItem cardView:UIView) -> Void {
+        // have completed focus, set alpha
+        self.view.layoutIfNeeded()
+        updateCardBackConstraints()
+        self.cardBackContainerView.hidden = false
+        UIView.animateWithDuration(cardFocusAnimationDuration, delay: 0, options: [.BeginFromCurrentState], animations: {
+            self.cardBackContainerView.alpha = 1
             self.view.layoutIfNeeded()
-            updateCardBackConstraints()
-            self.cardBackContainerView.hidden = false
-            UIView.animateWithDuration(0.2, delay: 0, options: [.BeginFromCurrentState], animations: {
-                self.cardBackContainerView.alpha = 1
-                self.view.layoutIfNeeded()
-                }, completion: { (completed) in
-            })
-        }
+            }, completion: { (completed) in
+        })
+    }
+    
+    func cardListView(view: CardListView,willUnfocusItem cardView:UIView) -> Void {
+        UIView.animateWithDuration(cardFocusAnimationDuration, delay: 0, options: [.BeginFromCurrentState], animations: {
+            self.cardBackContainerView.alpha = 0
+            }, completion: { (completed) in
+                self.cardBackContainerView.hidden = true
+        })
     }
 
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CardItemView: UIView {
+class CardItemView: UIView,CardEntityHolder {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
     
@@ -20,12 +20,7 @@ class CardItemView: UIView {
     var card : CardEntity? {
         didSet {
             if let card = card {
-                if let cardNumber = card.cardNumber {
-                    let displayNumbers = String(cardNumber.characters.suffix(4))
-                    cardNumberLabel.text = "••••\u{2007}\(displayNumbers)"
-                } else {
-                    cardNumberLabel.text = "????"
-                }
+                cardNumberLabel.text = card.obfuscatedCardNumber ?? "????"
 
                 let bundle = NSBundle(forClass: self.dynamicType)
                 switch(card.networkType) {

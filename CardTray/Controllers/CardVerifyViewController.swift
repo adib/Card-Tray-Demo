@@ -10,7 +10,7 @@ import UIKit
 
 // TODO: force-validate expiry date after leaving focus (clear it if syntax error or the like)
 
-class CardVerifyViewController: UIViewController,UITextFieldDelegate {
+class CardVerifyViewController: UIViewController,UITextFieldDelegate,CardEntityHolder {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet var expirationDatePicker: CardExpirationPickerController!

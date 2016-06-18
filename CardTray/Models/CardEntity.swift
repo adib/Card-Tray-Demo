@@ -35,6 +35,17 @@ class CardEntity: NSObject,NSCoding {
     
     var networkType = NetworkType.Unknown
     
+    var obfuscatedCardNumber : String? {
+        get {
+            if let cardNumber = self.cardNumber {
+                let displayNumbers = String(cardNumber.characters.suffix(4))
+                return "••••\u{2007}\(displayNumbers)"
+            } else {
+                return nil
+            }
+        }
+    }
+    
     override init() {
         // empty
     }
@@ -112,6 +123,14 @@ class CardEntity: NSObject,NSCoding {
         }
         completionHandler?(error: nil)
     }
+}
+
+
+@objc protocol CardEntityHolder {
+    
+    // We can't make this property optional because Swift 2.2 would choke on it.
+    // http://stackoverflow.com/a/26083681/199360
+    var card : CardEntity? { get set }
 }
 
 
