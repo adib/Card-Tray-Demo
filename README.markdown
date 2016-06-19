@@ -10,7 +10,7 @@ A clone of the credit/debit card storage of Apple’s _Wallet_ app.
 - Detection of card network type via the card number.
 - User interface for showing back-of-card information.
 
-<img src="https://cloud.githubusercontent.com/assets/176081/16175729/be0a0ddc-362a-11e6-9252-c8817dfc5838.png" alt="Card Tray" width="320" height="568">
+<img src="https://cloud.githubusercontent.com/assets/176081/16175727/aed15f00-362a-11e6-855a-8bca4224a149.png" alt="Card Tray" width="320" height="568">
 
 <img src="https://cloud.githubusercontent.com/assets/176081/16175729/be0a0ddc-362a-11e6-9252-c8817dfc5838.png" alt="Card Transactions" width="320" height="568">
 
