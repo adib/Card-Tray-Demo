@@ -294,7 +294,7 @@
                             <outlet property="delegate" destination="JUA-nb-EAU" id="ump-Nk-rP8"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Services" id="tl3-TQ-S1K"/>
+                    <tabBarItem key="tabBarItem" title="Services" image="tab_services" id="tl3-TQ-S1K"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LMJ-eZ-Ib2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -674,6 +674,7 @@
     </scenes>
     <resources>
         <image name="tab_card" width="30" height="30"/>
+        <image name="tab_services" width="30" height="30"/>
         <image name="tab_transactions" width="30" height="30"/>
     </resources>
 </document>
