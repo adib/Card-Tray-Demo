@@ -232,7 +232,7 @@
                             <outlet property="delegate" destination="Apk-xK-FjL" id="VZP-C8-Ebm"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Transactions" id="bl3-Tu-XIS"/>
+                    <tabBarItem key="tabBarItem" title="Transactions" image="tab_transactions" id="bl3-Tu-XIS"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LRK-8C-d7T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -674,5 +674,6 @@
     </scenes>
     <resources>
         <image name="tab_card" width="30" height="30"/>
+        <image name="tab_transactions" width="30" height="30"/>
     </resources>
 </document>
