@@ -162,7 +162,7 @@
                             <constraint firstAttribute="trailing" secondItem="eaE-I1-X6v" secondAttribute="trailing" id="aVe-47-Qxl"/>
                         </constraints>
                     </scrollView>
-                    <tabBarItem key="tabBarItem" title="Card Details" id="JMx-DT-K3h" userLabel="Tab Item"/>
+                    <tabBarItem key="tabBarItem" title="Card Details" image="tab_card" id="JMx-DT-K3h" userLabel="Tab Item"/>
                     <connections>
                         <outlet property="cardNumberLabel" destination="WdT-i7-rzu" id="SeV-Hy-hUE"/>
                         <outlet property="deviceNumberLabel" destination="c1C-d9-k7Y" id="hQz-5C-EKD"/>
@@ -672,4 +672,7 @@
             <point key="canvasLocation" x="2435" y="190"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tab_card" width="30" height="30"/>
+    </resources>
 </document>
