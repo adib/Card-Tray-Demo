@@ -4,7 +4,7 @@
 //
 //  Created by Sasmito Adibowo on 16/6/16.
 //  Copyright © 2016 Basil Salad Software. All rights reserved.
-//
+//  http://basilsalad.com
 
 import UIKit
 
