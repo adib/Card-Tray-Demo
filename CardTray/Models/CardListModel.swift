@@ -8,46 +8,46 @@
 
 import UIKit
 
-public class CardListModel: NSObject {
+open class CardListModel: NSObject {
     
     public override init() {
         
     }
     
-    public lazy private(set) var cardListURL : NSURL = {
-        let fileManager = NSFileManager.defaultManager()
-        let appSupportDir = fileManager.URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask).first!
-        let cardDir = appSupportDir.URLByAppendingPathComponent("CardTray", isDirectory: true)
+    open lazy fileprivate(set) var cardListURL : URL = {
+        let fileManager = FileManager.default
+        let appSupportDir = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+        let cardDir = appSupportDir.appendingPathComponent("CardTray", isDirectory: true)
         do {
-            try fileManager.createDirectoryAtURL(cardDir, withIntermediateDirectories: true, attributes: nil)
+            try fileManager.createDirectory(at: cardDir, withIntermediateDirectories: true, attributes: nil)
         } catch let error as NSError {
             
         }
-        let cardFile = cardDir.URLByAppendingPathComponent("cards.plist", isDirectory: false)
+        let cardFile = cardDir.appendingPathComponent("cards.plist", isDirectory: false)
         return cardFile
     }()
 
-    private(set) var loaded = false
+    fileprivate(set) var loaded = false
     
-    private(set) var dirty = false
+    fileprivate(set) var dirty = false
     
-    @objc private(set) public var cards : Array<CardEntity>?
+    @objc fileprivate(set) open var cards : Array<CardEntity>?
     
     static func automaticallyNotifiesObserversForCards() -> Bool {
         return true
     }
     
-    public func moveToFront(index : Int) {
+    open func moveToFront(_ index : Int) {
         guard cards != nil else {
             return
         }
         let card = cards![index]
-        cards!.removeAtIndex(index)
+        cards!.remove(at: index)
         cards!.append(card)
         dirty = true
     }
     
-    public func add(card: CardEntity) {
+    open func add(_ card: CardEntity) {
         if cards == nil {
             cards = Array<CardEntity>()
             cards?.reserveCapacity(6)
@@ -56,10 +56,10 @@ public class CardListModel: NSObject {
         dirty = true
     }
     
-    public func remove(cardToRemove:CardEntity?) -> Int? {
+    open func remove(_ cardToRemove:CardEntity?) -> Int? {
         if let  card = cardToRemove,
-                index = cards?.indexOf(card) {
-            cards?.removeAtIndex(index)
+                let index = cards?.index(of: card) {
+            cards?.remove(at: index)
             dirty = true
             return index
         }
@@ -68,13 +68,13 @@ public class CardListModel: NSObject {
     
     
     
-    public func load(completionHandler: ((NSError?)->Void)? ) {
+    open func load(_ completionHandler: ((NSError?)->Void)? ) {
         let targetURL = self.cardListURL
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {
             var returnError : NSError?
             var resultArray : Array<CardEntity>?
             defer {
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     if returnError == nil && resultArray != nil {
                         // TODO: raise KVO?
                         self.cards = resultArray
@@ -86,8 +86,8 @@ public class CardListModel: NSObject {
                 })
             }
             do {
-                let data = try NSData(contentsOfURL: targetURL, options: [.DataReadingMappedIfSafe,.DataReadingUncached])
-                if let array = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? Array<CardEntity> {
+                let data = try Data(contentsOf: targetURL, options: [.mappedIfSafe,.uncached])
+                if let array = NSKeyedUnarchiver.unarchiveObject(with: data) as? Array<CardEntity> {
                     resultArray = array
                 }
             } catch let error as NSError {
@@ -96,7 +96,7 @@ public class CardListModel: NSObject {
         }
     }
     
-    public func save(completionHandler: ((NSError?)->Void)? ) {
+    open func save(_ completionHandler: ((NSError?)->Void)? ) {
         guard dirty else {
             // not dirty.
             completionHandler?(nil)
@@ -107,12 +107,12 @@ public class CardListModel: NSObject {
             completionHandler?(nil)
             return
         }
-        let archivedData = NSKeyedArchiver.archivedDataWithRootObject(cards)
+        let archivedData = NSKeyedArchiver.archivedData(withRootObject: cards)
         let targetURL = self.cardListURL
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
             var returnError : NSError?
             defer {
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     if returnError == nil {
                         self.dirty = false
                     }
@@ -120,11 +120,11 @@ public class CardListModel: NSObject {
                 })
             }
             do {
-                try archivedData.writeToURL(targetURL, options: [.DataWritingAtomic,.DataWritingFileProtectionComplete])
+                try archivedData.write(to: targetURL, options: [.atomic,.completeFileProtection])
                 // In addition to passcode lock, we need to also prevent iTunes from creating a backup of the
                 // card tray data. If the user doesn't set a passcode to those backups, then they are stored in the clear,
                 // making it possible for malicious applications on the desktop to extract credit card numbers.
-                try targetURL.setResourceValue(NSNumber(bool:true), forKey: NSURLIsExcludedFromBackupKey)
+                try (targetURL as NSURL).setResourceValue(NSNumber(value: true as Bool), forKey: URLResourceKey.isExcludedFromBackupKey)
             } catch let error as NSError {
                 returnError = error
             }

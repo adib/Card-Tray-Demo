@@ -32,7 +32,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         get {
             if let firstCardView = cardViews.first {
                 let bounds = firstCardView.bounds
-                let frame = firstCardView.convertRect(bounds, toView: self)
+                let frame = firstCardView.convert(bounds, to: self)
                 let bottom = ceil(frame.origin.y + frame.size.height + 8)
                 return bottom
             }
@@ -44,7 +44,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
 
     var lowestCardPos = CGFloat(0)
     
-    var topOffsetConstraints = NSMapTable.weakToWeakObjectsMapTable()
+    var topOffsetConstraints = NSMapTable<AnyObject, AnyObject>.weakToWeakObjects()
     
     lazy var containerView : UIView = {
         [unowned self] in
@@ -52,8 +52,8 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         view.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(view)
         let bindingsDict = ["view": view]
-        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: [], metrics: nil, views: bindingsDict))
-        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: [], metrics: nil, views: bindingsDict))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: [], metrics: nil, views: bindingsDict))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", options: [], metrics: nil, views: bindingsDict))
         return view
     }()
     
@@ -68,8 +68,8 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
     /**
      Maps cards in `cardViews` to UIAttachmentBehavior
      */
-    var cardCenterAttachments = NSMapTable.weakToWeakObjectsMapTable()
-    var cardCenterSnaps = NSMapTable.weakToWeakObjectsMapTable()
+    var cardCenterAttachments = NSMapTable<AnyObject, AnyObject>.weakToWeakObjects()
+    var cardCenterSnaps = NSMapTable<AnyObject, AnyObject>.weakToWeakObjects()
     
     weak var cardDragAttachment : UIAttachmentBehavior?
     
@@ -89,20 +89,20 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         dynamicAnimator?.removeAllBehaviors()
         super.layoutSubviews()
         let containerBounds = containerView.bounds
-        if !CGRectIsEmpty(containerBounds) {
+        if !containerBounds.isEmpty {
             let animator = dynamicAnimator ?? UIDynamicAnimator(referenceView: containerView)
             containerView.layoutIfNeeded()
             var maxCardBottom = CGFloat(0)
             for cardItem in cardViews {
                 let itemFrame = cardItem.frame
-                if !CGRectIsEmpty(itemFrame) {
+                if !itemFrame.isEmpty {
                     let cardCenter = cardItem.center
-                    let snap = UISnapBehavior(item: cardItem, snapToPoint: cardCenter)
+                    let snap = UISnapBehavior(item: cardItem, snapTo: cardCenter)
                     snap.damping = 0.9
                     animator.addBehavior(snap)
                     cardCenterSnaps.setObject(snap,forKey:cardItem)
                     
-                    let attachment = UIAttachmentBehavior.slidingAttachmentWithItem(cardItem, attachmentAnchor: cardCenter, axisOfTranslation: CGVectorMake(0,1))
+                    let attachment = UIAttachmentBehavior.slidingAttachment(with: cardItem, attachmentAnchor: cardCenter, axisOfTranslation: CGVector(dx: 0,dy: 1))
                     animator.addBehavior(attachment)
                     cardCenterAttachments.setObject(attachment,forKey:cardItem)
                     let cardBottom = itemFrame.origin.y + itemFrame.size.height
@@ -129,7 +129,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
             let topCardConstant = topCardMargin
             var foundFocusedCard = false
             for curView in cardViews {
-                guard let constraint = topOffsetConstraints.objectForKey(curView) as? NSLayoutConstraint else {
+                guard let constraint = topOffsetConstraints.object(forKey: curView) as? NSLayoutConstraint else {
                     continue
                 }
                 if foundFocusedCard {
@@ -144,7 +144,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         } else {
             var currentOffset = topCardMargin
             for cardView in cardViews {
-                if let constraint = topOffsetConstraints.objectForKey(cardView) as? NSLayoutConstraint {
+                if let constraint = topOffsetConstraints.object(forKey: cardView) as? NSLayoutConstraint {
                     constraint.constant = currentOffset
                     currentOffset += cardItemOffset
                 }
@@ -152,7 +152,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         }
     }
     
-    private func newCardItemViewAtIndex(cardIndex:Int) -> UIView {
+    fileprivate func newCardItemViewAtIndex(_ cardIndex:Int) -> UIView {
         let itemView = delegate!.cardListView(self, itemAtIndex: cardIndex)
         itemView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(itemView)
@@ -165,15 +165,15 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         containerView.addSubview(itemView)
         
         //  the size of credit cards is 85.60 × 53.98 mm ratio is 1.5858
-        let ratioConstraint = NSLayoutConstraint(item: itemView, attribute: .Width, relatedBy: .Equal, toItem: itemView, attribute: .Height, multiplier: CGFloat(1.5858), constant: 0)
-        let topConstraint = NSLayoutConstraint(item: itemView, attribute: .Top, relatedBy: .Equal, toItem: containerView, attribute: .Top, multiplier: 1, constant: topOffset)
+        let ratioConstraint = NSLayoutConstraint(item: itemView, attribute: .width, relatedBy: .equal, toItem: itemView, attribute: .height, multiplier: CGFloat(1.5858), constant: 0)
+        let topConstraint = NSLayoutConstraint(item: itemView, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1, constant: topOffset)
         
-        containerView.addConstraint(NSLayoutConstraint(item: itemView, attribute: .Leading, relatedBy: .Equal, toItem: containerView, attribute: .Leading, multiplier: 1, constant: CGFloat(leftMargin)))
-        containerView.addConstraint(NSLayoutConstraint(item: itemView, attribute: .Trailing, relatedBy: .Equal, toItem: containerView, attribute: .Trailing, multiplier: 1, constant: -CGFloat(rightMargin)))
+        containerView.addConstraint(NSLayoutConstraint(item: itemView, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1, constant: CGFloat(leftMargin)))
+        containerView.addConstraint(NSLayoutConstraint(item: itemView, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1, constant: -CGFloat(rightMargin)))
         containerView.addConstraint(ratioConstraint)
         containerView.addConstraint(topConstraint)
         
-        cardViews.insert(itemView, atIndex: cardIndex)
+        cardViews.insert(itemView, at: cardIndex)
         topOffsetConstraints.setObject(topConstraint, forKey: itemView)
         
         let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(handleCardDragGesture))
@@ -209,7 +209,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         layoutSubviews()
     }
     
-    let cardMovementAnimationDuration = NSTimeInterval(0.5)
+    let cardMovementAnimationDuration = TimeInterval(0.5)
     
     func appendItem(completion completionBlock: ((Bool)->Void)? ) {
         guard let delegate = self.delegate else {
@@ -220,33 +220,33 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         let newCardView = newCardItemViewAtIndex(numberOfCards-1)
         
         // animate drop down from top
-        if let topConstraint = topOffsetConstraints.objectForKey(newCardView) as? NSLayoutConstraint {
+        if let topConstraint = topOffsetConstraints.object(forKey: newCardView) as? NSLayoutConstraint {
             let originalTopOffset = topConstraint.constant
             topConstraint.constant = -self.focusedCardBottomMargin
             layoutSubviews()
-            UIView.animateWithDuration(cardMovementAnimationDuration, animations: {
+            UIView.animate(withDuration: cardMovementAnimationDuration, animations: {
                 topConstraint.constant = originalTopOffset
                 self.layoutSubviews()
                 }, completion: completionBlock)
         }
     }
     
-    func removeItemAtIndex(index:Int,completion completionBlock: ((Bool)->Void)? ) {
+    func removeItemAtIndex(_ index:Int,completion completionBlock: ((Bool)->Void)? ) {
         let cardView = cardViews[index]
         
         let cleanup = {
-            self.cardViews.removeAtIndex(index)
-            if let oldFocusedCardView = self.focusedCardView where oldFocusedCardView === cardView {
+            self.cardViews.remove(at: index)
+            if let oldFocusedCardView = self.focusedCardView, oldFocusedCardView === cardView {
                 self.toggleFocus(nil)
             }
             cardView.removeFromSuperview()
         }
         
-        if let topConstraint = topOffsetConstraints.objectForKey(cardView) as? NSLayoutConstraint {
+        if let topConstraint = topOffsetConstraints.object(forKey: cardView) as? NSLayoutConstraint {
             let bounds = containerView.bounds
             let targetOffset = bounds.origin.y + bounds.size.height + cardItemOffset
             layoutSubviews()
-            UIView.animateWithDuration(cardMovementAnimationDuration, animations: {
+            UIView.animate(withDuration: cardMovementAnimationDuration, animations: {
                 topConstraint.constant = targetOffset
                 self.layoutSubviews()
                 }, completion:  {
@@ -260,7 +260,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         }
     }
     
-    private func toggleFocus(newFocusedCardView : UIView? ) {
+    fileprivate func toggleFocus(_ newFocusedCardView : UIView? ) {
         // if no focused view, then will transition from unfocused to focused
         let oldFocusedCardView = self.focusedCardView
         if oldFocusedCardView == nil {
@@ -273,7 +273,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
             self.focusedCardView = nil
         }
         let cardAnimationDuration = 0.3
-        UIView.animateWithDuration(cardAnimationDuration, delay: 0, options: [.BeginFromCurrentState], animations: {
+        UIView.animate(withDuration: cardAnimationDuration, delay: 0, options: [.beginFromCurrentState], animations: {
             self.updateConstraints()
             self.layoutSubviews()
             }, completion: { (completed) in
@@ -287,7 +287,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
     
     // MARK: UIDynamicAnimatorDelegate
     
-    func  dynamicAnimatorDidPause(animator: UIDynamicAnimator) {
+    func  dynamicAnimatorDidPause(_ animator: UIDynamicAnimator) {
         if self.cardDragAttachment == nil {
             setNeedsUpdateConstraints()
         }
@@ -296,11 +296,11 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
     
     // MARK: - handlers
     
-    func handleCardDragGesture(gesture : UIPanGestureRecognizer) {
+    func handleCardDragGesture(_ gesture : UIPanGestureRecognizer) {
         guard let cardView = gesture.view else {
             return
         }
-        let touchPoint = gesture.locationInView(containerView)
+        let touchPoint = gesture.location(in: containerView)
         let cleanupDrag = {
             if let attachment = self.cardDragAttachment {
                 self.dynamicAnimator?.removeBehavior(attachment)
@@ -309,23 +309,23 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         }
         
         switch gesture.state {
-        case .Possible:
+        case .possible:
             if self.focusedCardView != nil {
                 // cancel the gesture if display mode is focus
-                gesture.enabled = false
-                gesture.enabled = true
+                gesture.isEnabled = false
+                gesture.isEnabled = true
             }
-        case .Began:
+        case .began:
             cleanupDrag()
             let attachment = UIAttachmentBehavior(item: cardView, attachedToAnchor: touchPoint)
             dynamicAnimator?.addBehavior(attachment)
             cardDragAttachment = attachment
-        case .Changed:
+        case .changed:
             if let attachment = cardDragAttachment {
                 attachment.anchorPoint = touchPoint
             }
-        case .Ended:
-            if let  cardViewIndex = cardViews.indexOf(cardView) {
+        case .ended:
+            if let  cardViewIndex = cardViews.index(of: cardView) {
                 let lastCardIndex = cardViews.count - 1
                 if cardViewIndex != lastCardIndex {
                     // if not end of card and top has gone below the bottom end
@@ -336,27 +336,27 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
                         var cardSnapPoints = Array<CGPoint>()
                         cardSnapPoints.reserveCapacity(cardViews.count)
                         for cv in cardViews {
-                            if let snap = cardCenterSnaps.objectForKey(cv) as? UISnapBehavior {
+                            if let snap = cardCenterSnaps.object(forKey: cv) as? UISnapBehavior {
                                 let pt = snap.snapPoint
                                 cardSnapPoints.append(pt)
                             }
                         }
 
-                        self.cardViews.removeAtIndex(cardViewIndex)
+                        self.cardViews.remove(at: cardViewIndex)
                         self.cardViews.append(cardView)
-                        self.containerView.bringSubviewToFront(cardView)
-                        self.dynamicAnimator?.updateItemUsingCurrentState(self.containerView)
+                        self.containerView.bringSubview(toFront: cardView)
+                        self.dynamicAnimator?.updateItem(usingCurrentState: self.containerView)
 
                         for i in 0..<cardSnapPoints.count {
                             let cv = self.cardViews[i]
                             let pt = cardSnapPoints[i]
-                            if let attachment = self.cardCenterAttachments.objectForKey(cv) as? UIAttachmentBehavior {
+                            if let attachment = self.cardCenterAttachments.object(forKey: cv) as? UIAttachmentBehavior {
                                 attachment.anchorPoint = pt
                             }
-                            if let snap = self.cardCenterSnaps.objectForKey(cv) as? UISnapBehavior {
+                            if let snap = self.cardCenterSnaps.object(forKey: cv) as? UISnapBehavior {
                                 snap.snapPoint = pt
                             }
-                            self.dynamicAnimator?.updateItemUsingCurrentState(cv)
+                            self.dynamicAnimator?.updateItem(usingCurrentState: cv)
                         }
                         
                         self.delegate?.cardListView(self, didMoveItemAtIndexToFront: cardViewIndex)
@@ -364,20 +364,20 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
                 }
             }
             fallthrough
-        case .Cancelled:
+        case .cancelled:
             cleanupDrag()
         default:
             ()
         }
     }
 
-    func handleCardTapGesture(gesture:UITapGestureRecognizer) {
+    func handleCardTapGesture(_ gesture:UITapGestureRecognizer) {
         guard let tappedCardView = gesture.view else {
             return
         }
         
         switch gesture.state {
-        case .Ended:
+        case .ended:
             toggleFocus(tappedCardView)
 
         default: ()
@@ -388,16 +388,16 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
 
 @objc protocol CardListViewDelegate  {
     
-    func numberOfItemsInCardListView(view: CardListView) -> Int
+    func numberOfItemsInCardListView(_ view: CardListView) -> Int
 
-    func cardListView(view: CardListView, itemAtIndex row: Int) -> UIView
+    func cardListView(_ view: CardListView, itemAtIndex row: Int) -> UIView
     
-    func cardListView(view: CardListView, didMoveItemAtIndexToFront row: Int) -> Void
+    func cardListView(_ view: CardListView, didMoveItemAtIndexToFront row: Int) -> Void
     
-    optional func cardListView(view: CardListView,willFocusItem cardView:UIView) -> Void
-    optional func cardListView(view: CardListView,didFocusItem cardView:UIView) -> Void
+    @objc optional func cardListView(_ view: CardListView,willFocusItem cardView:UIView) -> Void
+    @objc optional func cardListView(_ view: CardListView,didFocusItem cardView:UIView) -> Void
 
-    optional func cardListView(view: CardListView,willUnfocusItem cardView:UIView) -> Void
-    optional func cardListView(view: CardListView,didUnfocusItem cardView:UIView) -> Void
+    @objc optional func cardListView(_ view: CardListView,willUnfocusItem cardView:UIView) -> Void
+    @objc optional func cardListView(_ view: CardListView,didUnfocusItem cardView:UIView) -> Void
 
 }

@@ -24,11 +24,11 @@ class CardCaptureViewController: UIViewController,CardIOViewDelegate {
 
     // MARK: - Navigation
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let segueIdentifier = segue.identifier {
             switch segueIdentifier {
             case "enterCardDetails":
-                if let cardCtrl = segue.destinationViewController as? CardEntityHolder {
+                if let cardCtrl = segue.destination as? CardEntityHolder {
                     cardCtrl.card = self.cardEntity
                 }
             default:
@@ -39,13 +39,13 @@ class CardCaptureViewController: UIViewController,CardIOViewDelegate {
         
     // MARK: CardIOViewDelegate
     
-    func cardIOView(view: CardIOView,didScanCard cardInfo: CardIOCreditCardInfo?) {
+    func cardIOView(_ view: CardIOView,didScanCard cardInfo: CardIOCreditCardInfo?) {
         guard let cardNumber = cardInfo?.cardNumber else {
             return
         }
         
         // Card.IO doesn't scan the cardholder name: http://stackoverflow.com/a/16844513/199360
         cardEntity.cardNumber = cardNumber
-        self.performSegueWithIdentifier("enterCardDetails", sender: view)
+        self.performSegue(withIdentifier: "enterCardDetails", sender: view)
     }
 }

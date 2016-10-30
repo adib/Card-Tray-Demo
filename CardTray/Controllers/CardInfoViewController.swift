@@ -17,7 +17,7 @@ class CardInfoViewController: UIViewController,CardEntityHolder {
     var card : CardEntity? {
         didSet {
             cardNumberLabel.text = card?.obfuscatedCardNumber ?? ""
-            deviceNumberLabel.text = UIDevice.currentDevice().identifierForVendor?.UUIDString
+            deviceNumberLabel.text = UIDevice.current.identifierForVendor?.uuidString
         }
     }
 }

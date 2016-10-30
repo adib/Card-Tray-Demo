@@ -16,7 +16,7 @@ class CardDetailsViewController: UIViewController,UITextFieldDelegate, CardEntit
     
     var card : CardEntity?
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if let cardEntity = self.card {
             cardholderNameTextField.text = cardEntity.cardholderName
             cardNumberTextField.text = cardEntity.cardNumber
@@ -25,11 +25,11 @@ class CardDetailsViewController: UIViewController,UITextFieldDelegate, CardEntit
     }
 
     // MARK: - Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let segueIdentifier = segue.identifier {
             switch segueIdentifier {
             case "cardVerify":
-                if let cardCtrl = segue.destinationViewController as? CardEntityHolder {
+                if let cardCtrl = segue.destination as? CardEntityHolder {
                     cardCtrl.card = self.card
                 }
             default:
@@ -38,25 +38,25 @@ class CardDetailsViewController: UIViewController,UITextFieldDelegate, CardEntit
         }
     }
     
-    override func shouldPerformSegueWithIdentifier(segueIdentifier: String, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegue(withIdentifier segueIdentifier: String, sender: Any?) -> Bool {
         let showMissingDataAlert = {
             (alertMessage : String,focusTextField:UITextField) in
-            let alertCtrl = UIAlertController(title: NSLocalizedString("Missing Data", comment: "Validation alert"), message: alertMessage, preferredStyle: .Alert)
-            alertCtrl.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default confirm"), style: .Default, handler: { (action) in
+            let alertCtrl = UIAlertController(title: NSLocalizedString("Missing Data", comment: "Validation alert"), message: alertMessage, preferredStyle: .alert)
+            alertCtrl.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default confirm"), style: .default, handler: { (action) in
                 focusTextField.becomeFirstResponder()
             }))
-            self.presentViewController(alertCtrl, animated: true, completion: nil)
+            self.present(alertCtrl, animated: true, completion: nil)
         }
         switch segueIdentifier {
         case "cardVerify":
             guard let cardEntity = self.card else {
                 return false
             }
-            guard let cardholderName = self.cardholderNameTextField.text where !cardholderName.isEmpty else {
+            guard let cardholderName = self.cardholderNameTextField.text, !cardholderName.isEmpty else {
                 showMissingDataAlert(NSLocalizedString("Please enter cardholder name", comment: "Validation alert"),cardholderNameTextField)
                 return false
             }
-            guard let cardNumber = self.cardNumberTextField.text where !cardNumber.isEmpty else {
+            guard let cardNumber = self.cardNumberTextField.text, !cardNumber.isEmpty else {
                 showMissingDataAlert(NSLocalizedString("Please enter card number", comment: "Validation alert"),cardNumberTextField)
                 return false
             }
@@ -68,10 +68,10 @@ class CardDetailsViewController: UIViewController,UITextFieldDelegate, CardEntit
             ()
         }
 
-        return super.shouldPerformSegueWithIdentifier(segueIdentifier, sender: sender)
+        return super.shouldPerformSegue(withIdentifier: segueIdentifier, sender: sender)
     }
     
-    @IBAction func retryAddCard(unwindSegue:UIStoryboardSegue) {
+    @IBAction func retryAddCard(_ unwindSegue:UIStoryboardSegue) {
         // nothing yet. Just placeholder for unwind segue.
     }
 

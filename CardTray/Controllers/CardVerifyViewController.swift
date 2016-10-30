@@ -25,7 +25,7 @@ class CardVerifyViewController: UIViewController,UITextFieldDelegate,CardEntityH
         expirationDatePicker.viewDidLoad()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if let cardEntity = self.card {
             expirationDatePicker.setSelectedMonth(cardEntity.expiryDayOfMonth, year: cardEntity.expiryYear, animated: animated)
             expirationDatePicker.setNeedsWriteText()
@@ -35,22 +35,22 @@ class CardVerifyViewController: UIViewController,UITextFieldDelegate,CardEntityH
     }
     
     
-    @IBAction func performVerify(sender: AnyObject) {
+    @IBAction func performVerify(_ sender: AnyObject) {
         guard let card = self.card else {
             return
         }
         
         let showMissingDataAlert = {
             (alertMessage : String,focusTextField:UITextField) in
-            let alertCtrl = UIAlertController(title: NSLocalizedString("Missing Data", comment: "Validation alert"), message: alertMessage, preferredStyle: .Alert)
-            alertCtrl.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default confirm"), style: .Default, handler: { (action) in
+            let alertCtrl = UIAlertController(title: NSLocalizedString("Missing Data", comment: "Validation alert"), message: alertMessage, preferredStyle: .alert)
+            alertCtrl.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default confirm"), style: .default, handler: { (action) in
                 focusTextField.becomeFirstResponder()
             }))
-            self.presentViewController(alertCtrl, animated: true, completion: nil)
+            self.present(alertCtrl, animated: true, completion: nil)
         }
         
         guard let   selectedMonth = expirationDatePicker.selectedMonth,
-                    selectedYear = expirationDatePicker.selectedYear else {
+                    let selectedYear = expirationDatePicker.selectedYear else {
             showMissingDataAlert(NSLocalizedString("Incorrect expiration date", comment: "Validation alert"),self.securityCodeTextField)
             return
         }
@@ -58,7 +58,7 @@ class CardVerifyViewController: UIViewController,UITextFieldDelegate,CardEntityH
         card.expiryDayOfMonth = selectedMonth
         card.expiryYear = selectedYear
         
-        guard let securityCode = self.securityCodeTextField.text where !securityCode.isEmpty else {
+        guard let securityCode = self.securityCodeTextField.text, !securityCode.isEmpty else {
             showMissingDataAlert(NSLocalizedString("Missing security code", comment: "Validation alert"),self.securityCodeTextField)
             return
         }
@@ -68,23 +68,23 @@ class CardVerifyViewController: UIViewController,UITextFieldDelegate,CardEntityH
         card.validate({
             (errorOrNil) in
             if let error = errorOrNil {
-                let alertCtrl = UIAlertController(title: NSLocalizedString("Error validating card",comment:"Card Error"), message: error.localizedDescription, preferredStyle: .Alert)
-                alertCtrl.addAction(UIAlertAction(title: NSLocalizedString("Re-Enter Details", comment: "default retry"), style: .Default, handler: { (action) in
-                    self.performSegueWithIdentifier("retryAddCard", sender: sender)
+                let alertCtrl = UIAlertController(title: NSLocalizedString("Error validating card",comment:"Card Error"), message: error.localizedDescription, preferredStyle: .alert)
+                alertCtrl.addAction(UIAlertAction(title: NSLocalizedString("Re-Enter Details", comment: "default retry"), style: .default, handler: { (action) in
+                    self.performSegue(withIdentifier: "retryAddCard", sender: sender)
                 }))
-                alertCtrl.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "default cancel"), style: .Cancel, handler: { (action) in
-                    self.performSegueWithIdentifier("addCardCancel", sender: sender)
+                alertCtrl.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "default cancel"), style: .cancel, handler: { (action) in
+                    self.performSegue(withIdentifier: "addCardCancel", sender: sender)
                 }))
-                self.presentViewController(alertCtrl, animated: true, completion: nil)
+                self.present(alertCtrl, animated: true, completion: nil)
             } else {
-                self.performSegueWithIdentifier("verifyCompleted", sender: sender)
+                self.performSegue(withIdentifier: "verifyCompleted", sender: sender)
             }
         })
     }
     
     // MARK: - UITextFieldDelegate
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField {
             case expirationDateTextField:
                 if let expirationDateText = expirationDateTextField.text {

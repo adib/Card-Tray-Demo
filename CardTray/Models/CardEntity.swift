@@ -8,13 +8,13 @@
 
 import UIKit
 
-public class CardEntity: NSObject,NSCoding {
+open class CardEntity: NSObject,NSCoding {
     
     static let ErrorDomain = "CardEntityErrorDomain"
     
     public enum ErrorCode : Int {
-        case None = 0
-        case CardNumberChecksumFailed = 1
+        case none = 0
+        case cardNumberChecksumFailed = 1
     }
     
     public enum NetworkType : String {
@@ -23,19 +23,19 @@ public class CardEntity: NSObject,NSCoding {
         case MasterCard = "mastercard"
     }
     
-    public var cardNumber : String?
+    open var cardNumber : String?
     
-    public var cardholderName : String?
+    open var cardholderName : String?
     
-    public var securityCode : String?
+    open var securityCode : String?
     
-    public var expiryDayOfMonth : Int?
+    open var expiryDayOfMonth : Int?
     
-    public var expiryYear : Int?
+    open var expiryYear : Int?
     
-    public var networkType = NetworkType.Unknown
+    open var networkType = NetworkType.Unknown
     
-    public var obfuscatedCardNumber : String? {
+    open var obfuscatedCardNumber : String? {
         get {
             if let cardNumber = self.cardNumber {
                 let displayNumbers = String(cardNumber.characters.suffix(4))
@@ -55,46 +55,46 @@ public class CardEntity: NSObject,NSCoding {
     public required init(coder aDecoder: NSCoder) {
         let decodeInt = {
             (key:String) -> Int? in
-            if let num = aDecoder.decodeObjectForKey(key) as? NSNumber {
-                return Int(num.intValue)
+            if let num = aDecoder.decodeObject(forKey: key) as? NSNumber {
+                return Int(num.int32Value)
             }
             return nil
         }
-        cardNumber = aDecoder.decodeObjectForKey("cardNumber") as? String
-        cardholderName = aDecoder.decodeObjectForKey("cardholderName") as? String
-        securityCode = aDecoder.decodeObjectForKey("securityCode") as? String
+        cardNumber = aDecoder.decodeObject(forKey: "cardNumber") as? String
+        cardholderName = aDecoder.decodeObject(forKey: "cardholderName") as? String
+        securityCode = aDecoder.decodeObject(forKey: "securityCode") as? String
         expiryDayOfMonth = decodeInt("expiryDayOfMonth")
         expiryYear = decodeInt("expiryYear")
-        networkType = NetworkType(rawValue:aDecoder.decodeObjectForKey("networkType") as? String ?? "") ?? .Unknown
+        networkType = NetworkType(rawValue:aDecoder.decodeObject(forKey: "networkType") as? String ?? "") ?? .Unknown
     }
     
-    public func encodeWithCoder(aCoder: NSCoder) {
+    open func encode(with aCoder: NSCoder) {
         let encodeInt = {
             (v:Int?,key:String) in
             if let value = v {
-                aCoder.encodeInt(Int32(value), forKey: key)
+                aCoder.encodeCInt(Int32(value), forKey: key)
             }
         }
-        aCoder.encodeObject(cardNumber, forKey: "cardNumber")
-        aCoder.encodeObject(cardholderName, forKey: "cardholderName")
-        aCoder.encodeObject(securityCode, forKey: "securityCode")
+        aCoder.encode(cardNumber, forKey: "cardNumber")
+        aCoder.encode(cardholderName, forKey: "cardholderName")
+        aCoder.encode(securityCode, forKey: "securityCode")
         encodeInt(expiryDayOfMonth,"expiryDayOfMonth")
         encodeInt(expiryYear,"expiryYear")
-        aCoder.encodeObject(networkType.rawValue, forKey: "networkType")
+        aCoder.encode(networkType.rawValue, forKey: "networkType")
     }
 
     /**
      Validates the card details and modifies the entity data accordingly.
      This function may eventually call the network, hence has an asynchronous style signature.
     */
-    public func validate(completionHandler: ((error : NSError?)->Void)? ) {
-        guard   let cardNumber = self.cardNumber where
+    open func validate(_ completionHandler: ((_ error : NSError?)->Void)? ) {
+        guard   let cardNumber = self.cardNumber,
                     LuhnChecksum(cardNumber) else {
             let userInfo = [
                 NSLocalizedDescriptionKey: NSLocalizedString("Card number checksum failure", comment: "Validation error")
             ]
-            let error = NSError(domain: CardEntity.ErrorDomain, code: CardEntity.ErrorCode.CardNumberChecksumFailed.rawValue, userInfo: userInfo)
-            completionHandler?(error: error)
+            let error = NSError(domain: CardEntity.ErrorDomain, code: CardEntity.ErrorCode.cardNumberChecksumFailed.rawValue, userInfo: userInfo)
+            completionHandler?(error)
             return
         }
         
@@ -120,7 +120,7 @@ public class CardEntity: NSObject,NSCoding {
                 break
             }
         }
-        completionHandler?(error: nil)
+        completionHandler?(nil)
     }
 }
 
@@ -133,12 +133,12 @@ public class CardEntity: NSObject,NSCoding {
 }
 
 
-func LuhnChecksum(cardNumber:String) -> Bool {
+func LuhnChecksum(_ cardNumber:String) -> Bool {
     // https://en.wikipedia.org/wiki/Luhn_algorithm
     
     var sum = 0
-    let reversedCharacters = cardNumber.characters.reverse().map { String($0) }
-    for (idx, element) in reversedCharacters.enumerate() {
+    let reversedCharacters = cardNumber.characters.reversed().map { String($0) }
+    for (idx, element) in reversedCharacters.enumerated() {
         guard let digit = Int(element) else { return false }
         switch ((idx % 2 == 1), digit) {
             case (true, 9): sum += 9

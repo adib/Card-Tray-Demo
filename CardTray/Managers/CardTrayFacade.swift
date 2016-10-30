@@ -8,10 +8,10 @@
 
 import UIKit
 
-public class CardTrayFacade: NSObject {
-    public lazy private(set) var  mainViewController : UIViewController = {
+open class CardTrayFacade: NSObject {
+    open lazy fileprivate(set) var  mainViewController : UIViewController = {
        [unowned self] in
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let storyboard = UIStoryboard(name: "CardManagement", bundle: bundle)
         let ctrl = storyboard.instantiateInitialViewController()
         return ctrl!
