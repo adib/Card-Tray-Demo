@@ -152,6 +152,7 @@ class CardListView: UIView,UIDynamicAnimatorDelegate {
         }
     }
     
+    @discardableResult
     fileprivate func newCardItemViewAtIndex(_ cardIndex:Int) -> UIView {
         let itemView = delegate!.cardListView(self, itemAtIndex: cardIndex)
         itemView.translatesAutoresizingMaskIntoConstraints = false

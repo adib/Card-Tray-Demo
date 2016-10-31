@@ -143,7 +143,7 @@ class CardExpirationPickerController: UIResponder,UIPickerViewDataSource,UIPicke
         }
     }
     
-    
+    @discardableResult
     func setSelectedText(_ userText:String,animated:Bool) -> Bool {
         var objectValue : AnyObject?
         if self.dateTextFormatter.getObjectValue(&objectValue, for: userText, errorDescription: nil) {
