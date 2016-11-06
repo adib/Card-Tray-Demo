@@ -48,5 +48,5 @@ A clone of the credit/debit card storage of Apple’s _Wallet_ app.
 - `Pods` – Cocoapods-managed sources.
 
 
-Copyright(C) 2016 Sasmito Adibowo. All rights reserved.
+Copyright(C) 2016 [Sasmito Adibowo](http://cutecoder.org). Licensed under GPL v3 – see `LICENSE.md` for details.
 
