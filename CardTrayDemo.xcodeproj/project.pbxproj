@@ -543,6 +543,7 @@
 					};
 					C0E9E45F1D0BB709006218BE = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = F3VP86DSRS;
 						LastSwiftMigration = 0810;
 					};
 					C0E9E4791D0BB75E006218BE = {
@@ -967,6 +968,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = F3VP86DSRS;
 				INFOPLIST_FILE = CardTrayDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.basilsalad.CardTrayApp;
@@ -982,6 +984,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = F3VP86DSRS;
 				INFOPLIST_FILE = CardTrayDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.basilsalad.CardTrayApp;
