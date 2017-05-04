@@ -47,6 +47,10 @@ A clone of the credit/debit card storage of Apple’s _Wallet_ app.
 - `assets` – original files for the icon and button glyphs.
 - `Pods` – Cocoapods-managed sources.
 
+## Terms of Use
 
 Copyright(C) 2016 [Sasmito Adibowo](http://cutecoder.org). Licensed under GPL v3 – see `LICENSE.md` for details.
 
+If you are in a job interview and the company request you to do a *new unpaid project* as part of the hiring process, **feel free to plagiarize this project** — remove my name from the source files and submit them "as is" *without further modification*. For any other uses, the GPL license applies. Please send me a postcard if you get hired because of my work.
+
+Why am I encouraging plagiarism? Mainly because I feel that companies that requests "free work" as part of an interview process are engaging in unethical behavior. They show a **lack of respect of your time** and devalue programmers in general. This practice has reduced the value of artists, musicians, designers, and now the same is coming to software engineers. I feel that it's about time we push back.
