@@ -54,3 +54,55 @@ Copyright(C) 2016 [Sasmito Adibowo](http://cutecoder.org). Licensed under GPL v3
 If you are in a job interview and the company request you to do a *new unpaid project* as part of the hiring process, **feel free to plagiarize this project** — remove my name from the source files and submit them "as is" *without further modification*. For any other uses, the GPL license applies. Please send me a postcard if you get hired because of my work.
 
 Why am I encouraging plagiarism? Mainly because I feel that companies that requests "free work" as part of an interview process are engaging in unethical behavior. They show a **lack of respect of your time** and devalue programmers in general. This practice has reduced the value of artists, musicians, designers, and now the same is coming to software engineers. I feel that it's about time we push back.
+
+# Original Asignment Description
+
+## Design Brief
+
+The goal is to build up a tool-kit of standard design templates that can be rapidly branded and deployed for partners with minimal effort. 
+
+### Basic Needs
+
+- Flat Design / Use of clear backgrounds
+- Style Sheets (Change Fonts & Colors)
+- Space for Logos
+- Ability to back with color or image
+- Minimal words (language)
+
+### Design Challenge
+
+- Fewest Screens / Simplest Method
+
+## Developer Brief
+
+The goal is to build up a suite of services which can be deployed together or independently and customized per client as needed with minimal effort. 
+
+### Basic Needs
+
+- WireCard & Stripe
+- Heroku Platform End to End Capability
+- Common Service Layers
+- Custom Demo Application Environments
+- Stubs & Simulation where required
+
+### Developer Challenge
+
+- Functional / Flexible
+- Easy to Integrate 3rd Party systems / Apps
+
+## Card Tray
+
+A container that can hold and manage multiple cards in a clean and simple format. The card tray is at the center of all services.
+
+### Design Archetype 
+
+Keep it simple. The Samsung card tray is really beautiful. Allow cards to be rotated through visually. Use a mash-up of Apple, Samsung and Android screens for the “back of card” data elements. 
+
+### Needed Systems
+
+- WireCard
+
+### API or Stubs
+
+- Card Controls (CTC)
+- Last 10 Transactions (See VTS Format)
